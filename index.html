@@ -20,10 +20,15 @@ button,.download{border:1px solid #d8b65e;background:#332b49;color:#fff4df;borde
 button.active{background:#c6a85f;color:#17233b}
 main{max-width:1500px;margin:auto;padding:16px}
 .notice{text-align:center;color:#e9dcbf;margin:8px 0 14px}
-.viewer{width:100%;height:calc(100vh - 230px);min-height:620px;border:2px solid #d8b65e;border-radius:14px;background:#f4ead1;box-shadow:0 20px 60px #0009}
-.viewer iframe{display:block;width:100%;height:100%;border:0;border-radius:12px;background:#f4ead1}
+.viewer{width:100%;min-height:620px;border:2px solid #d8b65e;border-radius:14px;background:radial-gradient(ellipse,#536b87,#172b49);box-shadow:0 20px 60px #0009;padding:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#book{width:min(100%,1500px);height:min(78vh,1120px);margin:auto}
+.page{background:#f4ead1;overflow:hidden;display:flex;align-items:center;justify-content:center;box-shadow:0 5px 18px #0005}
+.page canvas{display:block;width:100%;height:100%;object-fit:contain;background:#f4ead1}
+.flip-controls{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;margin:14px}
+#pageCount{color:#f0d99f;min-width:100px;text-align:center}
+#fallback{display:inline-block}
 footer{text-align:center;color:#d8cba9;font-size:12px;padding:16px}
-@media(max-width:650px){.viewer{height:82vh;min-height:520px}main{padding:8px}}
+@media(max-width:650px){.viewer{height:76vh;min-height:520px;padding:6px}#book{height:68vh;width:100%}main{padding:8px}}
 </style>
 </head>
 <body>
@@ -44,11 +49,59 @@ footer{text-align:center;color:#d8cba9;font-size:12px;padding:16px}
 </nav>
 <main>
 <p class="notice" id="notice">النسخة الأصلية من PDF معروضة مباشرة دون قصّ أو تمديد للغلاف والصور. استعمل أدوات القارئ للتكبير والتنقل.</p>
-<section class="viewer" aria-label="قارئ الكتاب PDF">
-<iframe src="./assets/book.pdf#view=FitH" title="مدرسة العشق الأبدي الروحي - PDF"></iframe>
+<div class="flip-controls"><button id="backPage">◀ الصفحة السابقة</button><span id="pageCount">جارٍ التحضير…</span><button id="forwardPage">الصفحة التالية ▶</button><a class="download" id="fallback" href="./assets/book.pdf" target="_blank" rel="noopener">فتح PDF الأصلي</a></div>
+<section class="viewer" aria-label="كتاب بتقليب الصفحات">
+<div id="book"></div>
 </section>
 </main>
 <footer>© Fakhreddine Hammadi</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
+<script>
+(async()=>{
+ const count=document.getElementById("pageCount"),host=document.getElementById("book");
+ const prev=document.getElementById("backPage"),next=document.getElementById("forwardPage");
+ let pdf,flip,rendering=new Set(),total=0;
+ const setCount=()=>{const n=flip.getCurrentPageIndex()+1;count.textContent=n+" / "+total;prev.disabled=n===1;next.disabled=n===total;renderNear(n-1)};
+ async function draw(n,canvas){
+  if(rendering.has(n))return;rendering.add(n);
+  try{
+   const page=await pdf.getPage(n),base=page.getViewport({scale:1});
+   const targetW=1200,targetH=1695;
+   const scale=Math.min(targetW/base.width,targetH/base.height,2.4);
+   const vp=page.getViewport({scale});
+   canvas.width=Math.ceil(vp.width);canvas.height=Math.ceil(vp.height);
+   await page.render({canvasContext:canvas.getContext("2d",{alpha:false}),viewport:vp}).promise;
+  }finally{rendering.delete(n)}
+ }
+ async function renderNear(i){
+  const nodes=host.querySelectorAll(".page");
+  const jobs=[];
+  for(let k=Math.max(0,i-2);k<=Math.min(total-1,i+3);k++){
+   const c=nodes[k]?.querySelector("canvas");
+   if(c&&c.width===0)jobs.push(draw(k+1,c));
+  }
+  await Promise.all(jobs);
+ }
+ try{
+  if(!window.pdfjsLib||!window.St?.PageFlip)throw new Error("تعذر تحميل قارئ الصفحات");
+  pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+  pdf=await pdfjsLib.getDocument("./assets/book.pdf").promise;total=pdf.numPages;
+  const pages=[];
+  for(let n=1;n<=total;n++){
+   const el=document.createElement("div");el.className="page";
+   if(n===1||n===total)el.classList.add("hard");
+   const c=document.createElement("canvas");el.appendChild(c);pages.push(el);
+  }
+  host.replaceChildren(...pages);
+  flip=new St.PageFlip(host,{width:760,height:1075,size:"stretch",minWidth:300,maxWidth:1250,minHeight:425,maxHeight:1768,autoSize:true,showCover:true,usePortrait:true,drawShadow:true,maxShadowOpacity:.35,flippingTime:850,swipeDistance:24,clickEventForward:true,useMouseEvents:true,mobileScrollSupport:false});
+  flip.loadFromHTML(host.querySelectorAll(".page"));
+  flip.on("flip",setCount);
+  prev.onclick=()=>flip.flipPrev();next.onclick=()=>flip.flipNext();
+  setCount();await renderNear(0);
+ }catch(e){count.textContent="تعذر تشغيل التقليب";const link=document.createElement("a");link.className="download";link.href="./assets/book.pdf";link.target="_blank";link.textContent="فتح PDF الأصلي";host.replaceChildren(link);console.error(e)}
+})();
+</script>
 <script>
 const translations={
 ar:{title:"مدرسة العشق الأبدي الروحي",subtitle:"فلسفة العشق والغرام والهيام",download:"تحميل PDF",open:"فتح PDF في نافذة مستقلة",word:"تحميل Word الأصلي",notice:"النسخة الأصلية من PDF معروضة مباشرة دون قصّ أو تمديد للغلاف والصور. استعمل أدوات القارئ للتكبير والتنقل."},
