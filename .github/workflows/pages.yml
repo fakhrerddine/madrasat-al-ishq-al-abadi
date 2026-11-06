@@ -61,10 +61,65 @@ jobs:
           print("Double spaces:", joined.count("  "))
           print("No-space Arabic/Latin adjacency sample:", [x[:120] for x in joined.splitlines() if re.search(r"[\\u0600-\\u06ff][A-Za-z0-9]",x)][:8])
           PY
+      - name: Apply safe Arabic typography and text color to a temporary copy
+        env:
+          DOCX: "source-book/assets/مدرسة العشق الأبدي الروحي - Copie_compressed.docx"
+        run: |
+          python - <<'PY'
+          import os, zipfile, tempfile
+          from pathlib import Path
+          from xml.etree import ElementTree as ET
+          src=Path(os.environ["DOCX"])
+          dst=Path("/tmp/book-readable.docx")
+          ns={"w":"http://schemas.openxmlformats.org/wordprocessingml/2006/main"}
+          W="{"+ns["w"]+"}"
+          with zipfile.ZipFile(src) as zin, zipfile.ZipFile(dst,"w",zipfile.ZIP_DEFLATED) as zout:
+              for item in zin.infolist():
+                  data=zin.read(item.filename)
+                  if item.filename.startswith("word/") and item.filename.endswith(".xml"):
+                      try:
+                          root=ET.fromstring(data)
+                          changed=False
+                          for rf in root.iter(W+"rFonts"):
+                              rf.set(W+"cs","Noto Naskh Arabic")
+                              changed=True
+                          for color in root.iter(W+"color"):
+                              val=(color.get(W+"val") or "").upper()
+                              if val in ("000000","000","AUTO"):
+                                  color.set(W+"val","27364B")
+                                  changed=True
+                          if item.filename=="word/styles.xml":
+                              dd=root.find("w:docDefaults",ns)
+                              if dd is None:
+                                  dd=ET.Element(W+"docDefaults")
+                                  root.insert(0,dd)
+                              rd=dd.find("w:rPrDefault",ns)
+                              if rd is None:
+                                  rd=ET.SubElement(dd,W+"rPrDefault")
+                              rp=rd.find("w:rPr",ns)
+                              if rp is None:
+                                  rp=ET.SubElement(rd,W+"rPr")
+                              rf=rp.find("w:rFonts",ns)
+                              if rf is None:
+                                  rf=ET.SubElement(rp,W+"rFonts")
+                              rf.set(W+"cs","Noto Naskh Arabic")
+                              col=rp.find("w:color",ns)
+                              if col is None:
+                                  col=ET.SubElement(rp,W+"color")
+                              col.set(W+"val","27364B")
+                              changed=True
+                          if changed:
+                              data=ET.tostring(root,encoding="utf-8",xml_declaration=True)
+                      except ET.ParseError:
+                          pass
+                  zout.writestr(item,data)
+          print("Created temporary styled copy:",dst,"bytes:",dst.stat().st_size)
+          PY
+          fc-match "Noto Naskh Arabic"
       - name: Convert original Word book to PDF
         timeout-minutes: 15
         env:
-          DOCX: "source-book/assets/مدرسة العشق الأبدي الروحي - Copie_compressed.docx"
+          DOCX: "/tmp/book-readable.docx"
         run: |
           set -euo pipefail
           mkdir -p site/assets
