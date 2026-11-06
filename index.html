@@ -6,7 +6,7 @@
 <title>Fakhreddine Hammadi – مدرسة العشق الأبدي</title>
 <style>
 :root{--night:#101d36;--panel:#1b2d4b;--gold:#d8b65e;--cream:#f4ead1;--ink:#f7f0e4;--muted:#c3ccda}
-*{box-sizing:border-box}body{margin:0;min-height:100vh;color:var(--ink);font-family:Tahoma,"Noto Naskh Arabic",serif;background:radial-gradient(ellipse at 50% 5%,#29466f 0,#172b4a 42%,#0b1427 100%)}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;color:var(--ink);font-family:"Noto Naskh Arabic","Scheherazade New",Tahoma,serif;background:radial-gradient(ellipse at 50% 5%,#29466f 0,#172b4a 42%,#0b1427 100%)}
 body.day{background:linear-gradient(140deg,#eee4cf,#d9cba9);color:#30263b;--panel:#fff7e8;--muted:#63576a}
 header{text-align:center;padding:22px 14px 15px;border-bottom:1px solid #d4b46a55}
 .brand{font-size:12px;letter-spacing:2px;color:#e8c979;text-shadow:0 0 14px #d4b46a88}h1{font-size:clamp(25px,4.4vw,40px);margin:8px 0;color:#f0cf76;text-shadow:0 2px 4px #0008,0 0 22px #d4b46a55}.subtitle{color:#d9c69b;font-size:15px;text-shadow:0 0 12px #d4b46a33}.lang-switch{display:flex;justify-content:center;gap:7px;margin-top:13px}.lang-switch button{padding:6px 12px;font-size:12px;background:#172c50;border-color:#c6a85f;color:#f7edcf}.lang-switch button.active{background:#c6a85f;color:#17233b;font-weight:bold}
@@ -71,7 +71,7 @@ function setLanguage(lang){
 }
 document.querySelectorAll(".lang-switch button").forEach(b=>b.addEventListener("click",()=>setLanguage(b.dataset.lang)));
 
-const PDF_URL="./assets/book.pdf";let pdf=null,flip=null,total=0,rendered=new Set(),textCache=new Map(),zoom=1.08;
+const PDF_URL="./assets/book.pdf";let pdf=null,flip=null,total=0,rendered=new Set(),textCache=new Map(),zoom=1.18;
 const $=id=>document.getElementById(id);
 function setStatus(s){$("status").textContent=s}
 function makeCanvasPage(label,cover=false){const el=document.createElement("div");el.className=cover?"page cover":"page";el.dataset.pdf=label;const c=document.createElement("canvas");el.appendChild(c);return {el,c}}
@@ -86,7 +86,7 @@ $("firstBtn").onclick=()=>flip&&flip.flip(0);$("lastBtn").onclick=()=>flip&&flip
 $("themeBtn").onclick=()=>{document.body.classList.toggle("day");$("themeBtn").textContent=document.body.classList.contains("day")?"الوضع الداكن":"الوضع الليلي"};
 $("fullBtn").onclick=()=>!document.fullscreenElement?document.documentElement.requestFullscreen?.():document.exitFullscreen?.();
 $("tocBtn").onclick=()=>$("tocPanel").classList.toggle("open");
-$("zoomIn").onclick=()=>{zoom=Math.min(1.32,zoom+.08);rerenderVisible()};$("zoomOut").onclick=()=>{zoom=Math.max(.84,zoom-.08);rerenderVisible()};
+$("zoomIn").onclick=()=>{zoom=Math.min(1.55,zoom+.08);rerenderVisible()};$("zoomOut").onclick=()=>{zoom=Math.max(.90,zoom-.08);rerenderVisible()};
 async function rerenderVisible(){rendered.clear();$("book").querySelectorAll("canvas").forEach(c=>{if(!c.closest(".cover")){c.width=0;c.height=0}});await renderAround(flip?flip.getCurrentPageIndex():0)}
 $("jumpBtn").onclick=()=>{const n=Number(prompt("رقم صفحة الكتاب:"));if(Number.isInteger(n)&&n>=1&&n<=pdf.numPages)flip.flip(Math.min(total-1,n))};
 async function extractText(n){if(textCache.has(n))return textCache.get(n);const p=await pdf.getPage(n);const t=await p.getTextContent();const s=t.items.map(x=>x.str).join(" ");textCache.set(n,s);return s}
@@ -103,7 +103,7 @@ $("search").addEventListener("keydown",e=>{if(e.key==="Enter")$("searchBtn").cli
  for(let n=2;n<=pdf.numPages;n++){const p=makeCanvasPage(n);pages.push(p.el)}
  const back=makeCanvasPage("back",true);back.el.classList.add("hard","back");back.c=await makeCover(1,"back");back.el.replaceChildren(back.c);pages.push(back.el);
  host.replaceChildren(...pages);total=pages.length;
- flip=new St.PageFlip(host,{width:640,height:905,size:"stretch",minWidth:320,maxWidth:1320,minHeight:452,maxHeight:1700,autoSize:true,showCover:true,usePortrait:false,drawShadow:true,maxShadowOpacity:.38,flippingTime:850,swipeDistance:20,clickEventForward:true,useMouseEvents:true,disableFlipByClick:false,mobileScrollSupport:false});
+ flip=new St.PageFlip(host,{width:760,height:1075,size:"stretch",minWidth:320,maxWidth:1320,minHeight:452,maxHeight:1700,autoSize:true,showCover:true,usePortrait:true,drawShadow:true,maxShadowOpacity:.38,flippingTime:850,swipeDistance:20,clickEventForward:true,useMouseEvents:true,disableFlipByClick:false,mobileScrollSupport:false});
  flip.loadFromHTML(host.querySelectorAll(".page"));flip.on("flip",updateCounter);flip.on("changeState",()=>{});updateCounter();
  window.addEventListener("keydown",e=>{if(e.target&&/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;if(e.key==="ArrowLeft"){e.preventDefault();go(1)}else if(e.key==="ArrowRight"){e.preventDefault();go(-1)}else if(e.key==="Home"){e.preventDefault();flip.flip(0)}else if(e.key==="End"){e.preventDefault();flip.flip(total-1)}});
  await renderAround(0);
