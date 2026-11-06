@@ -129,11 +129,6 @@ footer{text-align:center;color:var(--muted);padding:22px;font-size:12px}
  <button id="tocToggle" type="button">📚 فهرس الفصول</button>
  <button id="aboutToggle" type="button">✦ عن الكتاب</button>
  <button id="galleryToggle" type="button">🖼 صور الفصول</button>
- <label for="languageSelect" style="color:#f8edda;font-size:13px">الترجمة:</label>
- <select id="languageSelect" aria-label="اختر لغة الترجمة">
-  <option value="">اختر اللغة</option><option value="fr">Français</option><option value="es">Español</option><option value="en">English</option>
- </select>
- <button id="translateBtn" type="button">ترجمة الصفحة</button>
  <button id="firstPage" type="button">بداية الكتاب</button>
  <button id="lastPage" type="button">نهاية الكتاب</button>
  <div class="progress-track" style="flex-basis:100%"><div id="readingProgress"></div></div>
@@ -141,8 +136,9 @@ footer{text-align:center;color:var(--muted);padding:22px;font-size:12px}
  <a class="tool-link" href="https://github.com/fakhrerddine/fakhreddine-book/blob/d45879839fe6eff9f276b09bdd87e5faf315c6e8/assets/%D9%85%D8%AF%D8%B1%D8%B3%D8%A9%20%D8%A7%D9%84%D8%B9%D8%B4%D9%82%20%D8%A7%D9%84%D8%A3%D8%A8%D8%AF%D9%8A%20%D8%A7%D9%84%D8%B1%D9%88%D8%AD%D9%8A%20-%20Copie_compressed.docx" target="_blank" rel="noopener">ملف Word الأصلي</a>
 </nav>
 
-<div class="language-bar" aria-label="روابط ترجمة الكتاب">
- <strong>اقرأ بلغتك / Lire dans votre langue / Read in your language:</strong>
+<div class="language-bar" aria-label="لغات الكتاب">
+ <strong>لغة القراءة / Language:</strong>
+ <a id="translateAr" href="#" rel="noopener">العربية</a>
  <a id="translateFr" href="#" target="_blank" rel="noopener">Français</a>
  <a id="translateEs" href="#" target="_blank" rel="noopener">Español</a>
  <a id="translateEn" href="#" target="_blank" rel="noopener">English</a>
@@ -232,6 +228,8 @@ window.addEventListener("resize",()=>showPage(current,false));
 
 function setupLanguageLinks(){
  const target=location.href.split("#")[0];
+ const arabic=document.getElementById("translateAr");
+ if(arabic)arabic.href=target;
  [["translateFr","fr"],["translateEs","es"],["translateEn","en"]].forEach(([id,lang])=>{
   const a=document.getElementById(id);
   if(a)a.href="https://translate.google.com/translate?sl=auto&tl="+lang+"&u="+encodeURIComponent(target);
@@ -246,13 +244,7 @@ document.getElementById("aboutToggle").onclick=()=>togglePanel("aboutPanel");
 document.getElementById("galleryToggle").onclick=()=>{togglePanel("galleryPanel");buildGallery();};
 document.getElementById("firstPage").onclick=()=>showPage(0);
 document.getElementById("lastPage").onclick=()=>showPage(Math.max(0,pages.length-1));
-document.getElementById("translateBtn").onclick=()=>{
- const lang=document.getElementById("languageSelect").value;
- if(!lang){status.textContent="اختر لغة الترجمة أولاً.";return;}
- const target=location.href.split("#")[0];
- const url="https://translate.google.com/translate?sl=auto&tl="+encodeURIComponent(lang)+"&u="+encodeURIComponent(target);
- window.open(url,"_blank","noopener");
-};
+
 function chapterTitle(text){
  const clean=(text||"").replace(/\\s+/g," ").trim();
  return /^(الفصل|الباب|القسم|مقدمة|الخاتمة|كلمة الكاتب|الإهداء|الفهرس)/.test(clean);
