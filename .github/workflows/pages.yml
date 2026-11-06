@@ -16,6 +16,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    timeout-minutes: 25
     steps:
       - name: Checkout website
         uses: actions/checkout@v4
@@ -27,14 +28,29 @@ jobs:
           repository: fakhrerddine/fakhreddine-book
           ref: main
           path: source-book
-      - name: Convert original Word book to PDF
+      - name: Install PDF conversion tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y libreoffice
+          sudo apt-get install -y libreoffice-writer poppler-utils
+      - name: Convert original Word book to PDF
+        timeout-minutes: 15
+        env:
+          DOCX: "source-book/assets/مدرسة العشق الأبدي الروحي - Copie_compressed.docx"
+        run: |
+          set -euo pipefail
           mkdir -p site/assets
-          libreoffice --headless --convert-to pdf --outdir site/assets "source-book/assets/مدرسة العشق الأبدي الروحي - Copie_compressed.docx"
-          mv "site/assets/مدرسة العشق الأبدي الروحي - Copie_compressed.pdf" site/assets/book.pdf
-          test -s site/assets/book.pdf
+          test -s "$DOCX"
+          echo "Source DOCX size:"
+          du -h "$DOCX"
+          mkdir -p /tmp/lo-profile
+          timeout 12m libreoffice -env:UserInstallation=file:///tmp/lo-profile --headless --convert-to pdf --outdir site/assets "$DOCX"
+          PDF="site/assets/مدرسة العشق الأبدي الروحي - Copie_compressed.pdf"
+          test -s "$PDF"
+          mv "$PDF" site/assets/book.pdf
+          echo "Generated PDF size:"
+          du -h site/assets/book.pdf
+          pdfinfo site/assets/book.pdf | grep -E '^(Pages|Page size|File size):'
+          test "$(pdfinfo site/assets/book.pdf | awk '/^Pages:/ {print $2}')" -gt 1
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
