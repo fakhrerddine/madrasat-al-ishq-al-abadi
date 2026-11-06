@@ -1,4 +1,4 @@
-name: Deploy digital book to GitHub Pages
+name: Build and deploy digital book
 on:
   push:
     branches: ["main"]
@@ -17,8 +17,24 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout website
         uses: actions/checkout@v4
+        with:
+          path: site
+      - name: Checkout confirmed Word master
+        uses: actions/checkout@v4
+        with:
+          repository: fakhrerddine/fakhreddine-book
+          ref: main
+          path: source-book
+      - name: Convert original Word book to PDF
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libreoffice
+          mkdir -p site/assets
+          libreoffice --headless --convert-to pdf --outdir site/assets "source-book/assets/مدرسة العشق الأبدي الروحي - Copie_compressed.docx"
+          mv "site/assets/مدرسة العشق الأبدي الروحي - Copie_compressed.pdf" site/assets/book.pdf
+          test -s site/assets/book.pdf
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
@@ -26,7 +42,7 @@ jobs:
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "."
+          path: site
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
