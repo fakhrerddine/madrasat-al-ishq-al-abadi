@@ -31,7 +31,8 @@ jobs:
       - name: Install PDF conversion tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y libreoffice-writer poppler-utils
+          sudo apt-get install -y libreoffice-writer poppler-utils fonts-noto-core fonts-noto-extra fonts-sil-scheherazade-new
+          sudo fc-cache -f
       - name: Convert original Word book to PDF
         timeout-minutes: 15
         env:
