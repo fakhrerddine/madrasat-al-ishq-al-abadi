@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#17152b">
+<title>مدرسة العشق الأبدي الروحي | فخرالدين حمادي</title>
+<style>
+:root{--bg:#17152b;--panel:#211e39;--ink:#f5eddf;--gold:#c8a65a;--paper:#fffdf7;--muted:#bcb5c9}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at top,#30264b 0,#17152b 60%);color:var(--ink);font-family:Tahoma,"Noto Naskh Arabic",serif;min-height:100vh}
+body.light{--bg:#eee9df;--panel:#fffaf0;--ink:#292238;--muted:#655c70;background:#eee9df;color:var(--ink)}
+header{padding:25px 18px 18px;text-align:center;border-bottom:1px solid #c8a65a55}
+.brand{color:var(--gold);font-size:13px;letter-spacing:2px}
+h1{margin:8px 0 5px;font-size:clamp(24px,4vw,38px);color:var(--ink)}
+.subtitle{color:var(--muted);font-size:14px}
+.toolbar{position:sticky;top:0;z-index:10;display:flex;gap:8px;justify-content:center;align-items:center;flex-wrap:wrap;padding:12px;background:#17152bea;backdrop-filter:blur(12px);border-bottom:1px solid #c8a65a44}
+button,.tool-link{border:1px solid #c8a65a88;background:#292440;color:#f8edda;padding:9px 13px;border-radius:9px;font:inherit;cursor:pointer;text-decoration:none;font-size:13px}
+button:hover,.tool-link:hover{background:#40365b}
+#search{width:min(220px,60vw);padding:10px;border-radius:9px;border:1px solid #c8a65a88;background:#fffdf7;color:#292238;font:inherit}
+main{max-width:1400px;margin:auto;padding:22px 14px 40px}
+.status{text-align:center;color:var(--muted);font-size:14px;margin:8px auto 18px;min-height:24px}
+.book-shell{background:linear-gradient(135deg,#292440,#201b34);border:1px solid #c8a65a66;border-radius:18px;padding:20px 12px;box-shadow:0 24px 70px #0006;overflow:hidden}
+#reader{min-height:65vh;display:flex;align-items:flex-start;justify-content:center;gap:18px;perspective:1800px}
+#reader .docx-wrapper{display:flex!important;justify-content:center;align-items:flex-start;gap:18px!important;flex-wrap:nowrap!important;background:transparent!important;padding:0!important;width:100%}
+#reader .docx-wrapper>section{display:none!important;width:min(46%,620px)!important;max-width:620px!important;min-width:0!important;height:auto!important;min-height:65vh;overflow:hidden;background:var(--paper)!important;box-shadow:0 8px 24px #0005!important;margin:0!important;transform-origin:left center;transition:transform .35s ease,opacity .35s ease}
+#reader .docx-wrapper>section.active-page{display:block!important}
+#reader .docx-wrapper>section img{max-width:100%;height:auto}
+#reader .docx-wrapper>section *{max-width:100%}
+#reader .docx-wrapper>section p{overflow-wrap:anywhere}
+#reader .docx-wrapper>section table{max-width:100%}
+#reader .docx-wrapper>section.flip-out{transform:rotateY(-8deg);opacity:.35}
+#reader .docx-wrapper>section.flip-in{animation:pageIn .38s ease}
+@keyframes pageIn{from{transform:rotateY(8deg);opacity:.45}to{transform:rotateY(0);opacity:1}}
+.pager{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:18px;color:var(--muted)}
+#pageCount{min-width:100px;text-align:center;font-size:13px}
+.note{text-align:center;color:var(--muted);font-size:12px;margin:18px 0 0}
+footer{text-align:center;color:var(--muted);padding:22px;font-size:12px}
+.error{color:#ffd1d1;background:#512b39;padding:14px;border-radius:10px;max-width:700px;margin:18px auto}
+@media(max-width:760px){
+ .toolbar{position:static}
+ .book-shell{padding:10px 6px}
+ #reader .docx-wrapper{flex-direction:column!important;align-items:center}
+ #reader .docx-wrapper>section{width:min(96%,620px)!important;min-height:55vh}
+}
+@media print{
+ body{background:white;color:black}
+ header,.toolbar,.status,.pager,.note,footer{display:none!important}
+ main{padding:0}
+ .book-shell{border:0;box-shadow:none;padding:0}
+ #reader .docx-wrapper{display:block!important}
+ #reader .docx-wrapper>section{display:block!important;width:100%!important;box-shadow:none!important;page-break-after:always}
+}
+</style>
+</head>
+<body>
+<header>
+ <div class="brand">FAKHREDDINE HAMMADI · LIVRE NUMÉRIQUE</div>
+ <h1>مدرسة العشق الأبدي الروحي</h1>
+ <div class="subtitle">فلسفة العشق والغرام والهيام</div>
+</header>
+<nav class="toolbar" aria-label="أدوات القراءة">
+ <button id="prev" type="button">◀ الصفحة السابقة</button>
+ <button id="next" type="button">الصفحة التالية ▶</button>
+ <span id="pageCount">جارٍ التحميل…</span>
+ <button id="zoomOut" type="button">−</button><button id="zoomIn" type="button">＋</button>
+ <input id="search" type="search" placeholder="ابحث داخل الكتاب…" aria-label="بحث داخل الكتاب">
+ <button id="theme" type="button">الوضع الفاتح</button>
+ <button id="full" type="button">ملء الشاشة</button>
+ <button id="print" type="button">حفظ PDF / طباعة</button>
+ <a class="tool-link" href="https://github.com/fakhrerddine/fakhreddine-book/blob/d45879839fe6eff9f276b09bdd87e5faf315c6e8/assets/%D9%85%D8%AF%D8%B1%D8%B3%D8%A9%20%D8%A7%D9%84%D8%B9%D8%B4%D9%82%20%D8%A7%D9%84%D8%A3%D8%A8%D8%AF%D9%8A%20%D8%A7%D9%84%D8%B1%D9%88%D8%AD%D9%8A%20-%20Copie_compressed.docx" target="_blank" rel="noopener">ملف Word الأصلي</a>
+</nav>
+<main>
+ <div class="status" id="status">يتم جلب نسخة الكتاب الأصلية من GitHub…</div>
+ <section class="book-shell"><div id="reader"></div></section>
+ <div class="pager">
+  <button id="prevBottom" type="button">السابق</button>
+  <span id="pageCountBottom">—</span>
+  <button id="nextBottom" type="button">التالي</button>
+ </div>
+ <p class="note">النص والصور مصدرهما ملف Word الأصلي. هذه نسخة قراءة تجريبية، وقد يختلف تنسيق بعض الصفحات عن Microsoft Word.</p>
+</main>
+<footer>© فخرالدين حمادي · مدرسة العشق الأبدي الروحي</footer>
+<script src="https://unpkg.com/jszip@3.10.1/dist/jszip.min.js"></script>
+<script src="https://unpkg.com/docx-preview@0.4.1/dist/docx-preview.min.js"></script>
+<script>
+const DOCX_URL="https://raw.githubusercontent.com/fakhrerddine/fakhreddine-book/d45879839fe6eff9f276b09bdd87e5faf315c6e8/assets/%D9%85%D8%AF%D8%B1%D8%B3%D8%A9%20%D8%A7%D9%84%D8%B9%D8%B4%D9%82%20%D8%A7%D9%84%D8%A3%D8%A8%D8%AF%D9%8A%20%D8%A7%D9%84%D8%B1%D9%88%D8%AD%D9%8A%20-%20Copie_compressed.docx";
+const reader=document.getElementById("reader"),status=document.getElementById("status");
+let pages=[],current=0,zoom=1;
+const isMobile=()=>window.matchMedia("(max-width:760px)").matches;
+const spread=()=>isMobile()?1:2;
+function showPage(index,animate=true){
+ if(!pages.length)return;
+ current=Math.max(0,Math.min(index,pages.length-1));
+ pages.forEach((p,i)=>{p.classList.remove("active-page","flip-in","flip-out");if(i>=current&&i<current+spread()){p.classList.add("active-page");if(animate)p.classList.add("flip-in")}});
+ const label=(current+1)+" / "+pages.length;
+ document.getElementById("pageCount").textContent=label;
+ document.getElementById("pageCountBottom").textContent="الصفحات "+label;
+ document.getElementById("prev").disabled=document.getElementById("prevBottom").disabled=current===0;
+ document.getElementById("next").disabled=document.getElementById("nextBottom").disabled=current+spread()>=pages.length;
+}
+function step(dir){showPage(current+dir*spread())}
+document.getElementById("prev").onclick=()=>step(-1);
+document.getElementById("next").onclick=()=>step(1);
+document.getElementById("prevBottom").onclick=()=>step(-1);
+document.getElementById("nextBottom").onclick=()=>step(1);
+document.getElementById("zoomIn").onclick=()=>{zoom=Math.min(1.3,zoom+.1);reader.style.zoom=zoom};
+document.getElementById("zoomOut").onclick=()=>{zoom=Math.max(.7,zoom-.1);reader.style.zoom=zoom};
+document.getElementById("theme").onclick=()=>{document.body.classList.toggle("light");document.getElementById("theme").textContent=document.body.classList.contains("light")?"الوضع الداكن":"الوضع الفاتح"};
+document.getElementById("full").onclick=()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen?.();else document.exitFullscreen?.()};
+document.getElementById("print").onclick=()=>window.print();
+document.getElementById("search").addEventListener("keydown",e=>{if(e.key==="Enter"){const q=e.target.value.trim();if(!q)return;const idx=pages.findIndex(p=>p.innerText.toLocaleLowerCase().includes(q.toLocaleLowerCase()));if(idx>=0){showPage(idx,false);status.textContent="تم العثور على العبارة في الصفحة "+(idx+1)}else status.textContent="لم يتم العثور على العبارة؛ جرّب كلمة أخرى."}});
+window.addEventListener("resize",()=>showPage(current,false));
+(async()=>{
+ try{
+  if(!window.docx||!window.JSZip)throw new Error("تعذر تحميل مكتبة عرض Word. حدّث الصفحة أو جرّب لاحقاً.");
+  const response=await fetch(DOCX_URL,{mode:"cors",cache:"no-store"});
+  if(!response.ok)throw new Error("GitHub لم يسمح بتحميل الملف (HTTP "+response.status+").");
+  const blob=await response.blob();
+  if(blob.size<1000)throw new Error("الملف الذي وصل من GitHub غير مكتمل.");
+  status.textContent="تم تحميل ملف Word. جارٍ تجهيز الصفحات والصور…";
+  await docx.renderAsync(blob,reader,null,{className:"docx",inWrapper:true,breakPages:true,ignoreLastRenderedPageBreak:false,renderHeaders:true,renderFooters:true,renderFootnotes:true,renderEndnotes:true,useBase64URL:true});
+  pages=Array.from(reader.querySelectorAll(".docx-wrapper > section"));
+  if(!pages.length)pages=Array.from(reader.querySelectorAll("section.docx"));
+  if(!pages.length)throw new Error("تم تحميل الملف لكن لم أستطع تحديد صفحات Word لعرضها.");
+  showPage(0,false);
+  status.textContent="تم فتح الكتاب بنجاح · "+pages.length+" صفحة · الصور والنصوص محمّلة من ملف Word الأصلي.";
+ }catch(err){
+  console.error(err);
+  status.innerHTML='<div class="error">تعذّر فتح ملف Word تلقائياً: '+String(err.message||err).replace(/[<>&"]/g,c=>({"<":"&lt;",">":"&gt;","&":"&amp;",'"':"&quot;"}[c]))+'<br>يمكنك فتح الملف الأصلي من زر «ملف Word الأصلي» أعلاه. سنعالج سبب التحميل قبل اعتماد الموقع.</div>';
+ }
+})();
+</script>
+</body>
+</html>
