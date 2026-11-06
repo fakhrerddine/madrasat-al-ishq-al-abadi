@@ -1,114 +1,65 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#171426">
-<title>Fakhreddine Hammadi – مدرسة العشق الأبدي</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101d36">
+<title>مدرسة العشق الأبدي الروحي | فخرالدين حمادي</title>
 <style>
-:root{--night:#101d36;--panel:#1b2d4b;--gold:#d8b65e;--cream:#f4ead1;--ink:#f7f0e4;--muted:#c3ccda}
-*{box-sizing:border-box}body{margin:0;min-height:100vh;color:var(--ink);font-family:"Noto Naskh Arabic","Scheherazade New",Tahoma,serif;background:radial-gradient(ellipse at 50% 5%,#29466f 0,#172b4a 42%,#0b1427 100%)}
-body.day{background:linear-gradient(140deg,#eee4cf,#d9cba9);color:#30263b;--panel:#fff7e8;--muted:#63576a}
-header{text-align:center;padding:22px 14px 15px;border-bottom:1px solid #d4b46a55}
-.brand{font-size:12px;letter-spacing:2px;color:#e8c979;text-shadow:0 0 14px #d4b46a88}h1{font-size:clamp(25px,4.4vw,40px);margin:8px 0;color:#f0cf76;text-shadow:0 2px 4px #0008,0 0 22px #d4b46a55}.subtitle{color:#d9c69b;font-size:15px;text-shadow:0 0 12px #d4b46a33}.lang-switch{display:flex;justify-content:center;gap:7px;margin-top:13px}.lang-switch button{padding:6px 12px;font-size:12px;background:#172c50;border-color:#c6a85f;color:#f7edcf}.lang-switch button.active{background:#c6a85f;color:#17233b;font-weight:bold}
-.toolbar{position:sticky;top:0;z-index:20;display:flex;gap:8px;justify-content:center;align-items:center;flex-wrap:wrap;padding:10px;background:#101d36ed;backdrop-filter:blur(12px);border-bottom:1px solid #d4b46a55}
-button,.download{border:1px solid #d4b46a99;background:#332b49;color:#fff4df;border-radius:9px;padding:9px 13px;font:inherit;font-size:13px;cursor:pointer;text-decoration:none}
-button:hover,.download:hover{background:#51415e}button:disabled{opacity:.4;cursor:not-allowed}
-#search{width:min(220px,55vw);padding:10px;border-radius:9px;border:1px solid #c9a85f;background:#fff9ed;color:#2c2337;font:inherit}
-main{max-width:1800px;margin:auto;padding:16px 12px 34px}.status{text-align:center;color:var(--muted);min-height:24px;margin:8px}
-.stage{position:relative;border:1px solid #e5c779aa;border-radius:22px;padding:clamp(10px,2vw,24px);background:radial-gradient(ellipse at 50% 42%,#5d6f83 0,#304b70 35%,#1a3153 68%,#101d36 100%);box-shadow:0 28px 100px #000b,inset 0 1px 0 #fff3,0 0 42px #d4b46a22;min-height:84vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.stage:before{content:"";position:absolute;inset:8px;border:1px solid #f0d28a66;border-radius:15px;box-shadow:inset 0 0 34px #e4bd6b12,0 0 24px #e4bd6b12;pointer-events:none}
-#book{width:min(100%,1700px);height:min(96vh,1320px);margin:auto;filter:drop-shadow(0 28px 38px #000b)}
-.stf__parent{margin:auto!important}
-.page{background:#f4ead1;overflow:hidden;display:flex;align-items:center;justify-content:center;box-shadow:inset 0 0 24px #6d50252b,0 0 16px #e8cb8a30}
-.page canvas{display:block;width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain;flex:none;background:#f4ead1}
-.cover{background:linear-gradient(145deg,#10264a,#24446c 60%,#9a7844);display:flex;align-items:center;justify-content:center;overflow:hidden}
-.cover canvas{display:block;width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain;flex:none;background:#f4ead1}
-.cover.back{background:linear-gradient(145deg,#24446c,#10264a)}
-.cover-label{position:absolute;bottom:18px;left:10px;right:10px;text-align:center;color:#f7e6bd;text-shadow:0 2px 6px #000;font-size:12px;pointer-events:none}
-.reader-controls{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin:16px auto;color:var(--muted)}
-#counter{min-width:125px;text-align:center;font-size:14px}
-.progress{height:5px;max-width:850px;margin:0 auto;background:#ffffff24;border-radius:8px;overflow:hidden}.progress>div{height:100%;width:0;background:linear-gradient(90deg,#8c6a3c,#f2d58b);transition:width .25s}
-.tools-panel{display:none;margin:14px auto;padding:16px;max-width:950px;background:var(--panel);border:1px solid #d4b46a66;border-radius:14px}.tools-panel.open{display:block}.tools-panel h2{color:var(--gold);margin:0 0 12px;font-size:20px}
-#toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px;max-height:330px;overflow:auto}
-#toc button{text-align:right}.hint{text-align:center;color:var(--muted);font-size:12px;margin-top:12px}
-.error{color:#ffe1e1;background:#582d3d;padding:12px;border-radius:10px;max-width:760px;margin:10px auto}
-@media(max-width:700px){.toolbar{position:static}.stage{min-height:76vh;padding:6px;border-radius:12px}#book{height:84vh;width:100%}.reader-controls button{padding:8px}.page canvas{object-fit:contain}}
+:root{--navy:#101d36;--gold:#d8b65e;--cream:#f4ead1}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at top,#29466f,#101d36 70%);color:#f7f0e4;font-family:Tahoma,Arial,sans-serif}
+header{text-align:center;padding:22px 12px 16px;border-bottom:1px solid #d8b65e66}
+.brand{font-size:12px;letter-spacing:2px;color:#e8c979}
+h1{margin:9px 0;color:#f0cf76;font-size:clamp(25px,4vw,40px);text-shadow:0 2px 5px #0008}
+.subtitle{color:#e3d2a9}
+.lang-switch,.toolbar{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap}
+.lang-switch{margin-top:14px}
+.toolbar{padding:12px;background:#101d36ed;border-bottom:1px solid #d8b65e66}
+button,.download{border:1px solid #d8b65e;background:#332b49;color:#fff4df;border-radius:9px;padding:9px 14px;font:inherit;text-decoration:none;cursor:pointer}
+button.active{background:#c6a85f;color:#17233b}
+main{max-width:1500px;margin:auto;padding:16px}
+.notice{text-align:center;color:#e9dcbf;margin:8px 0 14px}
+.viewer{width:100%;height:calc(100vh - 230px);min-height:620px;border:2px solid #d8b65e;border-radius:14px;background:#f4ead1;box-shadow:0 20px 60px #0009}
+.viewer iframe{display:block;width:100%;height:100%;border:0;border-radius:12px;background:#f4ead1}
+footer{text-align:center;color:#d8cba9;font-size:12px;padding:16px}
+@media(max-width:650px){.viewer{height:82vh;min-height:520px}main{padding:8px}}
 </style>
 </head>
 <body>
-<header><div class="brand">FAKHREDDINE HAMMADI · DIGITAL BOOK</div><h1 id="siteTitle">مدرسة العشق الأبدي الروحي</h1><div class="subtitle" id="siteSubtitle">فلسفة العشق والغرام والهيام</div><div class="lang-switch" aria-label="Language"><button type="button" data-lang="ar" class="active">العربية</button><button type="button" data-lang="es">Español</button><button type="button" data-lang="fr">Français</button></div></header>
-<nav class="toolbar" aria-label="أدوات القراءة">
-<button id="prev" data-i18n="prev">◀ السابق</button><button id="next" data-i18n="next">التالي ▶</button><span id="counter">جارٍ التحضير…</span>
-<button id="zoomOut" data-i18n="zoomOut">− تصغير</button><button id="zoomIn" data-i18n="zoomIn">＋ تكبير</button>
-<input id="search" type="search" placeholder="ابحث في الكتاب…" aria-label="بحث" data-i18n-placeholder="searchPlaceholder">
-<button id="searchBtn" data-i18n="search">بحث</button><button id="jumpBtn" data-i18n="jump">اذهب للصفحة</button>
-<button id="tocBtn" data-i18n="toc">📚 الفهرس</button><button id="themeBtn" data-i18n="theme">الوضع الليلي</button><button id="fullBtn" data-i18n="fullscreen">ملء الشاشة</button>
-<a class="download" href="./assets/book.pdf" download data-i18n="pdf">تحميل PDF</a>
-<a class="download" href="https://raw.githubusercontent.com/fakhrerddine/fakhreddine-book/main/assets/%D9%85%D8%AF%D8%B1%D8%B3%D8%A9%20%D8%A7%D9%84%D8%B9%D8%B4%D9%82%20%D8%A7%D9%84%D8%A3%D8%A8%D8%AF%D9%8A%20%D8%A7%D9%84%D8%B1%D9%88%D8%AD%D9%8A%20-%20Copie_compressed.docx" target="_blank" rel="noopener" data-i18n="word">Word الأصلي</a>
+<header>
+<div class="brand">FAKHREDDINE HAMMADI · DIGITAL BOOK</div>
+<h1 id="title">مدرسة العشق الأبدي الروحي</h1>
+<div class="subtitle" id="subtitle">فلسفة العشق والغرام والهيام</div>
+<div class="lang-switch">
+<button class="active" data-lang="ar">العربية</button>
+<button data-lang="es">Español</button>
+<button data-lang="fr">Français</button>
+</div>
+</header>
+<nav class="toolbar">
+<a class="download" href="./assets/book.pdf" download id="download">تحميل PDF</a>
+<a class="download" href="./assets/book.pdf" target="_blank" rel="noopener" id="open">فتح PDF في نافذة مستقلة</a>
+<a class="download" href="https://raw.githubusercontent.com/fakhrerddine/fakhreddine-book/main/assets/%D9%85%D8%AF%D8%B1%D8%B3%D8%A9%20%D8%A7%D9%84%D8%B9%D8%B4%D9%82%20%D8%A7%D9%84%D8%A3%D8%A8%D8%AF%D9%8A%20%D8%A7%D9%84%D8%B1%D9%88%D8%AD%D9%8A%20-%20Copie_compressed.docx" target="_blank" rel="noopener" id="word">تحميل Word الأصلي</a>
 </nav>
-<main><div id="status" class="status">جارٍ تحميل صفحات الكتاب من النسخة الأصلية…</div>
-<section id="tocPanel" class="tools-panel"><h2>فهرس الكتاب</h2><div id="toc">سيظهر الفهرس بعد تجهيز النصوص…</div></section>
-<div class="stage"><div id="book"></div></div>
-<div class="reader-controls"><button id="firstBtn">أول الكتاب</button><button id="prev2">السابقة</button><span id="counter2">—</span><button id="next2">التالية</button><button id="lastBtn">آخر الكتاب</button></div>
-<div class="progress"><div id="bar"></div></div>
-<p class="hint">لقراءة مريحة: استخدم الأسهم أو أزرار التنقل، ويمكنك تكبير الصفحات أو تشغيل ملء الشاشة. التقليب بالماوس أو اللمس متاح.</p>
+<main>
+<p class="notice" id="notice">النسخة الأصلية من PDF معروضة مباشرة دون قصّ أو تمديد للغلاف والصور. استعمل أدوات القارئ للتكبير والتنقل.</p>
+<section class="viewer" aria-label="قارئ الكتاب PDF">
+<iframe src="./assets/book.pdf#view=FitH" title="مدرسة العشق الأبدي الروحي - PDF"></iframe>
+</section>
 </main>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
+<footer>© Fakhreddine Hammadi</footer>
 <script>
-
-const LANGS={
- ar:{title:"مدرسة العشق الأبدي الروحي",subtitle:"فلسفة العشق والغرام والهيام",prev:"◀ السابق",next:"التالي ▶",zoomOut:"− تصغير",zoomIn:"＋ تكبير",searchPlaceholder:"ابحث في الكتاب…",search:"بحث",jump:"اذهب للصفحة",toc:"📚 الفهرس",theme:"الوضع الليلي",fullscreen:"ملء الشاشة",pdf:"تحميل PDF",word:"Word الأصلي"},
- es:{title:"La escuela del amor eterno espiritual",subtitle:"Filosofía del amor, la pasión y el anhelo",prev:"◀ Anterior",next:"Siguiente ▶",zoomOut:"− Alejar",zoomIn:"＋ Acercar",searchPlaceholder:"Buscar en el libro…",search:"Buscar",jump:"Ir a la página",toc:"📚 Índice",theme:"Modo nocturno",fullscreen:"Pantalla completa",pdf:"Descargar PDF",word:"Word original"},
- fr:{title:"L’École de l’amour éternel spirituel",subtitle:"Philosophie de l’amour, de la passion et du désir",prev:"◀ Précédent",next:"Suivant ▶",zoomOut:"− Réduire",zoomIn:"＋ Agrandir",searchPlaceholder:"Rechercher dans le livre…",search:"Rechercher",jump:"Aller à la page",toc:"📚 Sommaire",theme:"Mode nuit",fullscreen:"Plein écran",pdf:"Télécharger PDF",word:"Word original"}
+const translations={
+ar:{title:"مدرسة العشق الأبدي الروحي",subtitle:"فلسفة العشق والغرام والهيام",download:"تحميل PDF",open:"فتح PDF في نافذة مستقلة",word:"تحميل Word الأصلي",notice:"النسخة الأصلية من PDF معروضة مباشرة دون قصّ أو تمديد للغلاف والصور. استعمل أدوات القارئ للتكبير والتنقل."},
+es:{title:"La escuela del amor eterno espiritual",subtitle:"Filosofía del amor, la pasión y el anhelo",download:"Descargar PDF",open:"Abrir PDF en una ventana",word:"Descargar Word original",notice:"El PDF original se muestra directamente, sin recortar ni estirar la portada ni las imágenes. Usa los controles del lector para ampliar y navegar."},
+fr:{title:"L’École de l’amour éternel spirituel",subtitle:"Philosophie de l’amour, de la passion et du désir",download:"Télécharger PDF",open:"Ouvrir le PDF dans une fenêtre",word:"Télécharger le Word original",notice:"Le PDF original est affiché directement, sans recadrage ni déformation de la couverture ou des images. Utilisez les commandes du lecteur pour zoomer et naviguer."}
 };
-function setLanguage(lang){
- const d=LANGS[lang]||LANGS.ar;document.documentElement.lang=lang;document.documentElement.dir=lang==="ar"?"rtl":"ltr";
- $("siteTitle").textContent=d.title;$("siteSubtitle").textContent=d.subtitle;
- document.querySelectorAll("[data-i18n]").forEach(el=>{const k=el.dataset.i18n;if(d[k])el.textContent=d[k]});
- document.querySelectorAll("[data-i18n-placeholder]").forEach(el=>{const k=el.dataset.i18nPlaceholder;if(d[k])el.placeholder=d[k]});
- document.querySelectorAll(".lang-switch button").forEach(b=>b.classList.toggle("active",b.dataset.lang===lang));
-}
-document.querySelectorAll(".lang-switch button").forEach(b=>b.addEventListener("click",()=>setLanguage(b.dataset.lang)));
-
-const PDF_URL="./assets/book.pdf";let pdf=null,flip=null,total=0,rendered=new Set(),textCache=new Map(),zoom=1;
-const $=id=>document.getElementById(id);
-function setStatus(s){$("status").textContent=s}
-function makeCanvasPage(label,cover=false){const el=document.createElement("div");el.className=cover?"page cover":"page";el.dataset.pdf=label;const c=document.createElement("canvas");el.appendChild(c);return {el,c}}
-async function renderPdfPage(n,canvas,scale=1.25){if(!pdf||!canvas||rendered.has(canvas))return;const p=await pdf.getPage(n);const base=p.getViewport({scale:1});const pixelRatio=Math.min(window.devicePixelRatio||1,2);const fit=Math.min(3.2,Math.max(2.0,1500/base.width));const s=fit*pixelRatio*zoom;const vp=p.getViewport({scale:s});canvas.width=Math.ceil(vp.width);canvas.height=Math.ceil(vp.height);canvas.style.aspectRatio=vp.width+"/"+vp.height;canvas.style.width="auto";canvas.style.height="auto";await p.render({canvasContext:canvas.getContext("2d"),viewport:vp}).promise;rendered.add(canvas)}
-async function makeCover(n,side){const p=await pdf.getPage(1);const vp=p.getViewport({scale:2.2});const out=document.createElement("canvas");out.width=Math.ceil(vp.width);out.height=Math.ceil(vp.height);await p.render({canvasContext:out.getContext("2d"),viewport:vp}).promise;return out}
-function pageLabel(i){return i===0?"الغلاف الأمامي":i===total-1?"الغلاف الخلفي":"صفحة "+(i+1)}
-function updateCounter(){if(!flip)return;const n=flip.getCurrentPageIndex();const current=Math.min(total,n+1);$("counter").textContent=current+" / "+total;$("counter2").textContent=pageLabel(n);$("bar").style.width=((n+1)/total*100)+"%";$("prev").disabled=$("prev2").disabled=n===0;$("next").disabled=$("next2").disabled=n>=total-1;renderAround(n)}
-async function renderAround(index){const nodes=$("book").querySelectorAll(".page");for(let i=Math.max(0,index-2);i<=Math.min(nodes.length-1,index+3);i++){const node=nodes[i];if(node.dataset.pdf){const num=Number(node.dataset.pdf);if(Number.isInteger(num)&&num>=1)try{await renderPdfPage(num,node.querySelector("canvas"))}catch(e){console.warn(e)}}}}
-function go(delta){if(!flip)return;const n=flip.getCurrentPageIndex();if(delta>0&&n<total-1)flip.flipNext("top");else if(delta<0&&n>0)flip.flipPrev("top")}
-$("prev").onclick=$("prev2").onclick=()=>go(-1);$("next").onclick=$("next2").onclick=()=>go(1);
-$("firstBtn").onclick=()=>flip&&flip.flip(0);$("lastBtn").onclick=()=>flip&&flip.flip(total-1);
-$("themeBtn").onclick=()=>{document.body.classList.toggle("day");$("themeBtn").textContent=document.body.classList.contains("day")?"الوضع الداكن":"الوضع الليلي"};
-$("fullBtn").onclick=()=>!document.fullscreenElement?document.documentElement.requestFullscreen?.():document.exitFullscreen?.();
-$("tocBtn").onclick=()=>$("tocPanel").classList.toggle("open");
-$("zoomIn").onclick=()=>{zoom=Math.min(1.85,zoom+.10);rerenderVisible()};$("zoomOut").onclick=()=>{zoom=Math.max(1.05,zoom-.10);rerenderVisible()};
-async function rerenderVisible(){rendered.clear();$("book").querySelectorAll("canvas").forEach(c=>{c.width=0;c.height=0});await renderAround(flip?flip.getCurrentPageIndex():0)}
-$("jumpBtn").onclick=()=>{const n=Number(prompt("رقم صفحة الكتاب:"));if(Number.isInteger(n)&&n>=1&&n<=pdf.numPages)flip.flip(n-1)};
-async function extractText(n){if(textCache.has(n))return textCache.get(n);const p=await pdf.getPage(n);const t=await p.getTextContent();const s=t.items.map(x=>x.str).join(" ");textCache.set(n,s);return s}
-$("searchBtn").onclick=async()=>{const q=$("search").value.trim();if(!q||!pdf)return;setStatus("جارٍ البحث في صفحات الكتاب…");for(let n=1;n<=pdf.numPages;n++){const t=await extractText(n);if(t.toLocaleLowerCase().includes(q.toLocaleLowerCase())){flip.flip(n-1);setStatus("وجدت العبارة في الصفحة "+n);return}}setStatus("لم أجد العبارة. جرّب كلمة أخرى.")};
-$("search").addEventListener("keydown",e=>{if(e.key==="Enter")$("searchBtn").click()});
-(async()=>{try{
- if(!window.pdfjsLib)throw Error("تعذر تحميل قارئ PDF.");
- if(!window.St||!St.PageFlip)throw Error("تعذر تحميل محرك تقليب الصفحات.");
- pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
- const task=pdfjsLib.getDocument({url:PDF_URL});pdf=await task.promise;
- setStatus("تم تحميل الكتاب ("+pdf.numPages+" صفحة). جارٍ تجهيز الصفحات الأصلية كاملة…");
- const host=$("book"),pages=[];
- for(let n=1;n<=pdf.numPages;n++){const p=makeCanvasPage(n,n===1||n===pdf.numPages);if(n===1||n===pdf.numPages)p.el.classList.add("hard");if(n===pdf.numPages)p.el.classList.add("back");pages.push(p.el)}
- host.replaceChildren(...pages);total=pages.length;
- flip=new St.PageFlip(host,{width:760,height:1075,size:"stretch",minWidth:320,maxWidth:1320,minHeight:452,maxHeight:1900,autoSize:true,showCover:true,usePortrait:true,drawShadow:true,maxShadowOpacity:.38,flippingTime:850,swipeDistance:20,clickEventForward:true,useMouseEvents:true,disableFlipByClick:false,mobileScrollSupport:false});
- flip.loadFromHTML(host.querySelectorAll(".page"));flip.on("flip",updateCounter);flip.on("changeState",()=>{});updateCounter();
- window.addEventListener("keydown",e=>{if(e.target&&/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;if(e.key==="ArrowLeft"){e.preventDefault();go(1)}else if(e.key==="ArrowRight"){e.preventDefault();go(-1)}else if(e.key==="Home"){e.preventDefault();flip.flip(0)}else if(e.key==="End"){e.preventDefault();flip.flip(total-1)}});
- await renderAround(0);
- setStatus("الكتاب جاهز للقراءة · جميع صفحات PDF الأصلية معروضة كاملة دون أغلفة مصطنعة.");
- const toc=$("toc");let hits=0;
- for(let n=1;n<=pdf.numPages;n++){const t=await extractText(n);const m=t.match(/(?:الفصل|الباب|القسم)\s*[：:ـ-]?\s*[\d٠-٩]+[^\n]{0,100}/);if(m){const b=document.createElement("button");b.textContent=m[0].trim();b.onclick=()=>flip.flip(n-1);toc.appendChild(b);hits++}}
- if(!hits)toc.textContent="لم يتم استخراج عناوين الفصول آلياً من النص. يمكن إضافة فهرس مضبوط يدوياً لاحقاً.";
- }catch(e){console.error(e);$("status").innerHTML='<div class="error">لم يكتمل تشغيل قارئ الكتاب: '+String(e.message||e).replace(/[<>&"]/g,c=>({"<":"&lt;",">":"&gt;","&":"&amp;",'"':"&quot;"}[c]))+'. تأكد أن عملية النشر انتهت بنجاح، ثم أعد تحميل الصفحة.</div>'}})();
+document.querySelectorAll("[data-lang]").forEach(b=>b.addEventListener("click",()=>{
+const d=translations[b.dataset.lang];document.documentElement.lang=b.dataset.lang;document.documentElement.dir=b.dataset.lang==="ar"?"rtl":"ltr";
+for(const [id,key] of [["title","title"],["subtitle","subtitle"],["download","download"],["open","open"],["word","word"],["notice","notice"]])document.getElementById(id).textContent=d[key];
+document.querySelectorAll("[data-lang]").forEach(x=>x.classList.toggle("active",x===b));
+}));
 </script>
-</body></html>
+</body>
+</html>
