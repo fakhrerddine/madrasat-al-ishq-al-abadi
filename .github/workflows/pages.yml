@@ -33,6 +33,34 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libreoffice-writer poppler-utils fonts-noto-core fonts-noto-extra
           sudo fc-cache -f
+          python -m pip install --user python-docx
+      - name: Inspect Word text and formatting before conversion
+        env:
+          DOCX: "source-book/assets/مدرسة العشق الأبدي الروحي - Copie_compressed.docx"
+        run: |
+          python - <<'PY'
+          import os, re
+          from docx import Document
+          path=os.environ["DOCX"]
+          doc=Document(path)
+          print("DOCX paragraphs:", len(doc.paragraphs))
+          shown=0
+          for i,p in enumerate(doc.paragraphs):
+              txt=p.text.strip()
+              if not txt:
+                  continue
+              runs=[r for r in p.runs if r.text.strip()]
+              sizes=[round(r.font.size.pt,1) for r in runs if r.font.size]
+              colors=[r.font.color.rgb for r in runs if r.font.color and r.font.color.rgb]
+              print(f"PARA {i} style={p.style.name!r} align={p.alignment} sizes={sizes[:8]} colors={list(map(str,colors[:8]))} text={txt[:220]!r}")
+              shown+=1
+              if shown>=35:
+                  break
+          joined="\n".join(p.text for p in doc.paragraphs)
+          print("Arabic character count:", len(re.findall(r"[\\u0600-\\u06ff]", joined)))
+          print("Double spaces:", joined.count("  "))
+          print("No-space Arabic/Latin adjacency sample:", [x[:120] for x in joined.splitlines() if re.search(r"[\\u0600-\\u06ff][A-Za-z0-9]",x)][:8])
+          PY
       - name: Convert original Word book to PDF
         timeout-minutes: 15
         env:
@@ -52,6 +80,7 @@ jobs:
           du -h site/assets/book.pdf
           pdfinfo site/assets/book.pdf | grep -E '^(Pages|Page size|File size):'
           test "$(pdfinfo site/assets/book.pdf | awk '/^Pages:/ {print $2}')" -gt 1
+          pdftotext -f 1 -l 5 site/assets/book.pdf - | head -c 5000
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
