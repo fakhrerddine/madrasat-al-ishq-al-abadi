@@ -114,20 +114,6 @@ jobs:
                                   if sid in HEADING_COLORS: set_color(rpr,HEADING_COLORS[sid])
                           for rpr in root.iter(W+"rPr"):
                               set_font(rpr)
-                              original_colors=[(x.get(W+"val") or "").upper() for x in rpr.findall(W+"color")]
-                              original=next((x for x in original_colors if x), "")
-                              # Make body copy genuinely readable, with larger chapter/title hierarchy.
-                              points=36
-                              if original=="FF0000":
-                                  points=52
-                              elif original in ("002060","1F4E79","17365D","174A7E","2F5496","4472C4"):
-                                  points=44
-                              elif original in ("833C0B","843C0C","C65911","A84300","BF9000","C55A11"):
-                                  points=40
-                              for tag in ("sz","szCs"):
-                                  node=rpr.find(W+tag)
-                                  if node is None: node=ET.SubElement(rpr,W+tag)
-                                  node.set(W+"val",str(points))
                               for color in rpr.findall(W+"color"):
                                   val=(color.get(W+"val") or "").upper()
                                   if val in ("000000","000","AUTO","2A2118"):
