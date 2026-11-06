@@ -19,8 +19,8 @@ main{max-width:1800px;margin:auto;padding:16px 12px 34px}.status{text-align:cent
 .stage:before{content:"";position:absolute;inset:8px;border:1px solid #f0d28a66;border-radius:15px;box-shadow:inset 0 0 34px #e4bd6b12,0 0 24px #e4bd6b12;pointer-events:none}
 #book{width:min(100%,1700px);height:min(96vh,1320px);margin:auto;filter:drop-shadow(0 28px 38px #000b)}
 .stf__parent{margin:auto!important}
-.page{background:#f4ead1;overflow:hidden;box-shadow:inset 0 0 24px #6d50252b,0 0 16px #e8cb8a30}
-.page canvas{display:block;width:100%;height:100%;object-fit:contain;background:#f4ead1}
+.page{background:#f4ead1;overflow:hidden;display:flex;align-items:center;justify-content:center;box-shadow:inset 0 0 24px #6d50252b,0 0 16px #e8cb8a30}
+.page canvas{display:block;width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain;flex:none;background:#f4ead1}
 .cover{background:linear-gradient(145deg,#10264a,#24446c 60%,#9a7844);display:flex;align-items:center;justify-content:center;overflow:hidden}
 .cover canvas{display:block;width:100%;height:100%;object-fit:contain}
 .cover.back{background:linear-gradient(145deg,#24446c,#10264a)}
@@ -75,7 +75,7 @@ const PDF_URL="./assets/book.pdf";let pdf=null,flip=null,total=0,rendered=new Se
 const $=id=>document.getElementById(id);
 function setStatus(s){$("status").textContent=s}
 function makeCanvasPage(label,cover=false){const el=document.createElement("div");el.className=cover?"page cover":"page";el.dataset.pdf=label;const c=document.createElement("canvas");el.appendChild(c);return {el,c}}
-async function renderPdfPage(n,canvas,scale=1.25){if(!pdf||!canvas||rendered.has(canvas))return;const p=await pdf.getPage(n);const base=p.getViewport({scale:1});const w=1280;const s=Math.min(3.2,Math.max(1.8,w/base.width))*zoom;const vp=p.getViewport({scale:s});canvas.width=Math.ceil(vp.width);canvas.height=Math.ceil(vp.height);canvas.style.setProperty("--reading-zoom",String(zoom));await p.render({canvasContext:canvas.getContext("2d"),viewport:vp}).promise;rendered.add(canvas)}
+async function renderPdfPage(n,canvas,scale=1.25){if(!pdf||!canvas||rendered.has(canvas))return;const p=await pdf.getPage(n);const base=p.getViewport({scale:1});const pixelRatio=Math.min(window.devicePixelRatio||1,2);const fit=Math.min(3.2,Math.max(2.0,1500/base.width));const s=fit*pixelRatio*zoom;const vp=p.getViewport({scale:s});canvas.width=Math.ceil(vp.width);canvas.height=Math.ceil(vp.height);canvas.style.aspectRatio=vp.width+"/"+vp.height;canvas.style.width="auto";canvas.style.height="auto";await p.render({canvasContext:canvas.getContext("2d"),viewport:vp}).promise;rendered.add(canvas)}
 async function makeCover(n,side){const p=await pdf.getPage(1);const vp=p.getViewport({scale:2.2});const out=document.createElement("canvas");out.width=Math.ceil(vp.width);out.height=Math.ceil(vp.height);await p.render({canvasContext:out.getContext("2d"),viewport:vp}).promise;return out}
 function pageLabel(i){return i===0?"الغلاف الأمامي":i===total-1?"الغلاف الخلفي":"صفحة "+(i+1)}
 function updateCounter(){if(!flip)return;const n=flip.getCurrentPageIndex();const current=Math.min(total,n+1);$("counter").textContent=current+" / "+total;$("counter2").textContent=pageLabel(n);$("bar").style.width=((n+1)/total*100)+"%";$("prev").disabled=$("prev2").disabled=n===0;$("next").disabled=$("next2").disabled=n>=total-1;renderAround(n)}
