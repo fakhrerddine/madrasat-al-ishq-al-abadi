@@ -126,8 +126,10 @@ jobs:
           test -s "$DOCX"
           echo "Source DOCX size:"
           du -h "$DOCX"
+          CONVERT_DOCX="site/assets/مدرسة العشق الأبدي الروحي - Copie_compressed.docx"
+          cp "$DOCX" "$CONVERT_DOCX"
           mkdir -p /tmp/lo-profile
-          timeout 12m libreoffice -env:UserInstallation=file:///tmp/lo-profile --headless --convert-to pdf --outdir site/assets "$DOCX"
+          timeout 12m libreoffice -env:UserInstallation=file:///tmp/lo-profile --headless --convert-to pdf --outdir site/assets "$CONVERT_DOCX"
           PDF="site/assets/مدرسة العشق الأبدي الروحي - Copie_compressed.pdf"
           test -s "$PDF"
           mv "$PDF" site/assets/book.pdf
