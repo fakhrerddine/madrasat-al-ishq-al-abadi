@@ -72,6 +72,7 @@ footer{text-align:center;color:#d8cba9;font-size:12px;padding:16px}
    const vp=page.getViewport({scale});
    canvas.width=Math.ceil(vp.width);canvas.height=Math.ceil(vp.height);
    await page.render({canvasContext:canvas.getContext("2d",{alpha:false}),viewport:vp}).promise;
+   canvas.dataset.rendered="true";
   }finally{rendering.delete(n)}
  }
  async function renderNear(i){
@@ -79,7 +80,7 @@ footer{text-align:center;color:#d8cba9;font-size:12px;padding:16px}
   const jobs=[];
   for(let k=Math.max(0,i-2);k<=Math.min(total-1,i+3);k++){
    const c=nodes[k]?.querySelector("canvas");
-   if(c&&c.width===0)jobs.push(draw(k+1,c));
+   if(c&&!c.dataset.rendered)jobs.push(draw(k+1,c));
   }
   await Promise.all(jobs);
  }
