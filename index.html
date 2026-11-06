@@ -1,289 +1,100 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#17152b">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#171426">
 <title>مدرسة العشق الأبدي الروحي | فخرالدين حمادي</title>
 <style>
-:root{--bg:#17152b;--panel:#211e39;--ink:#f5eddf;--gold:#c8a65a;--paper:#fffdf7;--muted:#bcb5c9}
-*{box-sizing:border-box}
-body{margin:0;background:radial-gradient(ellipse at top,#30264b 0,#17152b 60%);color:var(--ink);font-family:Tahoma,"Noto Naskh Arabic",serif;min-height:100vh}
-body.light{--bg:#eee9df;--panel:#fffaf0;--ink:#292238;--muted:#655c70;background:#eee9df;color:var(--ink)}
-header{padding:25px 18px 18px;text-align:center;border-bottom:1px solid #c8a65a55}
-.brand{color:var(--gold);font-size:13px;letter-spacing:2px}
-h1{margin:8px 0 5px;font-size:clamp(24px,4vw,38px);color:var(--ink)}
-.subtitle{color:var(--muted);font-size:14px}
-.toolbar{position:sticky;top:0;z-index:10;display:flex;gap:8px;justify-content:center;align-items:center;flex-wrap:wrap;padding:12px;background:#17152bea;backdrop-filter:blur(12px);border-bottom:1px solid #c8a65a44}
-button,.tool-link{border:1px solid #c8a65a88;background:#292440;color:#f8edda;padding:9px 13px;border-radius:9px;font:inherit;cursor:pointer;text-decoration:none;font-size:13px}
-button:hover,.tool-link:hover{background:#40365b}
-#search{width:min(220px,60vw);padding:10px;border-radius:9px;border:1px solid #c8a65a88;background:#fffdf7;color:#292238;font:inherit}
-main{max-width:1400px;margin:auto;padding:22px 14px 40px}
-.status{text-align:center;color:var(--muted);font-size:14px;margin:8px auto 18px;min-height:24px}
-.book-shell{background:linear-gradient(135deg,#292440,#201b34);border:1px solid #c8a65a66;border-radius:18px;padding:20px 12px;box-shadow:0 24px 70px #0006;overflow:hidden}
-#reader{min-height:65vh;display:flex;align-items:flex-start;justify-content:center;gap:18px;perspective:1800px}
-#reader .docx-wrapper{display:flex!important;justify-content:center;align-items:flex-start;gap:18px!important;flex-wrap:nowrap!important;background:transparent!important;padding:0!important;width:100%}
-#reader .docx-wrapper>section{display:none!important;width:min(46%,620px)!important;max-width:620px!important;min-width:0!important;height:auto!important;min-height:65vh;overflow:hidden;background:var(--paper)!important;box-shadow:0 8px 24px #0005!important;margin:0!important;transform-origin:left center;transition:transform .35s ease,opacity .35s ease}
-#reader .docx-wrapper>section.active-page{display:block!important}
-#reader .docx-wrapper>section img{max-width:100%;height:auto}
-#reader .docx-wrapper>section *{max-width:100%}
-#reader .docx-wrapper>section p{overflow-wrap:anywhere}
-#reader .docx-wrapper>section table{max-width:100%}
-#reader .docx-wrapper>section.flip-out{transform:rotateY(-8deg);opacity:.35}
-#reader .docx-wrapper>section.flip-in{animation:pageIn .38s ease}
-@keyframes pageIn{from{transform:rotateY(8deg);opacity:.45}to{transform:rotateY(0);opacity:1}}
-.pager{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:18px;color:var(--muted)}
-#pageCount{min-width:100px;text-align:center;font-size:13px}
-.note{text-align:center;color:var(--muted);font-size:12px;margin:18px 0 0}
-footer{text-align:center;color:var(--muted);padding:22px;font-size:12px}
-.error{color:#ffd1d1;background:#512b39;padding:14px;border-radius:10px;max-width:700px;margin:18px auto}
-@media(max-width:760px){
- .toolbar{position:static}
- .book-shell{padding:10px 6px}
- #reader .docx-wrapper{flex-direction:column!important;align-items:center}
- #reader .docx-wrapper>section{width:min(96%,620px)!important;min-height:55vh}
-}
-@media print{
- body{background:white;color:black}
- header,.toolbar,.status,.pager,.note,footer{display:none!important}
- main{padding:0}
- .book-shell{border:0;box-shadow:none;padding:0}
- #reader .docx-wrapper{display:block!important}
- #reader .docx-wrapper>section{display:block!important;width:100%!important;box-shadow:none!important;page-break-after:always}
-}
-
-/* إضافات القراءة التفاعلية */
-.extra-panel{display:none;margin:0 0 18px;padding:18px;background:var(--panel);border:1px solid #c8a65a66;border-radius:14px;color:var(--ink)}
-.extra-panel.open{display:block}
-.extra-panel h2{margin:0 0 12px;color:var(--gold);font-size:21px}
-#tocList{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;max-height:360px;overflow:auto}
-#tocList button,#galleryList button{width:100%;text-align:right}
-.extra-tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:center;margin:12px 0}
-.extra-tools select,.extra-tools input{padding:9px 12px;border-radius:9px;border:1px solid #c8a65a88;background:#fffdf7;color:#292238;font:inherit;max-width:100%}
-#galleryList{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
-#galleryList figure{margin:0;padding:8px;background:#fffdf7;border-radius:10px;color:#292238}
-#galleryList img{display:block;width:100%;height:150px;object-fit:contain}
-#galleryList figcaption{font-size:12px;margin-top:6px;text-align:center}
-.progress-track{height:5px;background:#ffffff22;border-radius:9px;overflow:hidden;margin:14px auto 0;max-width:900px}
-#readingProgress{height:100%;width:0;background:var(--gold);transition:width .2s}
-#pageJump{width:85px}
-#reader .docx-wrapper>section{scroll-margin-top:90px}
-#reader .docx-wrapper>section img{object-fit:contain}
-@media(max-width:760px){#tocList{grid-template-columns:1fr 1fr}.extra-tools{gap:6px}.extra-tools button,.extra-tools select{font-size:12px;padding:8px}}
-
-
-/* تصحيح عرض الصفحات ومنع قص النصوص */
-#reader{min-height:0!important;display:block!important;perspective:none!important}
-#reader .docx-wrapper{display:block!important;width:100%!important;padding:0!important;margin:0 auto!important;background:transparent!important}
-#reader .docx-wrapper>section,
-#reader .docx-wrapper>section.active-page{
- display:block!important;
- width:min(100%,900px)!important;
- max-width:900px!important;
- min-width:0!important;
- height:auto!important;
- min-height:0!important;
- max-height:none!important;
- overflow:visible!important;
- margin:0 auto 24px!important;
- padding:clamp(18px,4vw,48px)!important;
- background:#fffdf7!important;
- color:#252033;
- box-shadow:0 8px 30px #0005!important;
-}
-#reader .docx-wrapper>section:not(.active-page){display:none!important}
-#reader .docx-wrapper>section img{max-width:100%!important;height:auto!important;object-fit:contain}
-#reader .docx-wrapper>section table{max-width:100%!important}
-#reader .docx-wrapper>section p,
-#reader .docx-wrapper>section div{max-width:100%}
-#reader .docx-wrapper>section{overflow-wrap:anywhere}
-#reader .docx-wrapper>section.flip-in{animation:pageIn .25s ease}
-@keyframes pageIn{from{opacity:.65;transform:translateX(12px)}to{opacity:1;transform:translateX(0)}}
-.language-bar{display:flex;flex-wrap:wrap;gap:9px;align-items:center;justify-content:center;padding:12px 14px;background:#292440;border-bottom:1px solid #c8a65a66}
-.language-bar strong{color:#f8edda;font-size:14px}
-.language-bar a{display:inline-block;border:1px solid #c8a65a;background:#3a3152;color:#fff4df;padding:9px 15px;border-radius:9px;text-decoration:none;font-size:14px}
-.language-bar a:hover{background:#57466f}
-#reader .docx-wrapper>section{box-sizing:border-box!important}
-@media(max-width:760px){
- #reader .docx-wrapper>section{width:100%!important;padding:14px!important;margin-bottom:14px!important}
-}
-
+:root{--night:#171426;--panel:#242039;--gold:#d4b46a;--cream:#f4ead1;--ink:#f7f0e4;--muted:#c9bfd0}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;color:var(--ink);font-family:Tahoma,"Noto Naskh Arabic",serif;background:radial-gradient(ellipse at 50% 5%,#443450 0,#211b35 42%,#11101e 100%)}
+body.day{background:linear-gradient(140deg,#eee4cf,#d9cba9);color:#30263b;--panel:#fff7e8;--muted:#63576a}
+header{text-align:center;padding:22px 14px 15px;border-bottom:1px solid #d4b46a55}
+.brand{font-size:12px;letter-spacing:2px;color:var(--gold)}h1{font-size:clamp(23px,4vw,37px);margin:8px 0;color:var(--ink)}.subtitle{color:var(--muted);font-size:14px}
+.toolbar{position:sticky;top:0;z-index:20;display:flex;gap:8px;justify-content:center;align-items:center;flex-wrap:wrap;padding:10px;background:#171426ed;backdrop-filter:blur(12px);border-bottom:1px solid #d4b46a55}
+button,.download{border:1px solid #d4b46a99;background:#332b49;color:#fff4df;border-radius:9px;padding:9px 13px;font:inherit;font-size:13px;cursor:pointer;text-decoration:none}
+button:hover,.download:hover{background:#51415e}button:disabled{opacity:.4;cursor:not-allowed}
+#search{width:min(220px,55vw);padding:10px;border-radius:9px;border:1px solid #c9a85f;background:#fff9ed;color:#2c2337;font:inherit}
+main{max-width:1500px;margin:auto;padding:16px 12px 34px}.status{text-align:center;color:var(--muted);min-height:24px;margin:8px}
+.stage{position:relative;border:1px solid #d4b46a77;border-radius:20px;padding:clamp(10px,2.2vw,28px);background:radial-gradient(ellipse at center,#57415a 0,#29213b 52%,#171426 100%);box-shadow:0 25px 90px #0009,inset 0 1px 0 #fff2;min-height:72vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.stage:before{content:"";position:absolute;inset:8px;border:1px solid #e3c77b2b;border-radius:14px;pointer-events:none}
+#book{width:min(100%,1240px);height:min(78vh,850px);margin:auto;filter:drop-shadow(0 24px 26px #0009)}
+.stf__parent{margin:auto!important}
+.page{background:#f4ead1;overflow:hidden;box-shadow:inset 0 0 20px #6d50251a}
+.page canvas{display:block;width:100%;height:100%;object-fit:contain;background:#f4ead1}
+.cover{background:linear-gradient(145deg,#17233b,#342642 60%,#9a7040);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.cover canvas{width:100%;height:100%;object-fit:fill}
+.cover.back{background:linear-gradient(145deg,#342642,#17233b)}
+.cover-label{position:absolute;bottom:18px;left:10px;right:10px;text-align:center;color:#f7e6bd;text-shadow:0 2px 6px #000;font-size:12px;pointer-events:none}
+.reader-controls{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin:16px auto;color:var(--muted)}
+#counter{min-width:125px;text-align:center;font-size:14px}
+.progress{height:5px;max-width:850px;margin:0 auto;background:#ffffff24;border-radius:8px;overflow:hidden}.progress>div{height:100%;width:0;background:linear-gradient(90deg,#8c6a3c,#f2d58b);transition:width .25s}
+.tools-panel{display:none;margin:14px auto;padding:16px;max-width:950px;background:var(--panel);border:1px solid #d4b46a66;border-radius:14px}.tools-panel.open{display:block}.tools-panel h2{color:var(--gold);margin:0 0 12px;font-size:20px}
+#toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px;max-height:330px;overflow:auto}
+#toc button{text-align:right}.hint{text-align:center;color:var(--muted);font-size:12px;margin-top:12px}
+.error{color:#ffe1e1;background:#582d3d;padding:12px;border-radius:10px;max-width:760px;margin:10px auto}
+@media(max-width:700px){.toolbar{position:static}.stage{min-height:65vh;padding:8px;border-radius:12px}#book{height:65vh;width:100%}.reader-controls button{padding:8px}.page canvas{object-fit:contain}}
 </style>
 </head>
 <body>
-<header>
- <div class="brand">FAKHREDDINE HAMMADI · LIVRE NUMÉRIQUE</div>
- <h1>مدرسة العشق الأبدي الروحي</h1>
- <div class="subtitle">فلسفة العشق والغرام والهيام</div>
-</header>
+<header><div class="brand">FAKHREDDINE HAMMADI · LIVRE NUMÉRIQUE</div><h1>مدرسة العشق الأبدي الروحي</h1><div class="subtitle">فلسفة العشق والغرام والهيام</div></header>
 <nav class="toolbar" aria-label="أدوات القراءة">
- <button id="prev" type="button">◀ الصفحة السابقة</button>
- <button id="next" type="button">الصفحة التالية ▶</button>
- <span id="pageCount">جارٍ التحميل…</span>
- <button id="zoomOut" type="button">−</button><button id="zoomIn" type="button">＋</button>
- <input id="search" type="search" placeholder="ابحث داخل الكتاب…" aria-label="بحث داخل الكتاب">
- <button id="theme" type="button">الوضع الفاتح</button>
- <button id="full" type="button">ملء الشاشة</button>
- <button id="print" type="button">حفظ PDF / طباعة</button>
-
- <button id="tocToggle" type="button">📚 فهرس الفصول</button>
- <button id="aboutToggle" type="button">✦ عن الكتاب</button>
- <button id="galleryToggle" type="button">🖼 صور الفصول</button>
- <button id="firstPage" type="button">بداية الكتاب</button>
- <button id="lastPage" type="button">نهاية الكتاب</button>
- <div class="progress-track" style="flex-basis:100%"><div id="readingProgress"></div></div>
-
- <a class="tool-link" href="https://github.com/fakhrerddine/fakhreddine-book/blob/main/assets/%D9%85%D8%AF%D8%B1%D8%B3%D8%A9%20%D8%A7%D9%84%D8%B9%D8%B4%D9%82%20%D8%A7%D9%84%D8%A3%D8%A8%D8%AF%D9%8A%20%D8%A7%D9%84%D8%B1%D9%88%D8%AD%D9%8A%20-%20Copie_compressed.docx" target="_blank" rel="noopener">ملف Word الأصلي</a>
+<button id="prev">◀ السابق</button><button id="next">التالي ▶</button><span id="counter">جارٍ التحضير…</span>
+<button id="zoomOut">− تكبير</button><button id="zoomIn">＋ تكبير</button>
+<input id="search" type="search" placeholder="ابحث في الكتاب…" aria-label="بحث">
+<button id="searchBtn">بحث</button><button id="jumpBtn">اذهب للصفحة</button>
+<button id="tocBtn">📚 الفهرس</button><button id="themeBtn">الوضع الليلي</button><button id="fullBtn">ملء الشاشة</button>
+<a class="download" href="./assets/book.pdf" download>تحميل PDF</a>
+<a class="download" href="https://github.com/fakhrerddine/fakhreddine-book/blob/main/assets/%D9%85%D8%AF%D8%B1%D8%B3%D8%A9%20%D8%A7%D9%84%D8%B9%D8%B4%D9%82%20%D8%A7%D9%84%D8%A3%D8%A8%D8%AF%D9%8A%20%D8%A7%D9%84%D8%B1%D9%88%D8%AD%D9%8A%20-%20Copie_compressed.docx" target="_blank" rel="noopener">Word الأصلي</a>
 </nav>
-
-<div class="language-bar" aria-label="لغات الكتاب">
- <strong>لغة القراءة / Language:</strong>
- <a id="translateAr" href="#" rel="noopener">العربية</a>
- <a id="translateFr" href="#" target="_blank" rel="noopener">Français</a>
- <a id="translateEs" href="#" target="_blank" rel="noopener">Español</a>
- <a id="translateEn" href="#" target="_blank" rel="noopener">English</a>
-</div>
-
-<main>
- <div class="status" id="status">يتم جلب نسخة الكتاب الأصلية من GitHub…</div>
-
- <section id="aboutPanel" class="extra-panel">
-  <h2>عن الكتاب · مدرسة العشق الأبدي الروحي</h2>
-  <p><strong>الكاتب: فخرالدين حمادي</strong></p>
-  <p>كتاب تأملي في فلسفة العشق والغرام والهيام، يتناول الصدق والوفاء والصبر واحترام حرية الآخر، والتمييز بين المشاعر والواقع. تُعرض الصفحات والصور اعتمادًا على ملف Word الأصلي، مع الحفاظ على محتواه.</p>
- </section>
- <section id="tocPanel" class="extra-panel">
-  <h2>فهرس الفصول</h2>
-  <p class="subtitle">اختر عنوانًا للانتقال إلى الصفحة التي يبدأ فيها الفصل. تُستخرج العناوين من ملف الكتاب الأصلي.</p>
-  <div id="tocList">سيظهر الفهرس بعد تحميل الصفحات…</div>
- </section>
- <section id="galleryPanel" class="extra-panel">
-  <h2>معرض صور الكتاب</h2>
-  <p class="subtitle">الصور مأخوذة من صفحات Word الأصلية، ويُعرض رقم الصفحة التي تظهر فيها كل صورة.</p>
-  <div id="galleryList">سيظهر المعرض بعد تحميل الكتاب…</div>
- </section>
-
- <section class="book-shell"><div id="reader"></div></section>
- <div class="pager">
-  <button id="prevBottom" type="button">السابق</button>
-  <span id="pageCountBottom">—</span>
-  <button id="nextBottom" type="button">التالي</button>
- </div>
- <p class="note">النص والصور مصدرهما ملف Word الأصلي. هذه نسخة قراءة تجريبية، وقد يختلف تنسيق بعض الصفحات عن Microsoft Word.</p>
+<main><div id="status" class="status">جارٍ تحميل صفحات الكتاب من النسخة الأصلية…</div>
+<section id="tocPanel" class="tools-panel"><h2>فهرس الكتاب</h2><div id="toc">سيظهر الفهرس بعد تجهيز النصوص…</div></section>
+<div class="stage"><div id="book"></div></div>
+<div class="reader-controls"><button id="firstBtn">أول الكتاب</button><button id="prev2">السابقة</button><span id="counter2">—</span><button id="next2">التالية</button><button id="lastBtn">آخر الكتاب</button></div>
+<div class="progress"><div id="bar"></div></div>
+<p class="hint">لقراءة مريحة: استخدم الأسهم أو أزرار التنقل، ويمكنك تكبير الصفحات أو تشغيل ملء الشاشة. التقليب بالماوس أو اللمس متاح.</p>
 </main>
-<footer>© فخرالدين حمادي · مدرسة العشق الأبدي الروحي</footer>
-<script src="https://unpkg.com/jszip@3.10.1/dist/jszip.min.js"></script>
-<script src="https://unpkg.com/docx-preview@0.4.1/dist/docx-preview.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
 <script>
-const DOCX_URL="https://raw.githubusercontent.com/fakhrerddine/fakhreddine-book/main/assets/%D9%85%D8%AF%D8%B1%D8%B3%D8%A9%20%D8%A7%D9%84%D8%B9%D8%B4%D9%82%20%D8%A7%D9%84%D8%A3%D8%A8%D8%AF%D9%8A%20%D8%A7%D9%84%D8%B1%D9%88%D8%AD%D9%8A%20-%20Copie_compressed.docx";
-const reader=document.getElementById("reader"),status=document.getElementById("status");
-let pages=[],current=0,zoom=1;
-const isMobile=()=>window.matchMedia("(max-width:760px)").matches;
-const spread=()=>1;
-function showPage(index,animate=true){
- if(!pages.length)return;
- current=Math.max(0,Math.min(index,pages.length-1));
- pages.forEach((p,i)=>{p.classList.remove("active-page","flip-in","flip-out");if(i===current){p.classList.add("active-page");if(animate)p.classList.add("flip-in")}});
- const label=(current+1)+" / "+pages.length;
- document.getElementById("pageCount").textContent=label;
- document.getElementById("pageCountBottom").textContent="الصفحات "+label;
- updateProgress();
- document.getElementById("prev").disabled=document.getElementById("prevBottom").disabled=current===0;
- document.getElementById("next").disabled=document.getElementById("nextBottom").disabled=current>=pages.length-1;
-}
-function step(dir){showPage(current+dir)}
-document.getElementById("prev").onclick=()=>step(-1);
-document.getElementById("next").onclick=()=>step(1);
-document.getElementById("prevBottom").onclick=()=>step(-1);
-document.getElementById("nextBottom").onclick=()=>step(1);
-document.getElementById("zoomIn").onclick=()=>{zoom=Math.min(1.3,zoom+.1);reader.style.zoom=zoom};
-document.getElementById("zoomOut").onclick=()=>{zoom=Math.max(.7,zoom-.1);reader.style.zoom=zoom};
-document.getElementById("theme").onclick=()=>{document.body.classList.toggle("light");document.getElementById("theme").textContent=document.body.classList.contains("light")?"الوضع الداكن":"الوضع الفاتح"};
-document.getElementById("full").onclick=()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen?.();else document.exitFullscreen?.()};
-document.getElementById("print").onclick=()=>window.print();
-document.getElementById("search").addEventListener("keydown",e=>{if(e.key==="Enter"){const q=e.target.value.trim();if(!q)return;const idx=pages.findIndex(p=>p.innerText.toLocaleLowerCase().includes(q.toLocaleLowerCase()));if(idx>=0){showPage(idx,false);status.textContent="تم العثور على العبارة في الصفحة "+(idx+1)}else status.textContent="لم يتم العثور على العبارة؛ جرّب كلمة أخرى."}});
-window.addEventListener("resize",()=>showPage(current,false));
-(async()=>{
- try{
-  if(!window.docx||!window.JSZip)throw new Error("تعذر تحميل مكتبة عرض Word. حدّث الصفحة أو جرّب لاحقاً.");
-  const response=await fetch(DOCX_URL,{mode:"cors",cache:"no-store"});
-  if(!response.ok)throw new Error("GitHub لم يسمح بتحميل الملف (HTTP "+response.status+").");
-  const blob=await response.blob();
-  if(blob.size<1000)throw new Error("الملف الذي وصل من GitHub غير مكتمل.");
-  status.textContent="تم تحميل ملف Word. جارٍ تجهيز الصفحات والصور…";
-  await docx.renderAsync(blob,reader,null,{className:"docx",inWrapper:true,breakPages:true,ignoreLastRenderedPageBreak:false,renderHeaders:true,renderFooters:true,renderFootnotes:true,renderEndnotes:true,useBase64URL:true});
-  pages=Array.from(reader.querySelectorAll(".docx-wrapper > section"));
-  if(!pages.length)pages=Array.from(reader.querySelectorAll("section.docx"));
-  if(!pages.length)throw new Error("تم تحميل الملف لكن لم أستطع تحديد صفحات Word لعرضها.");
-  showPage(0,false);
-  buildTOC();
-  status.textContent="تم فتح الكتاب بنجاح · "+pages.length+" صفحة · الصور والنصوص محمّلة من ملف Word الأصلي.";
- }catch(err){
-  console.error(err);
-  status.innerHTML='<div class="error">تعذّر فتح ملف Word تلقائياً: '+String(err.message||err).replace(/[<>&"]/g,c=>({"<":"&lt;",">":"&gt;","&":"&amp;",'"':"&quot;"}[c]))+'<br>يمكنك فتح الملف الأصلي من زر «ملف Word الأصلي» أعلاه. سنعالج سبب التحميل قبل اعتماد الموقع.</div>';
- }
-})();
-
-// أدوات الفهرس والتعريف والمعرض والتنقل والترجمة
-
-function setupLanguageLinks(){
- const target=location.href.split("#")[0];
- const arabic=document.getElementById("translateAr");
- if(arabic)arabic.href=target;
- [["translateFr","fr"],["translateEs","es"],["translateEn","en"]].forEach(([id,lang])=>{
-  const a=document.getElementById(id);
-  if(a)a.href="https://translate.google.com/translate?sl=auto&tl="+lang+"&u="+encodeURIComponent(target);
- });
-}
-setupLanguageLinks();
-
-const panelIds=["tocPanel","aboutPanel","galleryPanel"];
-function togglePanel(id){panelIds.forEach(pid=>{const el=document.getElementById(pid);if(pid===id)el.classList.toggle("open");else el.classList.remove("open")});}
-document.getElementById("tocToggle").onclick=()=>togglePanel("tocPanel");
-document.getElementById("aboutToggle").onclick=()=>togglePanel("aboutPanel");
-document.getElementById("galleryToggle").onclick=()=>{togglePanel("galleryPanel");buildGallery();};
-document.getElementById("firstPage").onclick=()=>showPage(0);
-document.getElementById("lastPage").onclick=()=>showPage(Math.max(0,pages.length-1));
-
-function chapterTitle(text){
- const clean=(text||"").replace(/\\s+/g," ").trim();
- return /^(الفصل|الباب|القسم|مقدمة|الخاتمة|كلمة الكاتب|الإهداء|الفهرس)/.test(clean);
-}
-function buildTOC(){
- const list=document.getElementById("tocList"); if(!list||!pages.length)return;
- list.innerHTML="";
- let found=0;
- pages.forEach((page,index)=>{
-  const candidates=Array.from(page.querySelectorAll("h1,h2,h3,h4,p,strong,b"));
-  let title="";
-  for(const node of candidates){const t=(node.innerText||"").trim();if(chapterTitle(t)&&t.length<180){title=t;break;}}
-  if(title){
-   const b=document.createElement("button");b.type="button";b.textContent=title;
-   b.onclick=()=>{showPage(index);document.getElementById("tocPanel").classList.remove("open");};
-   list.appendChild(b);found++;
-  }
- });
- if(!found){const p=document.createElement("p");p.textContent="لم نعثر تلقائيًا على عناوين الفصول في الصفحات. يمكننا ضبط الفهرس يدويًا بعد مراجعة ترتيب الفصول.";list.appendChild(p);}
-}
-function buildGallery(){
- const list=document.getElementById("galleryList");if(!list||!pages.length||list.dataset.ready==="yes")return;
- list.innerHTML="";let count=0;
- pages.forEach((page,index)=>{
-  page.querySelectorAll("img").forEach(img=>{
-   const figure=document.createElement("figure");
-   const copy=document.createElement("img");copy.src=img.src;copy.alt=img.alt||("صورة من صفحة "+(index+1));copy.loading="lazy";
-   const caption=document.createElement("figcaption");caption.textContent="صفحة "+(index+1);
-   figure.append(copy,caption);list.appendChild(figure);count++;
-  });
- });
- if(!count)list.textContent="لا توجد صور مضمّنة في الصفحات التي تم تحميلها.";
- list.dataset.ready="yes";
-}
-function updateProgress(){
- const bar=document.getElementById("readingProgress");
- if(bar&&pages.length){const done=Math.min(100,((current+spread())/pages.length)*100);bar.style.width=done+"%";}
-}
-
+const PDF_URL="./assets/book.pdf";let pdf=null,flip=null,total=0,rendered=new Set(),textCache=new Map(),zoom=1;
+const $=id=>document.getElementById(id);
+function setStatus(s){$("status").textContent=s}
+function makeCanvasPage(label,cover=false){const el=document.createElement("div");el.className=cover?"page cover":"page";el.dataset.pdf=label;const c=document.createElement("canvas");el.appendChild(c);return {el,c}}
+async function renderPdfPage(n,canvas,scale=1.25){if(!pdf||!canvas||rendered.has(canvas))return;const p=await pdf.getPage(n);const base=p.getViewport({scale:1});const w=520;const s=Math.min(2.0,Math.max(.7,w/base.width))*zoom;const vp=p.getViewport({scale:s});canvas.width=Math.ceil(vp.width);canvas.height=Math.ceil(vp.height);await p.render({canvasContext:canvas.getContext("2d"),viewport:vp}).promise;rendered.add(canvas)}
+async function makeCover(n,side){const p=await pdf.getPage(1);const vp=p.getViewport({scale:1.8});const temp=document.createElement("canvas");temp.width=Math.ceil(vp.width);temp.height=Math.ceil(vp.height);await p.render({canvasContext:temp.getContext("2d"),viewport:vp}).promise;const out=document.createElement("canvas");out.width=Math.floor(temp.width*.39);out.height=Math.floor(temp.height*.63);const ctx=out.getContext("2d");const sx=side==="front"?temp.width*.52:temp.width*.12;const sy=temp.height*.19;ctx.drawImage(temp,sx,sy,temp.width*.36,temp.height*.63,0,0,out.width,out.height);return out}
+function pageLabel(i){return i===0?"الغلاف الأمامي":i===total-1?"الغلاف الخلفي":"صفحة "+(i)}
+function updateCounter(){if(!flip)return;const n=flip.getCurrentPageIndex();const current=Math.min(total,n+1);$("counter").textContent=current+" / "+total;$("counter2").textContent=pageLabel(n);$("bar").style.width=((n+1)/total*100)+"%";$("prev").disabled=$("prev2").disabled=n===0;$("next").disabled=$("next2").disabled=n>=total-1;renderAround(n)}
+async function renderAround(index){const nodes=$("book").querySelectorAll(".page");for(let i=Math.max(0,index-2);i<=Math.min(nodes.length-1,index+3);i++){const node=nodes[i];if(node.dataset.pdf){const num=Number(node.dataset.pdf);if(num>1)try{await renderPdfPage(num,node.querySelector("canvas"))}catch(e){console.warn(e)}}}}
+function go(delta){if(!flip)return;const n=flip.getCurrentPageIndex()+delta;if(n>=0&&n<total)flip.flip(n)}
+$("prev").onclick=$("prev2").onclick=()=>go(-1);$("next").onclick=$("next2").onclick=()=>go(1);
+$("firstBtn").onclick=()=>flip&&flip.flip(0);$("lastBtn").onclick=()=>flip&&flip.flip(total-1);
+$("themeBtn").onclick=()=>{document.body.classList.toggle("day");$("themeBtn").textContent=document.body.classList.contains("day")?"الوضع الداكن":"الوضع الليلي"};
+$("fullBtn").onclick=()=>!document.fullscreenElement?document.documentElement.requestFullscreen?.():document.exitFullscreen?.();
+$("tocBtn").onclick=()=>$("tocPanel").classList.toggle("open");
+$("zoomIn").onclick=()=>{zoom=Math.min(1.5,zoom+.1);rerenderVisible()};$("zoomOut").onclick=()=>{zoom=Math.max(.7,zoom-.1);rerenderVisible()};
+async function rerenderVisible(){rendered.clear();$("book").querySelectorAll("canvas").forEach(c=>{if(!c.closest(".cover")){c.width=0;c.height=0}});await renderAround(flip?flip.getCurrentPageIndex():0)}
+$("jumpBtn").onclick=()=>{const n=Number(prompt("رقم صفحة الكتاب:"));if(Number.isInteger(n)&&n>=1&&n<=pdf.numPages)flip.flip(Math.min(total-1,n))};
+async function extractText(n){if(textCache.has(n))return textCache.get(n);const p=await pdf.getPage(n);const t=await p.getTextContent();const s=t.items.map(x=>x.str).join(" ");textCache.set(n,s);return s}
+$("searchBtn").onclick=async()=>{const q=$("search").value.trim();if(!q||!pdf)return;setStatus("جارٍ البحث في صفحات الكتاب…");for(let n=2;n<=pdf.numPages;n++){const t=await extractText(n);if(t.toLocaleLowerCase().includes(q.toLocaleLowerCase())){flip.flip(n-1);setStatus("وجدت العبارة في الصفحة "+n);return}}setStatus("لم أجد العبارة. جرّب كلمة أخرى.")};
+$("search").addEventListener("keydown",e=>{if(e.key==="Enter")$("searchBtn").click()});
+(async()=>{try{
+ if(!window.pdfjsLib)throw Error("تعذر تحميل قارئ PDF.");
+ if(!window.St||!St.PageFlip)throw Error("تعذر تحميل محرك تقليب الصفحات.");
+ pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+ const task=pdfjsLib.getDocument({url:PDF_URL});pdf=await task.promise;
+ setStatus("تم تحميل الكتاب ("+pdf.numPages+" صفحة). جارٍ تجهيز الغلاف وتقليب الصفحات…");
+ const host=$("book"),pages=[];
+ const front=makeCanvasPage("front",true);front.el.classList.add("hard");front.c=await makeCover(1,"front");front.el.replaceChildren(front.c);pages.push(front.el);
+ for(let n=2;n<=pdf.numPages;n++){const p=makeCanvasPage(n);pages.push(p.el)}
+ const back=makeCanvasPage("back",true);back.el.classList.add("hard","back");back.c=await makeCover(1,"back");back.el.replaceChildren(back.c);pages.push(back.el);
+ host.replaceChildren(...pages);total=pages.length;
+ flip=new St.PageFlip(host,{width:560,height:790,size:"stretch",minWidth:280,maxWidth:1100,minHeight:395,maxHeight:1500,autoSize:true,showCover:true,usePortrait:false,drawShadow:true,maxShadowOpacity:.38,flippingTime:850,swipeDistance:25,clickEventForward:true, mobileScrollSupport:false});
+ flip.loadFromHTML(host.querySelectorAll(".page"));flip.on("flip",updateCounter);flip.on("changeState",()=>{});updateCounter();
+ await renderAround(0);
+ setStatus("الكتاب جاهز للقراءة · "+pdf.numPages+" صفحة داخلية، مع غلاف أمامي وخلفي مأخوذين من تصميم الغلاف الأصلي.");
+ const toc=$("toc");let hits=0;
+ for(let n=2;n<=pdf.numPages;n++){const t=await extractText(n);const m=t.match(/(?:الفصل|الباب|القسم)\s*[：:ـ-]?\s*[\d٠-٩]+[^\n]{0,100}/);if(m){const b=document.createElement("button");b.textContent=m[0].trim();b.onclick=()=>flip.flip(n-1);toc.appendChild(b);hits++}}
+ if(!hits)toc.textContent="لم يتم استخراج عناوين الفصول آلياً من النص. يمكن إضافة فهرس مضبوط يدوياً لاحقاً.";
+ }catch(e){console.error(e);$("status").innerHTML='<div class="error">لم يكتمل تشغيل قارئ الكتاب: '+String(e.message||e).replace(/[<>&"]/g,c=>({"<":"&lt;",">":"&gt;","&":"&amp;",'"':"&quot;"}[c]))+'. تأكد أن عملية النشر انتهت بنجاح، ثم أعد تحميل الصفحة.</div>'}})();
 </script>
-</body>
-</html>
+</body></html>
