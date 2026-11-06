@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#171426">
-<title>مدرسة العشق الأبدي الروحي | فخرالدين حمادي</title>
+<title>Fakhreddine Hammadi – مدرسة العشق الأبدي</title>
 <style>
 :root{--night:#171426;--panel:#242039;--gold:#d4b46a;--cream:#f4ead1;--ink:#f7f0e4;--muted:#c9bfd0}
 *{box-sizing:border-box}body{margin:0;min-height:100vh;color:var(--ink);font-family:Tahoma,"Noto Naskh Arabic",serif;background:radial-gradient(ellipse at 50% 5%,#443450 0,#211b35 42%,#11101e 100%)}
 body.day{background:linear-gradient(140deg,#eee4cf,#d9cba9);color:#30263b;--panel:#fff7e8;--muted:#63576a}
 header{text-align:center;padding:22px 14px 15px;border-bottom:1px solid #d4b46a55}
-.brand{font-size:12px;letter-spacing:2px;color:#f0d28a;text-shadow:0 0 14px #d4b46a88}h1{font-size:clamp(25px,4.4vw,40px);margin:8px 0;color:#f5dda2;text-shadow:0 2px 4px #0008,0 0 22px #d4b46a55}.subtitle{color:#e2c99b;font-size:15px;text-shadow:0 0 12px #d4b46a33}
+.brand{font-size:12px;letter-spacing:2px;color:#e8c979;text-shadow:0 0 14px #d4b46a88}h1{font-size:clamp(25px,4.4vw,40px);margin:8px 0;color:#f0cf76;text-shadow:0 2px 4px #0008,0 0 22px #d4b46a55}.subtitle{color:#d9c69b;font-size:15px;text-shadow:0 0 12px #d4b46a33}.lang-switch{display:flex;justify-content:center;gap:7px;margin-top:13px}.lang-switch button{padding:6px 12px;font-size:12px;background:#172c50;border-color:#c6a85f;color:#f7edcf}.lang-switch button.active{background:#c6a85f;color:#17233b;font-weight:bold}
 .toolbar{position:sticky;top:0;z-index:20;display:flex;gap:8px;justify-content:center;align-items:center;flex-wrap:wrap;padding:10px;background:#171426ed;backdrop-filter:blur(12px);border-bottom:1px solid #d4b46a55}
 button,.download{border:1px solid #d4b46a99;background:#332b49;color:#fff4df;border-radius:9px;padding:9px 13px;font:inherit;font-size:13px;cursor:pointer;text-decoration:none}
 button:hover,.download:hover{background:#51415e}button:disabled{opacity:.4;cursor:not-allowed}
@@ -36,15 +36,15 @@ main{max-width:1500px;margin:auto;padding:16px 12px 34px}.status{text-align:cent
 </style>
 </head>
 <body>
-<header><div class="brand">FAKHREDDINE HAMMADI · LIVRE NUMÉRIQUE</div><h1>مدرسة العشق الأبدي الروحي</h1><div class="subtitle">فلسفة العشق والغرام والهيام</div></header>
+<header><div class="brand">FAKHREDDINE HAMMADI · DIGITAL BOOK</div><h1 id="siteTitle">مدرسة العشق الأبدي الروحي</h1><div class="subtitle" id="siteSubtitle">فلسفة العشق والغرام والهيام</div><div class="lang-switch" aria-label="Language"><button type="button" data-lang="ar" class="active">العربية</button><button type="button" data-lang="es">Español</button><button type="button" data-lang="fr">Français</button></div></header>
 <nav class="toolbar" aria-label="أدوات القراءة">
-<button id="prev">◀ السابق</button><button id="next">التالي ▶</button><span id="counter">جارٍ التحضير…</span>
-<button id="zoomOut">− تكبير</button><button id="zoomIn">＋ تكبير</button>
-<input id="search" type="search" placeholder="ابحث في الكتاب…" aria-label="بحث">
-<button id="searchBtn">بحث</button><button id="jumpBtn">اذهب للصفحة</button>
-<button id="tocBtn">📚 الفهرس</button><button id="themeBtn">الوضع الليلي</button><button id="fullBtn">ملء الشاشة</button>
-<a class="download" href="./assets/book.pdf" download>تحميل PDF</a>
-<a class="download" href="https://github.com/fakhrerddine/fakhreddine-book/blob/main/assets/%D9%85%D8%AF%D8%B1%D8%B3%D8%A9%20%D8%A7%D9%84%D8%B9%D8%B4%D9%82%20%D8%A7%D9%84%D8%A3%D8%A8%D8%AF%D9%8A%20%D8%A7%D9%84%D8%B1%D9%88%D8%AD%D9%8A%20-%20Copie_compressed.docx" target="_blank" rel="noopener">Word الأصلي</a>
+<button id="prev" data-i18n="prev">◀ السابق</button><button id="next" data-i18n="next">التالي ▶</button><span id="counter">جارٍ التحضير…</span>
+<button id="zoomOut" data-i18n="zoomOut">− تصغير</button><button id="zoomIn" data-i18n="zoomIn">＋ تكبير</button>
+<input id="search" type="search" placeholder="ابحث في الكتاب…" aria-label="بحث" data-i18n-placeholder="searchPlaceholder">
+<button id="searchBtn" data-i18n="search">بحث</button><button id="jumpBtn" data-i18n="jump">اذهب للصفحة</button>
+<button id="tocBtn" data-i18n="toc">📚 الفهرس</button><button id="themeBtn" data-i18n="theme">الوضع الليلي</button><button id="fullBtn" data-i18n="fullscreen">ملء الشاشة</button>
+<a class="download" href="./assets/book.pdf" download data-i18n="pdf">تحميل PDF</a>
+<a class="download" href="https://raw.githubusercontent.com/fakhrerddine/fakhreddine-book/main/assets/%D9%85%D8%AF%D8%B1%D8%B3%D8%A9%20%D8%A7%D9%84%D8%B9%D8%B4%D9%82%20%D8%A7%D9%84%D8%A3%D8%A8%D8%AF%D9%8A%20%D8%A7%D9%84%D8%B1%D9%88%D8%AD%D9%8A%20-%20Copie_compressed.docx" target="_blank" rel="noopener" data-i18n="word">Word الأصلي</a>
 </nav>
 <main><div id="status" class="status">جارٍ تحميل صفحات الكتاب من النسخة الأصلية…</div>
 <section id="tocPanel" class="tools-panel"><h2>فهرس الكتاب</h2><div id="toc">سيظهر الفهرس بعد تجهيز النصوص…</div></section>
@@ -56,6 +56,21 @@ main{max-width:1500px;margin:auto;padding:16px 12px 34px}.status{text-align:cent
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
 <script>
+
+const LANGS={
+ ar:{title:"مدرسة العشق الأبدي الروحي",subtitle:"فلسفة العشق والغرام والهيام",prev:"◀ السابق",next:"التالي ▶",zoomOut:"− تصغير",zoomIn:"＋ تكبير",searchPlaceholder:"ابحث في الكتاب…",search:"بحث",jump:"اذهب للصفحة",toc:"📚 الفهرس",theme:"الوضع الليلي",fullscreen:"ملء الشاشة",pdf:"تحميل PDF",word:"Word الأصلي"},
+ es:{title:"La escuela del amor eterno espiritual",subtitle:"Filosofía del amor, la pasión y el anhelo",prev:"◀ Anterior",next:"Siguiente ▶",zoomOut:"− Alejar",zoomIn:"＋ Acercar",searchPlaceholder:"Buscar en el libro…",search:"Buscar",jump:"Ir a la página",toc:"📚 Índice",theme:"Modo nocturno",fullscreen:"Pantalla completa",pdf:"Descargar PDF",word:"Word original"},
+ fr:{title:"L’École de l’amour éternel spirituel",subtitle:"Philosophie de l’amour, de la passion et du désir",prev:"◀ Précédent",next:"Suivant ▶",zoomOut:"− Réduire",zoomIn:"＋ Agrandir",searchPlaceholder:"Rechercher dans le livre…",search:"Rechercher",jump:"Aller à la page",toc:"📚 Sommaire",theme:"Mode nuit",fullscreen:"Plein écran",pdf:"Télécharger PDF",word:"Word original"}
+};
+function setLanguage(lang){
+ const d=LANGS[lang]||LANGS.ar;document.documentElement.lang=lang;document.documentElement.dir=lang==="ar"?"rtl":"ltr";
+ $("siteTitle").textContent=d.title;$("siteSubtitle").textContent=d.subtitle;
+ document.querySelectorAll("[data-i18n]").forEach(el=>{const k=el.dataset.i18n;if(d[k])el.textContent=d[k]});
+ document.querySelectorAll("[data-i18n-placeholder]").forEach(el=>{const k=el.dataset.i18nPlaceholder;if(d[k])el.placeholder=d[k]});
+ document.querySelectorAll(".lang-switch button").forEach(b=>b.classList.toggle("active",b.dataset.lang===lang));
+}
+document.querySelectorAll(".lang-switch button").forEach(b=>b.addEventListener("click",()=>setLanguage(b.dataset.lang)));
+
 const PDF_URL="./assets/book.pdf";let pdf=null,flip=null,total=0,rendered=new Set(),textCache=new Map(),zoom=1.08;
 const $=id=>document.getElementById(id);
 function setStatus(s){$("status").textContent=s}
