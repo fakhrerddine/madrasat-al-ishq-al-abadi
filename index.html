@@ -71,6 +71,43 @@ footer{text-align:center;color:var(--muted);padding:22px;font-size:12px}
 #reader .docx-wrapper>section img{object-fit:contain}
 @media(max-width:760px){#tocList{grid-template-columns:1fr 1fr}.extra-tools{gap:6px}.extra-tools button,.extra-tools select{font-size:12px;padding:8px}}
 
+
+/* تصحيح عرض الصفحات ومنع قص النصوص */
+#reader{min-height:0!important;display:block!important;perspective:none!important}
+#reader .docx-wrapper{display:block!important;width:100%!important;padding:0!important;margin:0 auto!important;background:transparent!important}
+#reader .docx-wrapper>section,
+#reader .docx-wrapper>section.active-page{
+ display:block!important;
+ width:min(100%,900px)!important;
+ max-width:900px!important;
+ min-width:0!important;
+ height:auto!important;
+ min-height:0!important;
+ max-height:none!important;
+ overflow:visible!important;
+ margin:0 auto 24px!important;
+ padding:clamp(18px,4vw,48px)!important;
+ background:#fffdf7!important;
+ color:#252033;
+ box-shadow:0 8px 30px #0005!important;
+}
+#reader .docx-wrapper>section:not(.active-page){display:none!important}
+#reader .docx-wrapper>section img{max-width:100%!important;height:auto!important;object-fit:contain}
+#reader .docx-wrapper>section table{max-width:100%!important}
+#reader .docx-wrapper>section p,
+#reader .docx-wrapper>section div{max-width:100%}
+#reader .docx-wrapper>section{overflow-wrap:anywhere}
+#reader .docx-wrapper>section.flip-in{animation:pageIn .25s ease}
+@keyframes pageIn{from{opacity:.65;transform:translateX(12px)}to{opacity:1;transform:translateX(0)}}
+.language-bar{display:flex;flex-wrap:wrap;gap:9px;align-items:center;justify-content:center;padding:12px 14px;background:#292440;border-bottom:1px solid #c8a65a66}
+.language-bar strong{color:#f8edda;font-size:14px}
+.language-bar a{display:inline-block;border:1px solid #c8a65a;background:#3a3152;color:#fff4df;padding:9px 15px;border-radius:9px;text-decoration:none;font-size:14px}
+.language-bar a:hover{background:#57466f}
+#reader .docx-wrapper>section{box-sizing:border-box!important}
+@media(max-width:760px){
+ #reader .docx-wrapper>section{width:100%!important;padding:14px!important;margin-bottom:14px!important}
+}
+
 </style>
 </head>
 <body>
@@ -103,6 +140,14 @@ footer{text-align:center;color:var(--muted);padding:22px;font-size:12px}
 
  <a class="tool-link" href="https://github.com/fakhrerddine/fakhreddine-book/blob/d45879839fe6eff9f276b09bdd87e5faf315c6e8/assets/%D9%85%D8%AF%D8%B1%D8%B3%D8%A9%20%D8%A7%D9%84%D8%B9%D8%B4%D9%82%20%D8%A7%D9%84%D8%A3%D8%A8%D8%AF%D9%8A%20%D8%A7%D9%84%D8%B1%D9%88%D8%AD%D9%8A%20-%20Copie_compressed.docx" target="_blank" rel="noopener">ملف Word الأصلي</a>
 </nav>
+
+<div class="language-bar" aria-label="روابط ترجمة الكتاب">
+ <strong>اقرأ بلغتك / Lire dans votre langue / Read in your language:</strong>
+ <a id="translateFr" href="#" target="_blank" rel="noopener">Français</a>
+ <a id="translateEs" href="#" target="_blank" rel="noopener">Español</a>
+ <a id="translateEn" href="#" target="_blank" rel="noopener">English</a>
+</div>
+
 <main>
  <div class="status" id="status">يتم جلب نسخة الكتاب الأصلية من GitHub…</div>
 
@@ -138,19 +183,19 @@ const DOCX_URL="https://raw.githubusercontent.com/fakhrerddine/fakhreddine-book/
 const reader=document.getElementById("reader"),status=document.getElementById("status");
 let pages=[],current=0,zoom=1;
 const isMobile=()=>window.matchMedia("(max-width:760px)").matches;
-const spread=()=>isMobile()?1:2;
+const spread=()=>1;
 function showPage(index,animate=true){
  if(!pages.length)return;
  current=Math.max(0,Math.min(index,pages.length-1));
- pages.forEach((p,i)=>{p.classList.remove("active-page","flip-in","flip-out");if(i>=current&&i<current+spread()){p.classList.add("active-page");if(animate)p.classList.add("flip-in")}});
+ pages.forEach((p,i)=>{p.classList.remove("active-page","flip-in","flip-out");if(i===current){p.classList.add("active-page");if(animate)p.classList.add("flip-in")}});
  const label=(current+1)+" / "+pages.length;
  document.getElementById("pageCount").textContent=label;
  document.getElementById("pageCountBottom").textContent="الصفحات "+label;
  updateProgress();
  document.getElementById("prev").disabled=document.getElementById("prevBottom").disabled=current===0;
- document.getElementById("next").disabled=document.getElementById("nextBottom").disabled=current+spread()>=pages.length;
+ document.getElementById("next").disabled=document.getElementById("nextBottom").disabled=current>=pages.length-1;
 }
-function step(dir){showPage(current+dir*spread())}
+function step(dir){showPage(current+dir)}
 document.getElementById("prev").onclick=()=>step(-1);
 document.getElementById("next").onclick=()=>step(1);
 document.getElementById("prevBottom").onclick=()=>step(-1);
@@ -184,18 +229,28 @@ window.addEventListener("resize",()=>showPage(current,false));
 })();
 
 // أدوات الفهرس والتعريف والمعرض والتنقل والترجمة
+
+function setupLanguageLinks(){
+ const target=location.href.split("#")[0];
+ [["translateFr","fr"],["translateEs","es"],["translateEn","en"]].forEach(([id,lang])=>{
+  const a=document.getElementById(id);
+  if(a)a.href="https://translate.google.com/translate?sl=auto&tl="+lang+"&u="+encodeURIComponent(target);
+ });
+}
+setupLanguageLinks();
+
 const panelIds=["tocPanel","aboutPanel","galleryPanel"];
 function togglePanel(id){panelIds.forEach(pid=>{const el=document.getElementById(pid);if(pid===id)el.classList.toggle("open");else el.classList.remove("open")});}
 document.getElementById("tocToggle").onclick=()=>togglePanel("tocPanel");
 document.getElementById("aboutToggle").onclick=()=>togglePanel("aboutPanel");
 document.getElementById("galleryToggle").onclick=()=>{togglePanel("galleryPanel");buildGallery();};
 document.getElementById("firstPage").onclick=()=>showPage(0);
-document.getElementById("lastPage").onclick=()=>showPage(Math.max(0,pages.length-spread()));
+document.getElementById("lastPage").onclick=()=>showPage(Math.max(0,pages.length-1));
 document.getElementById("translateBtn").onclick=()=>{
  const lang=document.getElementById("languageSelect").value;
  if(!lang){status.textContent="اختر لغة الترجمة أولاً.";return;}
  const target=location.href.split("#")[0];
- const url="https://translate.google.com/translate?sl=ar&tl="+encodeURIComponent(lang)+"&u="+encodeURIComponent(target);
+ const url="https://translate.google.com/translate?sl=auto&tl="+encodeURIComponent(lang)+"&u="+encodeURIComponent(target);
  window.open(url,"_blank","noopener");
 };
 function chapterTitle(text){
