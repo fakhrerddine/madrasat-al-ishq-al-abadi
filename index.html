@@ -51,6 +51,26 @@ footer{text-align:center;color:var(--muted);padding:22px;font-size:12px}
  #reader .docx-wrapper{display:block!important}
  #reader .docx-wrapper>section{display:block!important;width:100%!important;box-shadow:none!important;page-break-after:always}
 }
+
+/* إضافات القراءة التفاعلية */
+.extra-panel{display:none;margin:0 0 18px;padding:18px;background:var(--panel);border:1px solid #c8a65a66;border-radius:14px;color:var(--ink)}
+.extra-panel.open{display:block}
+.extra-panel h2{margin:0 0 12px;color:var(--gold);font-size:21px}
+#tocList{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;max-height:360px;overflow:auto}
+#tocList button,#galleryList button{width:100%;text-align:right}
+.extra-tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:center;margin:12px 0}
+.extra-tools select,.extra-tools input{padding:9px 12px;border-radius:9px;border:1px solid #c8a65a88;background:#fffdf7;color:#292238;font:inherit;max-width:100%}
+#galleryList{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+#galleryList figure{margin:0;padding:8px;background:#fffdf7;border-radius:10px;color:#292238}
+#galleryList img{display:block;width:100%;height:150px;object-fit:contain}
+#galleryList figcaption{font-size:12px;margin-top:6px;text-align:center}
+.progress-track{height:5px;background:#ffffff22;border-radius:9px;overflow:hidden;margin:14px auto 0;max-width:900px}
+#readingProgress{height:100%;width:0;background:var(--gold);transition:width .2s}
+#pageJump{width:85px}
+#reader .docx-wrapper>section{scroll-margin-top:90px}
+#reader .docx-wrapper>section img{object-fit:contain}
+@media(max-width:760px){#tocList{grid-template-columns:1fr 1fr}.extra-tools{gap:6px}.extra-tools button,.extra-tools select{font-size:12px;padding:8px}}
+
 </style>
 </head>
 <body>
@@ -68,10 +88,40 @@ footer{text-align:center;color:var(--muted);padding:22px;font-size:12px}
  <button id="theme" type="button">الوضع الفاتح</button>
  <button id="full" type="button">ملء الشاشة</button>
  <button id="print" type="button">حفظ PDF / طباعة</button>
+
+ <button id="tocToggle" type="button">📚 فهرس الفصول</button>
+ <button id="aboutToggle" type="button">✦ عن الكتاب</button>
+ <button id="galleryToggle" type="button">🖼 صور الفصول</button>
+ <label for="languageSelect" style="color:#f8edda;font-size:13px">الترجمة:</label>
+ <select id="languageSelect" aria-label="اختر لغة الترجمة">
+  <option value="">اختر اللغة</option><option value="fr">Français</option><option value="es">Español</option><option value="en">English</option>
+ </select>
+ <button id="translateBtn" type="button">ترجمة الصفحة</button>
+ <button id="firstPage" type="button">بداية الكتاب</button>
+ <button id="lastPage" type="button">نهاية الكتاب</button>
+ <div class="progress-track" style="flex-basis:100%"><div id="readingProgress"></div></div>
+
  <a class="tool-link" href="https://github.com/fakhrerddine/fakhreddine-book/blob/d45879839fe6eff9f276b09bdd87e5faf315c6e8/assets/%D9%85%D8%AF%D8%B1%D8%B3%D8%A9%20%D8%A7%D9%84%D8%B9%D8%B4%D9%82%20%D8%A7%D9%84%D8%A3%D8%A8%D8%AF%D9%8A%20%D8%A7%D9%84%D8%B1%D9%88%D8%AD%D9%8A%20-%20Copie_compressed.docx" target="_blank" rel="noopener">ملف Word الأصلي</a>
 </nav>
 <main>
  <div class="status" id="status">يتم جلب نسخة الكتاب الأصلية من GitHub…</div>
+
+ <section id="aboutPanel" class="extra-panel">
+  <h2>عن الكتاب · مدرسة العشق الأبدي الروحي</h2>
+  <p><strong>الكاتب: فخرالدين حمادي</strong></p>
+  <p>كتاب تأملي في فلسفة العشق والغرام والهيام، يتناول الصدق والوفاء والصبر واحترام حرية الآخر، والتمييز بين المشاعر والواقع. تُعرض الصفحات والصور اعتمادًا على ملف Word الأصلي، مع الحفاظ على محتواه.</p>
+ </section>
+ <section id="tocPanel" class="extra-panel">
+  <h2>فهرس الفصول</h2>
+  <p class="subtitle">اختر عنوانًا للانتقال إلى الصفحة التي يبدأ فيها الفصل. تُستخرج العناوين من ملف الكتاب الأصلي.</p>
+  <div id="tocList">سيظهر الفهرس بعد تحميل الصفحات…</div>
+ </section>
+ <section id="galleryPanel" class="extra-panel">
+  <h2>معرض صور الكتاب</h2>
+  <p class="subtitle">الصور مأخوذة من صفحات Word الأصلية، ويُعرض رقم الصفحة التي تظهر فيها كل صورة.</p>
+  <div id="galleryList">سيظهر المعرض بعد تحميل الكتاب…</div>
+ </section>
+
  <section class="book-shell"><div id="reader"></div></section>
  <div class="pager">
   <button id="prevBottom" type="button">السابق</button>
@@ -96,6 +146,7 @@ function showPage(index,animate=true){
  const label=(current+1)+" / "+pages.length;
  document.getElementById("pageCount").textContent=label;
  document.getElementById("pageCountBottom").textContent="الصفحات "+label;
+ updateProgress();
  document.getElementById("prev").disabled=document.getElementById("prevBottom").disabled=current===0;
  document.getElementById("next").disabled=document.getElementById("nextBottom").disabled=current+spread()>=pages.length;
 }
@@ -124,12 +175,68 @@ window.addEventListener("resize",()=>showPage(current,false));
   if(!pages.length)pages=Array.from(reader.querySelectorAll("section.docx"));
   if(!pages.length)throw new Error("تم تحميل الملف لكن لم أستطع تحديد صفحات Word لعرضها.");
   showPage(0,false);
+  buildTOC();
   status.textContent="تم فتح الكتاب بنجاح · "+pages.length+" صفحة · الصور والنصوص محمّلة من ملف Word الأصلي.";
  }catch(err){
   console.error(err);
   status.innerHTML='<div class="error">تعذّر فتح ملف Word تلقائياً: '+String(err.message||err).replace(/[<>&"]/g,c=>({"<":"&lt;",">":"&gt;","&":"&amp;",'"':"&quot;"}[c]))+'<br>يمكنك فتح الملف الأصلي من زر «ملف Word الأصلي» أعلاه. سنعالج سبب التحميل قبل اعتماد الموقع.</div>';
  }
 })();
+
+// أدوات الفهرس والتعريف والمعرض والتنقل والترجمة
+const panelIds=["tocPanel","aboutPanel","galleryPanel"];
+function togglePanel(id){panelIds.forEach(pid=>{const el=document.getElementById(pid);if(pid===id)el.classList.toggle("open");else el.classList.remove("open")});}
+document.getElementById("tocToggle").onclick=()=>togglePanel("tocPanel");
+document.getElementById("aboutToggle").onclick=()=>togglePanel("aboutPanel");
+document.getElementById("galleryToggle").onclick=()=>{togglePanel("galleryPanel");buildGallery();};
+document.getElementById("firstPage").onclick=()=>showPage(0);
+document.getElementById("lastPage").onclick=()=>showPage(Math.max(0,pages.length-spread()));
+document.getElementById("translateBtn").onclick=()=>{
+ const lang=document.getElementById("languageSelect").value;
+ if(!lang){status.textContent="اختر لغة الترجمة أولاً.";return;}
+ const target=location.href.split("#")[0];
+ const url="https://translate.google.com/translate?sl=ar&tl="+encodeURIComponent(lang)+"&u="+encodeURIComponent(target);
+ window.open(url,"_blank","noopener");
+};
+function chapterTitle(text){
+ const clean=(text||"").replace(/\\s+/g," ").trim();
+ return /^(الفصل|الباب|القسم|مقدمة|الخاتمة|كلمة الكاتب|الإهداء|الفهرس)/.test(clean);
+}
+function buildTOC(){
+ const list=document.getElementById("tocList"); if(!list||!pages.length)return;
+ list.innerHTML="";
+ let found=0;
+ pages.forEach((page,index)=>{
+  const candidates=Array.from(page.querySelectorAll("h1,h2,h3,h4,p,strong,b"));
+  let title="";
+  for(const node of candidates){const t=(node.innerText||"").trim();if(chapterTitle(t)&&t.length<180){title=t;break;}}
+  if(title){
+   const b=document.createElement("button");b.type="button";b.textContent=title;
+   b.onclick=()=>{showPage(index);document.getElementById("tocPanel").classList.remove("open");};
+   list.appendChild(b);found++;
+  }
+ });
+ if(!found){const p=document.createElement("p");p.textContent="لم نعثر تلقائيًا على عناوين الفصول في الصفحات. يمكننا ضبط الفهرس يدويًا بعد مراجعة ترتيب الفصول.";list.appendChild(p);}
+}
+function buildGallery(){
+ const list=document.getElementById("galleryList");if(!list||!pages.length||list.dataset.ready==="yes")return;
+ list.innerHTML="";let count=0;
+ pages.forEach((page,index)=>{
+  page.querySelectorAll("img").forEach(img=>{
+   const figure=document.createElement("figure");
+   const copy=document.createElement("img");copy.src=img.src;copy.alt=img.alt||("صورة من صفحة "+(index+1));copy.loading="lazy";
+   const caption=document.createElement("figcaption");caption.textContent="صفحة "+(index+1);
+   figure.append(copy,caption);list.appendChild(figure);count++;
+  });
+ });
+ if(!count)list.textContent="لا توجد صور مضمّنة في الصفحات التي تم تحميلها.";
+ list.dataset.ready="yes";
+}
+function updateProgress(){
+ const bar=document.getElementById("readingProgress");
+ if(bar&&pages.length){const done=Math.min(100,((current+spread())/pages.length)*100);bar.style.width=done+"%";}
+}
+
 </script>
 </body>
 </html>
