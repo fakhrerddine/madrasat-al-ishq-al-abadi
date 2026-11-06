@@ -118,8 +118,10 @@ jobs:
                                   val=(color.get(W+"val") or "").upper()
                                   if val in ("000000","000","AUTO","2A2118"):
                                       color.set(W+"val",BODY)
-                                  elif val=="FF0000":
+                                  elif val in ("FF0000","833C0B","843C0C","C65911","A84300","BF9000","C55A11"):
                                       color.set(W+"val","A7833D")
+                                  elif val in ("002060","1F4E79","17365D","174A7E","2F5496","4472C4"):
+                                      color.set(W+"val","174A7E")
                           if item.filename=="word/styles.xml":
                               dd=root.find(W+"docDefaults")
                               if dd is None:
