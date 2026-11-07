@@ -49,60 +49,14 @@ footer{text-align:center;color:#d8cba9;font-size:12px;padding:16px}
 </nav>
 <main>
 <p class="notice" id="notice">النسخة الأصلية من PDF معروضة مباشرة دون قصّ أو تمديد للغلاف والصور. استعمل أدوات القارئ للتكبير والتنقل.</p>
-<div class="flip-controls"><button id="backPage">◀ الصفحة السابقة</button><span id="pageCount">جارٍ التحضير…</span><button id="forwardPage">الصفحة التالية ▶</button><a class="download" id="fallback" href="./assets/book.pdf" target="_blank" rel="noopener">فتح PDF الأصلي</a></div>
-<section class="viewer" aria-label="كتاب بتقليب الصفحات">
-<div id="book"></div>
+<section class="viewer" aria-label="عرض ملف الكتاب PDF">
+<iframe id="pdfViewer" src="./assets/book.pdf#view=FitH" title="مدرسة العشق الأبدي الروحي - PDF" style="display:block;width:100%;height:100%;border:0;background:#fff"></iframe>
 </section>
+<p class="notice">إذا لم يظهر الكتاب داخل الصفحة، استعمل زر فتح PDF أو تحميل PDF بالأعلى. يمكنك استعمال أدوات قارئ PDF للتكبير والتنقل بين الصفحات.</p>
 </main>
 <footer>© Fakhreddine Hammadi</footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
-<script>
-(async()=>{
- const count=document.getElementById("pageCount"),host=document.getElementById("book");
- const prev=document.getElementById("backPage"),next=document.getElementById("forwardPage");
- let pdf,flip,rendering=new Set(),total=0;
- const setCount=()=>{const n=flip.getCurrentPageIndex()+1;count.textContent=n+" / "+total;prev.disabled=n===1;next.disabled=n===total;renderNear(n-1)};
- async function draw(n,canvas){
-  if(rendering.has(n))return;rendering.add(n);
-  try{
-   const page=await pdf.getPage(n),base=page.getViewport({scale:1});
-   const targetW=1200,targetH=1695;
-   const scale=Math.min(targetW/base.width,targetH/base.height,2.4);
-   const vp=page.getViewport({scale});
-   canvas.width=Math.ceil(vp.width);canvas.height=Math.ceil(vp.height);
-   await page.render({canvasContext:canvas.getContext("2d",{alpha:false}),viewport:vp}).promise;
-   canvas.dataset.rendered="true";
-  }finally{rendering.delete(n)}
- }
- async function renderNear(i){
-  const nodes=host.querySelectorAll(".page");
-  const jobs=[];
-  for(let k=Math.max(0,i-2);k<=Math.min(total-1,i+3);k++){
-   const c=nodes[k]?.querySelector("canvas");
-   if(c&&!c.dataset.rendered)jobs.push(draw(k+1,c));
-  }
-  await Promise.all(jobs);
- }
- try{
-  if(!window.pdfjsLib||!window.St?.PageFlip)throw new Error("تعذر تحميل قارئ الصفحات");
-  pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
-  pdf=await pdfjsLib.getDocument("./assets/book.pdf").promise;total=pdf.numPages;
-  const pages=[];
-  for(let n=1;n<=total;n++){
-   const el=document.createElement("div");el.className="page";
-   if(n===1||n===total)el.classList.add("hard");
-   const c=document.createElement("canvas");el.appendChild(c);pages.push(el);
-  }
-  host.replaceChildren(...pages);
-  flip=new St.PageFlip(host,{width:900,height:1270,size:"stretch",minWidth:320,maxWidth:1500,minHeight:452,maxHeight:2100,autoSize:true,showCover:true,usePortrait:true,drawShadow:true,maxShadowOpacity:.35,flippingTime:850,swipeDistance:24,clickEventForward:true,useMouseEvents:true,mobileScrollSupport:false});
-  flip.loadFromHTML(host.querySelectorAll(".page"));
-  flip.on("flip",setCount);
-  prev.onclick=()=>flip.flipPrev();next.onclick=()=>flip.flipNext();
-  setCount();await renderNear(0);
- }catch(e){count.textContent="تعذر تشغيل التقليب";const link=document.createElement("a");link.className="download";link.href="./assets/book.pdf";link.target="_blank";link.textContent="فتح PDF الأصلي";host.replaceChildren(link);console.error(e)}
-})();
-</script>
+
+
 <script>
 const translations={
 ar:{title:"مدرسة العشق الأبدي الروحي",subtitle:"فلسفة العشق والغرام والهيام",download:"تحميل PDF",open:"فتح PDF في نافذة مستقلة",word:"تحميل Word الأصلي",notice:"النسخة الأصلية من PDF معروضة مباشرة دون قصّ أو تمديد للغلاف والصور. استعمل أدوات القارئ للتكبير والتنقل."},
