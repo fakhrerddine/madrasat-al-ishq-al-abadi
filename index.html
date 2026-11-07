@@ -49,12 +49,72 @@ footer{text-align:center;color:#d8cba9;font-size:12px;padding:16px}
 </nav>
 <main>
 <p class="notice" id="notice">النسخة الأصلية من PDF معروضة مباشرة دون قصّ أو تمديد للغلاف والصور. استعمل أدوات القارئ للتكبير والتنقل.</p>
-<section class="viewer" aria-label="عرض ملف الكتاب PDF">
-<iframe id="pdfViewer" src="./assets/book.pdf#view=FitH" title="مدرسة العشق الأبدي الروحي - PDF" style="display:block;width:100%;height:100%;border:0;background:#fff"></iframe>
+<div class="flip-controls">
+<button id="backPage" type="button">◀ الصفحة السابقة</button>
+<span id="pageCount">جارٍ تحضير صفحات الكتاب…</span>
+<button id="forwardPage" type="button">الصفحة التالية ▶</button>
+</div>
+<section class="viewer" aria-label="كتاب رقمي بتقليب الصفحات">
+<div id="book"></div>
 </section>
-<p class="notice">إذا لم يظهر الكتاب داخل الصفحة، استعمل زر فتح PDF أو تحميل PDF بالأعلى. يمكنك استعمال أدوات قارئ PDF للتكبير والتنقل بين الصفحات.</p>
+<p class="notice" id="readerNotice">الصفحات مأخوذة من ملف PDF الأصلي كما هي، دون تعديل النص أو الصور. استعمل الأسهم لتقليب الصفحات.</p>
 </main>
 <footer>© Fakhreddine Hammadi</footer>
+<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"><\/script>
+<script>
+(async()=>{
+ const host=document.getElementById("book");
+ const count=document.getElementById("pageCount");
+ const prev=document.getElementById("backPage");
+ const next=document.getElementById("forwardPage");
+ try{
+  if(!window.St?.PageFlip) throw new Error("تعذر تحميل قارئ تقليب الصفحات");
+  const response=await fetch("./assets/pages/manifest.json");
+  if(!response.ok) throw new Error("تعذر تحميل قائمة صفحات الكتاب");
+  const files=await response.json();
+  if(!Array.isArray(files)||!files.length) throw new Error("صفحات الكتاب غير موجودة");
+  const pages=files.map((file,i)=>{
+   const page=document.createElement("div");
+   page.className="page";
+   if(i===0||i===files.length-1) page.classList.add("hard");
+   const img=document.createElement("img");
+   img.src="./assets/pages/"+file;
+   img.alt="صفحة "+(i+1);
+   img.loading=i<4?"eager":"lazy";
+   img.decoding="async";
+   img.draggable=false;
+   page.appendChild(img);
+   return page;
+  });
+  host.replaceChildren(...pages);
+  const flip=new St.PageFlip(host,{
+   width:900,height:1270,size:"stretch",
+   minWidth:320,maxWidth:1600,minHeight:452,maxHeight:2200,
+   autoSize:true,showCover:true,usePortrait:true,
+   drawShadow:true,maxShadowOpacity:.32,flippingTime:800,
+   swipeDistance:24,clickEventForward:true,useMouseEvents:true,
+   mobileScrollSupport:false
+  });
+  flip.loadFromHTML(host.querySelectorAll(".page"));
+  const update=()=>{
+   const n=flip.getCurrentPageIndex()+1;
+   count.textContent=n+" / "+files.length;
+   prev.disabled=n<=1;next.disabled=n>=files.length;
+  };
+  flip.on("flip",update);
+  prev.onclick=()=>flip.flipPrev();
+  next.onclick=()=>flip.flipNext();
+  update();
+ }catch(err){
+  count.textContent="تعذر فتح الكتاب";
+  const link=document.createElement("a");
+  link.className="download";link.href="./assets/book.pdf";
+  link.target="_blank";link.textContent="فتح PDF الأصلي";
+  host.replaceChildren(link);
+  console.error(err);
+ }
+})();
+<\/script>
 
 
 <script>
