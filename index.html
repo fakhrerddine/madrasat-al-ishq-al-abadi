@@ -93,7 +93,7 @@ footer{padding:2px;font-size:10px}
 <section class="author-section" id="about-author" aria-labelledby="author-heading">
   <h2 id="author-heading">نبذة عن المؤلف</h2>
   <div class="author-inner">
-    <img class="author-cover" src="./assets/pages/page-1.webp" alt="الغلاف الأصلي لكتاب مدرسة العشق الأبدي الروحي">
+    <img class="author-cover" id="authorCover" src="./assets/book-cover.webp" alt="الغلاف الأصلي لكتاب مدرسة العشق الأبدي الروحي">
     <div class="author-copy">
       <h3>فخرالدين حمادي</h3>
       <p>فخرالدين حمادي كاتب مهتم بفلسفة العشق والغرام والهيام، وبالتعبير عن التجارب الإنسانية من خلال الكتابة والتأمل. يرى في الكتابة وسيلة لفهم المشاعر وتحويلها إلى أفكار ودروس حول الوفاء والصدق والصبر واحترام حرية الآخر.</p>
@@ -102,6 +102,10 @@ footer{padding:2px;font-size:10px}
     </div>
   </div>
 </section>
+<script>
+(async()=>{try{const r=await fetch("./assets/pages/manifest.json");if(!r.ok)throw new Error("manifest");const pages=await r.json();if(!Array.isArray(pages)||!pages.length)throw new Error("pages");const cover=document.getElementById("authorCover");cover.src="./assets/pages/"+pages[0];cover.onerror=()=>{cover.style.display="none";};}catch(e){const cover=document.getElementById("authorCover");if(cover)cover.style.display="none";console.error("تعذر تحميل صورة الغلاف:",e);}})();
+</script>
+
 
 <footer>© Fakhreddine Hammadi</footer>
 <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
