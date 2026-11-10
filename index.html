@@ -48,6 +48,16 @@ main{width:100%;max-width:none;margin:0;padding:0}
 #book .stf__parent{margin:0 auto!important}
 footer{padding:2px;font-size:10px}
 @media(max-width:650px){header{padding:2px 4px}.viewer{height:calc(100vh - 110px);min-height:540px;padding:0}#book{height:100%;width:100%}main{padding:0}.toolbar{gap:3px;padding:3px}button,.download{padding:5px 7px;font-size:12px}.notice{font-size:10px}}
+
+.author-section{max-width:1050px;margin:30px auto 34px;padding:24px 28px;border:1px solid #d8b65e;border-radius:18px;background:linear-gradient(135deg,#f7efdE,#eee0bd);color:#20304b;box-shadow:0 12px 34px #0005}
+.author-section h2{margin:0 0 18px;text-align:center;color:#17345a;font-size:clamp(22px,3vw,30px)}
+.author-inner{display:grid;grid-template-columns:minmax(180px,300px) 1fr;gap:28px;align-items:center}
+.author-cover{display:block;width:100%;max-height:390px;object-fit:contain;background:#e8dcc0;border:5px solid #d8b65e;border-radius:8px;box-shadow:0 8px 22px #17233b33}
+.author-copy h3{margin:0 0 12px;color:#9b762b;font-size:23px}
+.author-copy p{font-size:18px;line-height:2;margin:0 0 12px;text-align:justify}
+.author-note{color:#76613b;font-size:13px!important}
+@media(max-width:650px){.author-section{margin:18px 8px;padding:18px 14px}.author-inner{grid-template-columns:1fr;gap:18px}.author-cover{max-width:250px;margin:auto;max-height:320px}.author-copy p{text-align:right;font-size:16px}}
+
 </style>
 </head>
 <body>
@@ -79,6 +89,20 @@ footer{padding:2px;font-size:10px}
 </section>
 <p class="notice" id="readerNotice">الصفحات مأخوذة من ملف PDF الأصلي كما هي، دون تعديل النص أو الصور. استعمل الأسهم لتقليب الصفحات.</p>
 </main>
+
+<section class="author-section" id="about-author" aria-labelledby="author-heading">
+  <h2 id="author-heading">نبذة عن المؤلف</h2>
+  <div class="author-inner">
+    <img class="author-cover" src="./assets/pages/page-1.webp" alt="الغلاف الأصلي لكتاب مدرسة العشق الأبدي الروحي">
+    <div class="author-copy">
+      <h3>فخرالدين حمادي</h3>
+      <p>فخرالدين حمادي كاتب مهتم بفلسفة العشق والغرام والهيام، وبالتعبير عن التجارب الإنسانية من خلال الكتابة والتأمل. يرى في الكتابة وسيلة لفهم المشاعر وتحويلها إلى أفكار ودروس حول الوفاء والصدق والصبر واحترام حرية الآخر.</p>
+      <p>من خلال مؤلفه «مدرسة العشق الأبدي الروحي»، يقدم للقارئ رحلة أدبية وفكرية تمزج بين الوجدان والتأمل، وتتناول معنى الحب بعيداً عن التملك وانتظار المقابل.</p>
+      <p class="author-note">صورة الغلاف الأصلية للكتاب معروضة هنا كما هي، دون تعديل.</p>
+    </div>
+  </div>
+</section>
+
 <footer>© Fakhreddine Hammadi</footer>
 <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
 <script>
