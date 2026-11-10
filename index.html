@@ -20,15 +20,15 @@ button,.download{border:1px solid #d8b65e;background:#332b49;color:#fff4df;borde
 button.active{background:#c6a85f;color:#17233b}
 main{max-width:none;width:100%;margin:0 auto;padding:4px}
 .notice{text-align:center;color:#e9dcbf;margin:8px 0 14px}
-.viewer{width:100%;height:calc(100vh - 165px);min-height:620px;border:2px solid #d8b65e;border-radius:10px;background:radial-gradient(ellipse,#536b87,#172b49);box-shadow:0 20px 60px #0009;padding:4px;display:flex;align-items:center;justify-content:center;overflow:hidden}
-#book{width:100%;height:calc(100vh - 180px);max-height:none;margin:auto}
+.viewer{width:100%;height:calc(100vh - 105px);min-height:680px;border:2px solid #d8b65e;border-radius:10px;background:radial-gradient(ellipse,#536b87,#172b49);box-shadow:0 20px 60px #0009;padding:4px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#book{width:100%;height:calc(100vh - 125px);max-height:none;margin:auto}
 .page{background:#f4ead1;overflow:hidden;display:flex;align-items:center;justify-content:center;box-shadow:0 5px 18px #0005}
-.page img,.page canvas{display:block;width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;background:#f4ead1;transform:scale(1.30)}
+.page img,.page canvas{display:block;width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;background:#f4ead1}
 .flip-controls{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;margin:14px}
 #pageCount{color:#f0d99f;min-width:100px;text-align:center}
 #fallback{display:inline-block}
 footer{text-align:center;color:#d8cba9;font-size:12px;padding:16px}
-@media(max-width:650px){.viewer{height:80vh;min-height:540px;padding:2px}#book{height:77vh;width:100%}main{padding:3px}}
+@media(max-width:650px){.viewer{height:84vh;min-height:600px;padding:2px}#book{height:81vh;width:100%}main{padding:3px}}
 </style>
 </head>
 <body>
@@ -88,8 +88,8 @@ footer{text-align:center;color:#d8cba9;font-size:12px;padding:16px}
   });
   host.replaceChildren(...pages);
   const flip=new St.PageFlip(host,{
-   width:900,height:1270,size:"stretch",
-   minWidth:320,maxWidth:1600,minHeight:452,maxHeight:2200,
+   width:1100,height:1550,size:"stretch",
+   minWidth:360,maxWidth:1900,minHeight:507,maxHeight:2675,
    autoSize:true,showCover:true,usePortrait:true,
    drawShadow:true,maxShadowOpacity:.32,flippingTime:800,
    swipeDistance:24,clickEventForward:true,useMouseEvents:true,
