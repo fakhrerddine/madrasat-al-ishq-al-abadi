@@ -26,7 +26,7 @@ main{max-width:1250px;margin:auto;padding:28px 18px 50px}
 .intro{max-width:850px;text-align:center;margin:0 auto 25px;line-height:2;color:#5c5548}
 .section-label{display:flex;align-items:center;gap:12px;justify-content:center;color:#9a7938;font-size:13px;letter-spacing:2px;margin:24px 0}
 .section-label:before,.section-label:after{content:"";height:1px;max-width:140px;flex:1;background:linear-gradient(90deg,transparent,var(--gold))}
-.pages{display:flex;flex-direction:column;align-items:center;gap:34px}
+.pages{display:block;width:100%;max-width:1050px;margin:0 auto;min-height:55vh}.mag-page{display:none}.mag-page.active{display:block;animation:pageReveal .28s ease-out}@keyframes pageReveal{from{opacity:.45;transform:translateX(12px)}to{opacity:1;transform:translateX(0)}}
 .mag-page{width:min(100%,1050px);padding:18px;background:linear-gradient(145deg,#fffaf0,#e9ddc5);border:1px solid #c5a45a;box-shadow:0 12px 35px #17233b2b;scroll-margin-top:90px}
 .page-top{display:flex;justify-content:space-between;align-items:center;color:#9a7938;font-size:12px;padding:0 3px 10px;border-bottom:1px solid #d8c69e;margin-bottom:12px}
 .mag-page img{display:block;width:100%;height:auto;max-height:none;object-fit:contain;background:#f4ead1}
@@ -88,7 +88,7 @@ footer{text-align:center;background:var(--navy);color:#e5d4ad;padding:20px;font-
  let files=[],current=1,zoom=1;
  const pageNumber=document.getElementById("pageNumber");
  const updateStatus=()=>{status.textContent=current+" / "+files.length;pageNumber.max=files.length;pageNumber.value=current;document.getElementById("prev").disabled=current<=1;document.getElementById("next").disabled=current>=files.length;};
- const go=(n)=>{current=Math.max(1,Math.min(files.length,Number(n)||1));updateStatus();document.getElementById("page-"+current)?.scrollIntoView({behavior:"smooth",block:"start"});};
+ const go=(n)=>{current=Math.max(1,Math.min(files.length,Number(n)||1));document.querySelectorAll(".mag-page").forEach((p,i)=>p.classList.toggle("active",i===current-1));updateStatus();window.scrollTo({top:document.querySelector(".toolbar").offsetTop+document.querySelector(".toolbar").offsetHeight,behavior:"smooth"});};
  document.getElementById("prev").onclick=()=>go(current-1);
  document.getElementById("next").onclick=()=>go(current+1);
  document.getElementById("goPage").onclick=()=>go(pageNumber.value);
@@ -116,18 +116,4 @@ footer{text-align:center;background:var(--navy);color:#e5d4ad;padding:20px;font-
   pagesHost.replaceChildren(fragment);
   const cover=document.getElementById("authorCover");cover.src="./assets/pages/"+files[0];cover.onerror=()=>cover.style.display="none";
   updateStatus();
-  if("IntersectionObserver" in window){
-   const observer=new IntersectionObserver(entries=>{for(const entry of entries){if(entry.isIntersecting){const n=Number(entry.target.id.replace("page-",""));if(n){current=n;updateStatus();}}}},{rootMargin:"-35% 0px -55% 0px"});
-   document.querySelectorAll(".mag-page").forEach(p=>observer.observe(p));
-  }
- }catch(e){status.textContent="تعذر تحميل الصفحات";pagesHost.textContent="تعذر عرض صفحات المجلة. يمكنك فتح ملف PDF الأصلي من الزر الموجود أعلى الصفحة.";console.error(e);}
-})();
-const translations={
-ar:{title:"مدرسة العشق الأبدي الروحي",subtitle:"فلسفة العشق والغرام والهيام",download:"تحميل PDF",open:"فتح PDF",word:"تحميل Word الأصلي",intro:"مرحباً بكم في النسخة الرقمية من «مدرسة العشق الأبدي الروحي». صُممت هذه المساحة لتُقرأ كمجلة أدبية: صفحات كبيرة، ورق بلون دافئ، وإطار أزرق وذهبي. جميع الصفحات مأخوذة من ملف PDF الأصلي دون قصّ أو تمديد."},
-es:{title:"La escuela del amor eterno espiritual",subtitle:"Filosofía del amor, la pasión y el anhelo",download:"Descargar PDF",open:"Abrir PDF",word:"Descargar Word original",intro:"Bienvenido a la edición digital de «La escuela del amor eterno espiritual», presentada como una revista literaria con páginas amplias y cálidos detalles clásicos. Todas las páginas proceden del PDF original."},
-fr:{title:"L’École de l’amour éternel spirituel",subtitle:"Philosophie de l’amour, de la passion et du désir",download:"Télécharger PDF",open:"Ouvrir le PDF",word:"Télécharger le Word original",intro:"Bienvenue dans l’édition numérique de « L’École de l’amour éternel spirituel », présentée comme une revue littéraire aux grandes pages et aux détails classiques chaleureux. Toutes les pages proviennent du PDF original."}
-};
-document.querySelectorAll("[data-lang]").forEach(b=>b.addEventListener("click",()=>{const d=translations[b.dataset.lang];document.documentElement.lang=b.dataset.lang;document.documentElement.dir=b.dataset.lang==="ar"?"rtl":"ltr";for(const [id,key] of [["title","title"],["subtitle","subtitle"],["download","download"],["open","open"],["word","word"],["intro","intro"]])document.getElementById(id).textContent=d[key];document.querySelectorAll("[data-lang]").forEach(x=>x.classList.toggle("active",x===b));}));
-</script>
-</body>
-</html>
+>
