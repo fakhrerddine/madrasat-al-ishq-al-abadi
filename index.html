@@ -34,13 +34,13 @@ main{max-width:1550px;margin:auto;padding:28px 18px 50px}
 .page-bottom{text-align:center;color:#9a7938;font-size:11px;padding-top:10px;letter-spacing:1px}
 .author-section{max-width:1050px;margin:10px auto 45px;padding:28px;background:linear-gradient(135deg,#fff8e9,#e9ddc5);border:1px solid var(--gold);box-shadow:0 12px 32px #17233b22}
 .author-section h2{text-align:center;color:var(--navy);font-size:clamp(23px,3vw,32px);margin:0 0 22px}
-.author-inner{display:grid;grid-template-columns:minmax(190px,300px) 1fr;gap:30px;align-items:center}
-.author-cover{display:block;width:100%;max-height:410px;object-fit:contain;border:5px solid var(--gold);box-shadow:0 8px 20px #17233b2b;background:#e9ddc5}
+.author-inner{display:grid;grid-template-columns:minmax(300px,420px) 1fr;gap:36px;align-items:center}
+.author-cover{display:block;width:100%;max-height:560px;object-fit:contain;border:5px solid var(--gold);box-shadow:0 8px 20px #17233b2b;background:#e9ddc5}
 .author-copy h3{color:#9a7938;font-size:25px;margin:0 0 12px}
-.author-copy p{font-size:17px;line-height:2.1;text-align:justify;margin:0 0 12px}
+.author-copy p{font-size:18px;line-height:2.15;text-align:justify;margin:0 0 12px}
 .author-note{font-size:12px!important;color:var(--muted)}
 footer{text-align:center;background:var(--navy);color:#e5d4ad;padding:20px;font-size:12px;border-top:4px solid var(--gold)}
-@media(max-width:650px){.masthead{padding:20px 10px}.toolbar{gap:5px;padding:7px}.toolbar button,.linkbtn{font-size:12px;padding:7px 9px}main{padding:18px 8px 35px}.pages{grid-template-columns:1fr 1fr;min-height:40vh}.pages:after{width:10px}.mag-page{padding:5px;min-height:40vh;box-shadow:inset 0 0 8px #7e69401c}.page-top{font-size:9px}.author-section{margin:10px 8px 30px;padding:18px 14px}.author-inner{grid-template-columns:1fr;gap:18px}.author-cover{max-width:250px;margin:auto;max-height:330px}.author-copy p{text-align:right;font-size:15px}}
+@media(max-width:650px){.masthead{padding:20px 10px}.toolbar{gap:5px;padding:7px}.toolbar button,.linkbtn{font-size:12px;padding:7px 9px}main{padding:18px 8px 35px}.pages{grid-template-columns:1fr 1fr;min-height:40vh}.pages:after{width:10px}.mag-page{padding:5px;min-height:40vh;box-shadow:inset 0 0 8px #7e69401c}.page-top{font-size:9px}.author-section{margin:10px 8px 30px;padding:18px 14px}.author-inner{grid-template-columns:1fr;gap:18px}.author-cover{max-width:340px;margin:auto;max-height:430px}.author-copy p{text-align:right;font-size:15px}}
 </style>
 </head>
 <body>
@@ -48,7 +48,7 @@ footer{text-align:center;background:var(--navy);color:#e5d4ad;padding:20px;font-
 <div class="kicker">FAKHREDDINE HAMMADI · REVUE LITTÉRAIRE</div>
 <h1 id="title">مدرسة العشق الأبدي الروحي</h1>
 <div class="tagline" id="subtitle">فلسفة العشق والغرام والهيام</div>
-<div class="edition">إصدار رقمي خاص · صفحات الكتاب كاملة</div><div class="lang-switch"><button type="button" data-lang="ar" class="active">العربية</button><button type="button" data-lang="es">Español</button><button type="button" data-lang="fr">Français</button></div>
+<div class="edition">إصدار رقمي خاص · صفحات الكتاب كاملة</div><div class="lang-switch"><button type="button" data-lang="ar" class="active">العربية</button><button type="button" data-lang="es">Español</button><button type="button" data-lang="fr">Français</button><button type="button" data-lang="en">English</button></div>
 </header>
 <div id="readerShell">
 <nav class="toolbar" aria-label="أدوات المجلة">
@@ -74,20 +74,28 @@ footer{text-align:center;background:var(--navy);color:#e5d4ad;padding:20px;font-
 </main>
 </div>
 <section class="author-section" id="about-author">
-<h2>نبذة عن المؤلف</h2>
+<h2 id="authorHeading">نبذة عن المؤلف</h2>
 <div class="author-inner">
 <img class="author-cover" id="authorCover" src="./assets/pages/page-1.webp" alt="الغلاف الأصلي لكتاب مدرسة العشق الأبدي الروحي">
 <div class="author-copy">
-<h3>فخرالدين حمادي</h3>
-<p>فخرالدين حمادي كاتب مهتم بفلسفة العشق والغرام والهيام، وبالتعبير عن التجارب الإنسانية من خلال الكتابة والتأمل. يرى في الكتابة وسيلة لفهم المشاعر وتحويلها إلى أفكار ودروس حول الوفاء والصدق والصبر واحترام حرية الآخر.</p>
-<p>من خلال مؤلفه «مدرسة العشق الأبدي الروحي»، يقدم للقارئ رحلة أدبية وفكرية تمزج بين الوجدان والتأمل، وتتناول معنى الحب بعيداً عن التملك وانتظار المقابل.</p>
-<p class="author-note">صورة الغلاف الأصلية للكتاب معروضة هنا كما هي، دون تعديل.</p>
+<h3 id="authorName">فخرالدين حمادي</h3>
+<p id="authorBio1">فخرالدين حمادي كاتب مهتم بفلسفة العشق والغرام والهيام، وبالتعبير عن التجارب الإنسانية من خلال الكتابة والتأمل. يرى في الكتابة وسيلة لفهم المشاعر وتحويلها إلى أفكار ودروس حول الوفاء والصدق والصبر واحترام حرية الآخر.</p>
+<p id="authorBio2">من خلال مؤلفه «مدرسة العشق الأبدي الروحي»، يقدم للقارئ رحلة أدبية وفكرية تمزج بين الوجدان والتأمل، وتتناول معنى الحب بعيداً عن التملك وانتظار المقابل.</p>
+<p class="author-note" id="authorNote">صورة الغلاف الأصلية للكتاب معروضة هنا كما هي، دون تعديل.</p>
 </div>
 </div>
 </section>
 <footer>© Fakhreddine Hammadi · مدرسة العشق الأبدي الروحي</footer>
 <script>
 (async()=>{
+ const translations={
+ ar:{title:"مدرسة العشق الأبدي الروحي",subtitle:"فلسفة العشق والغرام والهيام",edition:"إصدار رقمي خاص · صفحات الكتاب كاملة",download:"تحميل PDF",open:"فتح PDF",word:"تحميل Word الأصلي",prev:"◀ السابقة",next:"التالية ▶",pageLabel:"رقم الصفحة",go:"انتقال",zoomReset:"إعادة الحجم",fullscreen:"⛶ ملء الشاشة",intro:"مرحباً بكم في النسخة الرقمية من «مدرسة العشق الأبدي الروحي». صُممت هذه المساحة لتُقرأ كمجلة أدبية: صفحات كبيرة، ورق بلون دافئ، وإطار أزرق وذهبي. جميع الصفحات مأخوذة من ملف PDF الأصلي دون قصّ أو تمديد.",section:"بداية العدد · صفحات المجلة",authorHeading:"نبذة عن المؤلف",authorName:"فخرالدين حمادي",bio1:"فخرالدين حمادي كاتب مهتم بفلسفة العشق والغرام والهيام، وبالتعبير عن التجارب الإنسانية من خلال الكتابة والتأمل. يرى في الكتابة وسيلة لفهم المشاعر وتحويلها إلى أفكار ودروس حول الوفاء والصدق والصبر واحترام حرية الآخر.",bio2:"من خلال مؤلفه «مدرسة العشق الأبدي الروحي»، يقدم للقارئ رحلة أدبية وفكرية تمزج بين الوجدان والتأمل، وتتناول معنى الحب بعيداً عن التملك وانتظار المقابل.",note:"صورة الغلاف الأصلية للكتاب معروضة هنا كما هي، دون تعديل.",footer:"© Fakhreddine Hammadi · مدرسة العشق الأبدي الروحي",page:"صفحة"},
+ es:{title:"La escuela del amor eterno espiritual",subtitle:"Filosofía del amor, la pasión y el anhelo",edition:"Edición digital especial · Todas las páginas del libro",download:"Descargar PDF",open:"Abrir PDF",word:"Descargar Word original",prev:"◀ Anterior",next:"Siguiente ▶",pageLabel:"Número de página",go:"Ir",zoomReset:"Restablecer zoom",fullscreen:"⛶ Pantalla completa",intro:"Bienvenidos a la edición digital de «La escuela del amor eterno espiritual». Este espacio está diseñado como una revista literaria: páginas amplias, papel cálido y detalles en azul y dorado. Las páginas proceden del PDF original.",section:"Comienzo de la edición · Páginas",authorHeading:"Sobre el autor",authorName:"Fakhreddine Hammadi",bio1:"Fakhreddine Hammadi es un escritor interesado en la filosofía del amor, la pasión y el anhelo, y en expresar las experiencias humanas mediante la escritura y la reflexión. Considera la escritura una forma de comprender los sentimientos y transformarlos en ideas y enseñanzas sobre la lealtad, la sinceridad, la paciencia y el respeto por la libertad del otro.",bio2:"En su obra «La escuela del amor eterno espiritual», ofrece al lector un viaje literario y reflexivo que combina emoción e introspección y aborda el amor sin posesión ni expectativa de recompensa.",note:"La portada original del libro se muestra aquí sin modificaciones.",footer:"© Fakhreddine Hammadi · La escuela del amor eterno espiritual",page:"Página"},
+ fr:{title:"L’École de l’amour éternel spirituel",subtitle:"Philosophie de l’amour, de la passion et de l’aspiration",edition:"Édition numérique spéciale · Toutes les pages du livre",download:"Télécharger le PDF",open:"Ouvrir le PDF",word:"Télécharger le Word original",prev:"◀ Précédent",next:"Suivant ▶",pageLabel:"Numéro de page",go:"Aller",zoomReset:"Réinitialiser le zoom",fullscreen:"⛶ Plein écran",intro:"Bienvenue dans l’édition numérique de « L’École de l’amour éternel spirituel ». Cet espace est conçu comme une revue littéraire : grandes pages, papier aux tons chaleureux et détails bleus et dorés. Les pages proviennent du PDF original.",section:"Début du numéro · Pages de la revue",authorHeading:"À propos de l’auteur",authorName:"Fakhreddine Hammadi",bio1:"Fakhreddine Hammadi est un écrivain qui s’intéresse à la philosophie de l’amour, de la passion et de l’aspiration, ainsi qu’à l’expression des expériences humaines par l’écriture et la réflexion. Il considère l’écriture comme un moyen de comprendre les sentiments et de les transformer en idées et en enseignements sur la fidélité, la sincérité, la patience et le respect de la liberté d’autrui.",bio2:"Dans son ouvrage « L’École de l’amour éternel spirituel », il propose au lecteur un voyage littéraire et réflexif qui mêle émotion et introspection et aborde l’amour sans possession ni attente de retour.",note:"La couverture originale du livre est présentée ici sans modification.",footer:"© Fakhreddine Hammadi · L’École de l’amour éternel spirituel",page:"Page"},
+ en:{title:"The School of Eternal Spiritual Love",subtitle:"A philosophy of love, passion and longing",edition:"Special digital edition · Complete book pages",download:"Download PDF",open:"Open PDF",word:"Download original Word",prev:"◀ Previous",next:"Next ▶",pageLabel:"Page number",go:"Go",zoomReset:"Reset zoom",fullscreen:"⛶ Full screen",intro:"Welcome to the digital edition of “The School of Eternal Spiritual Love”. This reading space is designed as a literary magazine, with spacious pages, warm paper tones, and blue-and-gold details. The displayed pages are taken from the original PDF.",section:"Opening section · Magazine pages",authorHeading:"About the Author",authorName:"Fakhreddine Hammadi",bio1:"Fakhreddine Hammadi is a writer interested in the philosophy of love, passion and longing, and in expressing human experiences through writing and reflection. He sees writing as a way to understand feelings and turn them into ideas and lessons about loyalty, sincerity, patience and respect for the freedom of others.",bio2:"Through his work “The School of Eternal Spiritual Love”, he offers readers a literary and reflective journey that blends emotion with contemplation and explores love without possession or expectation of anything in return.",note:"The book’s original cover is displayed here unchanged.",footer:"© Fakhreddine Hammadi · The School of Eternal Spiritual Love",page:"Page"}
+ };
+ const setLanguage=(lang)=>{const t=translations[lang]||translations.ar;document.documentElement.lang=lang;document.documentElement.dir=lang==="ar"?"rtl":"ltr";const put=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=value;};Object.entries({title:t.title,subtitle:t.subtitle,intro:t.intro,authorHeading:t.authorHeading,authorName:t.authorName,authorBio1:t.bio1,authorBio2:t.bio2,authorNote:t.note}).forEach(([id,v])=>put(id,v));put("download",t.download);put("open",t.open);put("word",t.word);put("prev",t.prev);put("next",t.next);put("goPage",t.go);put("zoomReset",t.zoomReset);put("fullscreenBtn",document.fullscreenElement?"⤢ "+(lang==="ar"?"خروج من ملء الشاشة":lang==="fr"?"Quitter le plein écran":lang==="es"?"Salir de pantalla completa":"Exit full screen"):t.fullscreen);const label=document.querySelector('label[for="pageNumber"]');if(label)label.textContent=t.pageLabel;const section=document.querySelector(".section-label");if(section)section.textContent=t.section;const foot=document.querySelector("footer");if(foot)foot.textContent=t.footer;document.querySelectorAll(".lang-switch button").forEach(b=>b.classList.toggle("active",b.dataset.lang===lang));document.querySelectorAll(".page-top span:last-child").forEach((el,i)=>el.textContent=t.page+" "+(i+1));document.querySelectorAll(".page-top span:first-child").forEach(el=>el.textContent=t.title);};
+ document.querySelectorAll(".lang-switch button").forEach(b=>b.addEventListener("click",()=>setLanguage(b.dataset.lang)));
  const pagesHost=document.getElementById("pages"),status=document.getElementById("pageStatus");
  let files=[],current=1,zoom=1,dragStart=null,dragMoved=false;
  const pageNumber=document.getElementById("pageNumber");
@@ -133,6 +141,7 @@ footer{text-align:center;background:var(--navy);color:#e5d4ad;padding:20px;font-
   cover.alt="الغلاف الأصلي للكتاب";
   cover.onerror=()=>{cover.style.display="block";cover.src="./assets/pages/page-1.webp";};
   updateStatus();
+  setLanguage("ar");
  }catch(error){
   status.textContent="تعذر تحميل الصفحات";
   pagesHost.innerHTML='<div style="padding:35px;text-align:center;color:#8b2635;background:#fff8e9;border:1px solid #c5a45a;border-radius:10px"><h2>تعذر عرض صفحات المجلة</h2><p>يمكنك فتح نسخة PDF الأصلية من الزر الموجود أعلى الصفحة.</p><p style="font-size:12px">يرجى تحديث الصفحة بعد اكتمال النشر.</p></div>';
