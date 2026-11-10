@@ -22,12 +22,12 @@ button:hover,.linkbtn:hover{background:#3b587f}
 button:disabled{opacity:.4;cursor:not-allowed}
 #pageNumber{width:76px;text-align:center;border:1px solid var(--gold);border-radius:6px;padding:9px;background:#fff8e9;color:#142744;font:inherit}
 #pageStatus{color:#f2d58d;min-width:90px;text-align:center;font-size:13px}
-main{max-width:1250px;margin:auto;padding:28px 18px 50px}
+main{max-width:1550px;margin:auto;padding:28px 18px 50px}
 .intro{max-width:850px;text-align:center;margin:0 auto 25px;line-height:2;color:#5c5548}
 .section-label{display:flex;align-items:center;gap:12px;justify-content:center;color:#9a7938;font-size:13px;letter-spacing:2px;margin:24px 0}
 .section-label:before,.section-label:after{content:"";height:1px;max-width:140px;flex:1;background:linear-gradient(90deg,transparent,var(--gold))}
-.pages{display:block;width:100%;max-width:1050px;margin:0 auto;min-height:55vh}.mag-page{display:none}.mag-page.active{display:block;animation:pageReveal .28s ease-out}@keyframes pageReveal{from{opacity:.45;transform:translateX(12px)}to{opacity:1;transform:translateX(0)}}
-.mag-page{width:min(100%,1050px);padding:18px;background:linear-gradient(145deg,#fffaf0,#e9ddc5);border:1px solid #c5a45a;box-shadow:0 12px 35px #17233b2b;scroll-margin-top:90px}
+.pages{position:relative;display:grid;grid-template-columns:1fr 1fr;direction:rtl;width:100%;max-width:1450px;margin:0 auto;min-height:55vh;perspective:1800px;filter:drop-shadow(0 18px 22px #17233b30);background:linear-gradient(90deg,#d5c6a8 0%,#f3ead8 2%,#fffaf0 48%,#b9a987 50%,#fffaf0 52%,#f3ead8 98%,#d5c6a8 100%);border-radius:5px;overflow:hidden}.pages:after{content:"";position:absolute;z-index:3;top:0;bottom:0;left:50%;width:18px;transform:translateX(-50%);pointer-events:none;background:linear-gradient(90deg,#78674755,#fff8e055 38%,#55452d66 50%,#fff8e055 68%,#78674755);box-shadow:0 0 15px #3c2e1d25}.mag-page{display:none;min-width:0}.mag-page.active{display:block;animation:pageTurn .48s ease-out both}@keyframes pageTurn{from{opacity:.55;transform:rotateY(-7deg)}to{opacity:1;transform:rotateY(0)}}
+.mag-page{width:100%;padding:clamp(10px,1.6vw,22px);background:linear-gradient(100deg,#e6dbc5 0%,#fffaf0 7%,#f5ecd9 100%);border:1px solid #c5a45a;box-shadow:inset 0 0 22px #7e69401c;scroll-margin-top:90px;min-height:60vh}.mag-page:nth-child(odd){background:linear-gradient(100deg,#f5ecd9 0%,#fffaf0 90%,#e6dbc5 100%)}.mag-page img{width:100%;height:auto;display:block}
 .page-top{display:flex;justify-content:space-between;align-items:center;color:#9a7938;font-size:12px;padding:0 3px 10px;border-bottom:1px solid #d8c69e;margin-bottom:12px}
 .mag-page img{display:block;width:100%;height:auto;max-height:none;object-fit:contain;background:#f4ead1}
 .page-bottom{text-align:center;color:#9a7938;font-size:11px;padding-top:10px;letter-spacing:1px}
@@ -39,7 +39,7 @@ main{max-width:1250px;margin:auto;padding:28px 18px 50px}
 .author-copy p{font-size:17px;line-height:2.1;text-align:justify;margin:0 0 12px}
 .author-note{font-size:12px!important;color:var(--muted)}
 footer{text-align:center;background:var(--navy);color:#e5d4ad;padding:20px;font-size:12px;border-top:4px solid var(--gold)}
-@media(max-width:650px){.masthead{padding:20px 10px}.toolbar{gap:5px;padding:7px}.toolbar button,.linkbtn{font-size:12px;padding:7px 9px}main{padding:18px 8px 35px}.mag-page{padding:8px;box-shadow:0 6px 18px #17233b20}.page-top{font-size:10px}.author-section{margin:10px 8px 30px;padding:18px 14px}.author-inner{grid-template-columns:1fr;gap:18px}.author-cover{max-width:250px;margin:auto;max-height:330px}.author-copy p{text-align:right;font-size:15px}}
+@media(max-width:650px){.masthead{padding:20px 10px}.toolbar{gap:5px;padding:7px}.toolbar button,.linkbtn{font-size:12px;padding:7px 9px}main{padding:18px 8px 35px}.pages{grid-template-columns:1fr 1fr;min-height:40vh}.pages:after{width:10px}.mag-page{padding:5px;min-height:40vh;box-shadow:inset 0 0 8px #7e69401c}.page-top{font-size:9px}.author-section{margin:10px 8px 30px;padding:18px 14px}.author-inner{grid-template-columns:1fr;gap:18px}.author-cover{max-width:250px;margin:auto;max-height:330px}.author-copy p{text-align:right;font-size:15px}}
 </style>
 </head>
 <body>
@@ -87,8 +87,8 @@ footer{text-align:center;background:var(--navy);color:#e5d4ad;padding:20px;font-
  const pagesHost=document.getElementById("pages"),status=document.getElementById("pageStatus");
  let files=[],current=1,zoom=1;
  const pageNumber=document.getElementById("pageNumber");
- const updateStatus=()=>{status.textContent=current+" / "+files.length;pageNumber.max=files.length;pageNumber.value=current;document.getElementById("prev").disabled=current<=1;document.getElementById("next").disabled=current>=files.length;};
- const go=(n)=>{current=Math.max(1,Math.min(files.length,Number(n)||1));document.querySelectorAll(".mag-page").forEach((p,i)=>p.classList.toggle("active",i===current-1));updateStatus();window.scrollTo({top:document.querySelector(".toolbar").offsetTop+document.querySelector(".toolbar").offsetHeight,behavior:"smooth"});};
+ const updateStatus=()=>{const last=Math.min(current+1,files.length);status.textContent=current+"–"+last+" / "+files.length;pageNumber.max=files.length;pageNumber.value=current;document.getElementById("prev").disabled=current<=1;document.getElementById("next").disabled=current+1>=files.length;};
+ const go=(n)=>{let target=Math.max(1,Math.min(files.length,Number(n)||1));current=target%2===0?target-1:target;document.querySelectorAll(".mag-page").forEach((p,i)=>{p.classList.remove("active");if(i===current-1||i===current)p.classList.add("active");});updateStatus();window.scrollTo({top:document.querySelector(".toolbar").offsetTop+document.querySelector(".toolbar").offsetHeight,behavior:"smooth"});};
  document.getElementById("prev").onclick=()=>go(current-1);
  document.getElementById("next").onclick=()=>go(current+1);
  document.getElementById("goPage").onclick=()=>go(pageNumber.value);
@@ -116,6 +116,7 @@ footer{text-align:center;background:var(--navy);color:#e5d4ad;padding:20px;font-
   pagesHost.replaceChildren(fragment);
   const cover=document.getElementById("authorCover");cover.src="./assets/pages/"+files[0];cover.onerror=()=>cover.style.display="none";
   if(pagesHost.firstElementChild)pagesHost.firstElementChild.classList.add("active");
+  if(pagesHost.children[1])pagesHost.children[1].classList.add("active");
   cover.src="./assets/pages/"+files[0];
   cover.alt="الغلاف الأصلي للكتاب";
   cover.onerror=()=>{cover.style.display="block";cover.src="./assets/pages/page-1.webp";};
