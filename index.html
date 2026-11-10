@@ -15,7 +15,7 @@ body{margin:0;background:#e7dece;color:var(--ink);font-family:Tahoma,Arial,sans-
 .kicker{font-size:12px;letter-spacing:3px;color:#e2c982}
 h1{font-size:clamp(26px,4vw,46px);line-height:1.5;margin:8px 0;color:#f2d58d;text-shadow:0 3px 12px #0006}
 .tagline{font-size:clamp(14px,2vw,19px);color:#f4e8d1}
-.edition{margin-top:13px;color:#e2d2ad;font-size:12px;letter-spacing:1px}
+.edition{margin-top:13px;color:#e2d2ad;font-size:12px;letter-spacing:1px}.lang-switch{display:flex;justify-content:center;gap:7px;margin-top:12px}.lang-switch button{padding:6px 12px}.lang-switch button.active{background:var(--gold);color:var(--navy)}
 .toolbar{position:sticky;top:0;z-index:20;display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;padding:10px;background:#142744f5;border-bottom:1px solid #c5a45a;box-shadow:0 4px 15px #0002}
 button,.linkbtn{border:1px solid var(--gold);background:#263f62;color:#fff4df;border-radius:7px;padding:9px 13px;font:inherit;font-size:14px;text-decoration:none;cursor:pointer}
 button:hover,.linkbtn:hover{background:#3b587f}
@@ -47,7 +47,7 @@ footer{text-align:center;background:var(--navy);color:#e5d4ad;padding:20px;font-
 <div class="kicker">FAKHREDDINE HAMMADI · REVUE LITTÉRAIRE</div>
 <h1 id="title">مدرسة العشق الأبدي الروحي</h1>
 <div class="tagline" id="subtitle">فلسفة العشق والغرام والهيام</div>
-<div class="edition">إصدار رقمي خاص · صفحات الكتاب كاملة</div>
+<div class="edition">إصدار رقمي خاص · صفحات الكتاب كاملة</div><div class="lang-switch"><button type="button" data-lang="ar" class="active">العربية</button><button type="button" data-lang="es">Español</button><button type="button" data-lang="fr">Français</button></div>
 </header>
 <nav class="toolbar" aria-label="أدوات المجلة">
 <a class="linkbtn" href="./assets/book.pdf" download id="download">تحميل PDF</a>
@@ -127,7 +127,7 @@ ar:{title:"مدرسة العشق الأبدي الروحي",subtitle:"فلسفة
 es:{title:"La escuela del amor eterno espiritual",subtitle:"Filosofía del amor, la pasión y el anhelo",download:"Descargar PDF",open:"Abrir PDF",word:"Descargar Word original",intro:"Bienvenido a la edición digital de «La escuela del amor eterno espiritual», presentada como una revista literaria con páginas amplias y cálidos detalles clásicos. Todas las páginas proceden del PDF original."},
 fr:{title:"L’École de l’amour éternel spirituel",subtitle:"Philosophie de l’amour, de la passion et du désir",download:"Télécharger PDF",open:"Ouvrir le PDF",word:"Télécharger le Word original",intro:"Bienvenue dans l’édition numérique de « L’École de l’amour éternel spirituel », présentée comme une revue littéraire aux grandes pages et aux détails classiques chaleureux. Toutes les pages proviennent du PDF original."}
 };
-document.querySelectorAll("[data-lang]").forEach(()=>{});
+document.querySelectorAll("[data-lang]").forEach(b=>b.addEventListener("click",()=>{const d=translations[b.dataset.lang];document.documentElement.lang=b.dataset.lang;document.documentElement.dir=b.dataset.lang==="ar"?"rtl":"ltr";for(const [id,key] of [["title","title"],["subtitle","subtitle"],["download","download"],["open","open"],["word","word"],["intro","intro"]])document.getElementById(id).textContent=d[key];document.querySelectorAll("[data-lang]").forEach(x=>x.classList.toggle("active",x===b));}));
 </script>
 </body>
 </html>
