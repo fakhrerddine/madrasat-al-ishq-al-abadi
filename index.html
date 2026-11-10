@@ -35,12 +35,16 @@ main{max-width:1550px;margin:auto;padding:28px 18px 50px}
 .author-section{max-width:1320px;margin:10px auto 45px;padding:34px;background:linear-gradient(135deg,#fff8e9,#e9ddc5);border:1px solid var(--gold);box-shadow:0 12px 32px #17233b22}
 .author-section h2{text-align:center;color:var(--navy);font-size:clamp(23px,3vw,32px);margin:0 0 22px}
 .author-inner{display:grid;grid-template-columns:minmax(420px,560px) 1fr;gap:42px;align-items:center}
-.author-cover{display:block;width:100%;max-height:720px;object-fit:contain;border:5px solid var(--gold);box-shadow:0 8px 20px #17233b2b;background:#e9ddc5}
+.author-book-stage{display:flex;justify-content:center;align-items:center;perspective:1400px;padding:24px 34px 34px}
+.author-book{position:relative;width:min(100%,500px);transform-style:preserve-3d;transform:rotateY(-15deg) rotateX(2deg);filter:drop-shadow(18px 22px 18px #17233b55);isolation:isolate}
+.author-book:before{content:"";position:absolute;z-index:-1;top:13px;bottom:13px;right:-27px;width:38px;background:repeating-linear-gradient(90deg,#d8cdb7 0 2px,#fff9eb 2px 4px,#cfc2aa 4px 5px);border:1px solid #b9a987;transform:translateZ(-5px) skewY(1deg);box-shadow:inset -7px 0 9px #6c5c4133}
+.author-book:after{content:"";position:absolute;z-index:-2;top:9px;bottom:9px;left:-10px;width:18px;background:linear-gradient(90deg,#142744,#29466b 55%,#c5a45a);transform:translateZ(-8px);border-radius:2px 0 0 2px}
+.author-cover{position:relative;z-index:2;display:block;width:100%;max-height:720px;object-fit:contain;border:5px solid var(--gold);box-shadow:inset 0 0 12px #17233b44,0 3px 8px #17233b44;background:#e9ddc5;transform:translateZ(8px);backface-visibility:hidden}
 .author-copy h3{color:#9a7938;font-size:25px;margin:0 0 12px}
 .author-copy p{font-size:18px;line-height:2.15;text-align:justify;margin:0 0 12px}
 .author-note{font-size:12px!important;color:var(--muted)}
 footer{text-align:center;background:var(--navy);color:#e5d4ad;padding:20px;font-size:12px;border-top:4px solid var(--gold)}
-@media(max-width:650px){.masthead{padding:20px 10px}.toolbar{gap:5px;padding:7px}.toolbar button,.linkbtn{font-size:12px;padding:7px 9px}main{padding:18px 8px 35px}.pages{grid-template-columns:1fr 1fr;min-height:40vh}.pages:after{width:10px}.mag-page{padding:5px;min-height:40vh;box-shadow:inset 0 0 8px #7e69401c}.page-top{font-size:9px}.author-section{margin:10px 8px 30px;padding:18px 14px}.author-inner{grid-template-columns:1fr;gap:18px}.author-cover{width:100%;max-width:520px;margin:auto;max-height:620px}.author-copy p{text-align:right;font-size:15px}}
+@media(max-width:650px){.masthead{padding:20px 10px}.toolbar{gap:5px;padding:7px}.toolbar button,.linkbtn{font-size:12px;padding:7px 9px}main{padding:18px 8px 35px}.pages{grid-template-columns:1fr 1fr;min-height:40vh}.pages:after{width:10px}.mag-page{padding:5px;min-height:40vh;box-shadow:inset 0 0 8px #7e69401c}.page-top{font-size:9px}.author-section{margin:10px 8px 30px;padding:18px 14px}.author-inner{grid-template-columns:1fr;gap:18px}.author-book-stage{padding:18px 28px 28px}.author-book{width:min(100%,440px)}.author-cover{width:100%;max-width:520px;margin:auto;max-height:620px}.author-copy p{text-align:right;font-size:15px}}
 </style>
 </head>
 <body>
@@ -76,7 +80,7 @@ footer{text-align:center;background:var(--navy);color:#e5d4ad;padding:20px;font-
 <section class="author-section" id="about-author">
 <h2 id="authorHeading">نبذة عن المؤلف</h2>
 <div class="author-inner">
-<img class="author-cover" id="authorCover" src="./assets/pages/page-1.webp" alt="الغلاف الأصلي لكتاب مدرسة العشق الأبدي الروحي">
+<div class="author-book-stage"><div class="author-book"><img class="author-cover" id="authorCover" src="./assets/pages/page-1.webp" alt="الغلاف الأصلي لكتاب مدرسة العشق الأبدي الروحي مع صفحات داخلية ظاهرة"></div></div>
 <div class="author-copy">
 <h3 id="authorName">فخرالدين حمادي</h3>
 <p id="authorBio1">فخرالدين حمادي كاتب مهتم بفلسفة العشق والغرام والهيام، وبالتعبير عن التجارب الإنسانية من خلال الكتابة والتأمل. يرى في الكتابة وسيلة لفهم المشاعر وتحويلها إلى أفكار ودروس حول الوفاء والصدق والصبر واحترام حرية الآخر.</p>
