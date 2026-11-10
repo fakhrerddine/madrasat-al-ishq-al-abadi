@@ -18,29 +18,23 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
-      - name: Checkout website
+      - name: Checkout website and latest book PDF
         uses: actions/checkout@v4
         with:
           path: site
-      - name: Checkout original book files
-        uses: actions/checkout@v4
-        with:
-          repository: fakhrerddine/fakhreddine-book
-          ref: main
-          path: source-book
       - name: Install PDF page renderer
         run: |
           sudo apt-get update
           sudo apt-get install -y poppler-utils
-      - name: Publish original PDF and render page images
+      - name: Publish latest PDF and render page images
         timeout-minutes: 15
         run: |
           set -euo pipefail
           mkdir -p site/assets/pages
-          SOURCE_PDF="source-book/assets/مدرسة العشق الأبدي الروحي - Copie_compressed.pdf"
+          SOURCE_PDF="site/مدرسة العشق الأبدي الروحي - Copie_compressed.pdf"
           test -s "$SOURCE_PDF"
           cp "$SOURCE_PDF" site/assets/book.pdf
-          echo "Original PDF copied without modification:"
+          echo "Latest PDF copied without modification:"
           pdfinfo site/assets/book.pdf | grep -E '^(Pages|Page size|File size):'
           pdftoppm -jpeg -scale-to 1800 -jpegopt quality=88,optimize=y site/assets/book.pdf site/assets/pages/page
           python - <<'PY'
