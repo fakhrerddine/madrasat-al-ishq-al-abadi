@@ -3,194 +3,131 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#101d36">
-<title>مدرسة العشق الأبدي الروحي | فخرالدين حمادي</title>
+<meta name="theme-color" content="#142744">
+<meta name="description" content="مدرسة العشق الأبدي الروحي — إصدار رقمي بتصميم مجلة أدبية">
+<title>مدرسة العشق الأبدي الروحي | مجلة فخرالدين حمادي</title>
 <style>
-:root{--navy:#101d36;--gold:#d8b65e;--cream:#f4ead1}
+:root{--navy:#142744;--blue:#203e66;--gold:#c5a45a;--paper:#f3ead8;--ink:#26364d;--muted:#7c725f}
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(ellipse at top,#29466f,#101d36 70%);color:#f7f0e4;font-family:Tahoma,Arial,sans-serif}
-header{text-align:center;padding:4px 8px 3px;border-bottom:1px solid #d8b65e66}
-.brand{font-size:12px;letter-spacing:2px;color:#e8c979}
-h1{margin:4px 0;color:#f0cf76;font-size:clamp(22px,3vw,34px);text-shadow:0 2px 5px #0008}
-.subtitle{color:#e3d2a9}
-.lang-switch,.toolbar{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap}
-.lang-switch{margin-top:6px}
-.toolbar{padding:4px;background:#101d36ed;border-bottom:1px solid #d8b65e66}
-button,.download{border:1px solid #d8b65e;background:#332b49;color:#fff4df;border-radius:9px;padding:9px 14px;font:inherit;text-decoration:none;cursor:pointer}
-button.active{background:#c6a85f;color:#17233b}
-main{max-width:none;width:100vw;margin:0;padding:0 1px}
-.notice{text-align:center;color:#e9dcbf;margin:3px 0 5px;font-size:12px}
-.viewer{width:100%;height:calc(100vh - 150px);min-height:600px;border:2px solid #d8b65e;border-radius:8px;background:radial-gradient(ellipse,#536b87,#172b49);box-shadow:0 12px 35px #0008;padding:0;display:flex;align-items:stretch;justify-content:stretch;overflow:hidden}
-#book{width:100%;height:100%;max-height:none;min-width:0;min-height:0;flex:1 1 auto;margin:0;display:flex;align-items:center;justify-content:center}
-.page{background:#f4ead1;overflow:hidden;display:flex;align-items:center;justify-content:center;box-shadow:0 5px 18px #0005}
-.page img,.page canvas{display:block;width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;background:#f4ead1}
-.flip-controls{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin:5px 4px}
-.zoom-controls{margin:4px auto}.zoom-controls button{min-width:42px;font-weight:bold;font-size:18px}.zoom-controls span{min-width:52px;text-align:center;color:#f0d99f;font-variant-numeric:tabular-nums}button:disabled{opacity:.4;cursor:not-allowed}
-#pageCount{color:#f0d99f;min-width:100px;text-align:center}
-#fallback{display:inline-block}
-footer{text-align:center;color:#d8cba9;font-size:12px;padding:4px}
-/* Full-screen book area: reduce unused blue margins and give the reader nearly all available space. */
-header{padding:2px 6px}
-.brand{font-size:10px;letter-spacing:1px}
-h1{font-size:clamp(18px,2.2vw,26px);margin:1px 0}
-.subtitle{font-size:12px}
-.lang-switch{margin-top:2px;gap:5px}
-.lang-switch button{padding:5px 10px}
-.toolbar{padding:3px;gap:5px}
-.toolbar .download{padding:6px 10px;font-size:13px}
-main{width:100%;max-width:none;margin:0;padding:0}
-.notice{margin:2px 0;font-size:11px}
-.flip-controls{margin:2px;gap:6px}
-.flip-controls button{padding:6px 10px}
-.zoom-controls{margin:2px auto}
-.viewer{width:100%;height:calc(100vh - 112px);min-height:620px;border-width:1px;border-radius:3px;padding:0;margin:0;align-items:stretch;justify-content:stretch}
-#book{width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;flex:1 1 100%}
-#book .stf__parent{margin:0 auto!important}
-footer{padding:2px;font-size:10px}
-@media(max-width:650px){header{padding:2px 4px}.viewer{height:calc(100vh - 110px);min-height:540px;padding:0}#book{height:100%;width:100%}main{padding:0}.toolbar{gap:3px;padding:3px}button,.download{padding:5px 7px;font-size:12px}.notice{font-size:10px}}
-
-.author-section{max-width:1050px;margin:30px auto 34px;padding:24px 28px;border:1px solid #d8b65e;border-radius:18px;background:linear-gradient(135deg,#f7efdE,#eee0bd);color:#20304b;box-shadow:0 12px 34px #0005}
-.author-section h2{margin:0 0 18px;text-align:center;color:#17345a;font-size:clamp(22px,3vw,30px)}
-.author-inner{display:grid;grid-template-columns:minmax(180px,300px) 1fr;gap:28px;align-items:center}
-.author-cover{display:block;width:100%;max-height:390px;object-fit:contain;background:#e8dcc0;border:5px solid #d8b65e;border-radius:8px;box-shadow:0 8px 22px #17233b33}
-.author-copy h3{margin:0 0 12px;color:#9b762b;font-size:23px}
-.author-copy p{font-size:18px;line-height:2;margin:0 0 12px;text-align:justify}
-.author-note{color:#76613b;font-size:13px!important}
-@media(max-width:650px){.author-section{margin:18px 8px;padding:18px 14px}.author-inner{grid-template-columns:1fr;gap:18px}.author-cover{max-width:250px;margin:auto;max-height:320px}.author-copy p{text-align:right;font-size:16px}}
-
+html{scroll-behavior:smooth}
+body{margin:0;background:#e7dece;color:var(--ink);font-family:Tahoma,Arial,sans-serif}
+.masthead{background:linear-gradient(130deg,#10213b,#25466e 70%,#142744);color:#f8eedb;text-align:center;padding:26px 16px 20px;border-bottom:5px solid var(--gold)}
+.kicker{font-size:12px;letter-spacing:3px;color:#e2c982}
+h1{font-size:clamp(26px,4vw,46px);line-height:1.5;margin:8px 0;color:#f2d58d;text-shadow:0 3px 12px #0006}
+.tagline{font-size:clamp(14px,2vw,19px);color:#f4e8d1}
+.edition{margin-top:13px;color:#e2d2ad;font-size:12px;letter-spacing:1px}
+.toolbar{position:sticky;top:0;z-index:20;display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;padding:10px;background:#142744f5;border-bottom:1px solid #c5a45a;box-shadow:0 4px 15px #0002}
+button,.linkbtn{border:1px solid var(--gold);background:#263f62;color:#fff4df;border-radius:7px;padding:9px 13px;font:inherit;font-size:14px;text-decoration:none;cursor:pointer}
+button:hover,.linkbtn:hover{background:#3b587f}
+button:disabled{opacity:.4;cursor:not-allowed}
+#pageNumber{width:76px;text-align:center;border:1px solid var(--gold);border-radius:6px;padding:9px;background:#fff8e9;color:#142744;font:inherit}
+#pageStatus{color:#f2d58d;min-width:90px;text-align:center;font-size:13px}
+main{max-width:1250px;margin:auto;padding:28px 18px 50px}
+.intro{max-width:850px;text-align:center;margin:0 auto 25px;line-height:2;color:#5c5548}
+.section-label{display:flex;align-items:center;gap:12px;justify-content:center;color:#9a7938;font-size:13px;letter-spacing:2px;margin:24px 0}
+.section-label:before,.section-label:after{content:"";height:1px;max-width:140px;flex:1;background:linear-gradient(90deg,transparent,var(--gold))}
+.pages{display:flex;flex-direction:column;align-items:center;gap:34px}
+.mag-page{width:min(100%,1050px);padding:18px;background:linear-gradient(145deg,#fffaf0,#e9ddc5);border:1px solid #c5a45a;box-shadow:0 12px 35px #17233b2b;scroll-margin-top:90px}
+.page-top{display:flex;justify-content:space-between;align-items:center;color:#9a7938;font-size:12px;padding:0 3px 10px;border-bottom:1px solid #d8c69e;margin-bottom:12px}
+.mag-page img{display:block;width:100%;height:auto;max-height:none;object-fit:contain;background:#f4ead1}
+.page-bottom{text-align:center;color:#9a7938;font-size:11px;padding-top:10px;letter-spacing:1px}
+.author-section{max-width:1050px;margin:10px auto 45px;padding:28px;background:linear-gradient(135deg,#fff8e9,#e9ddc5);border:1px solid var(--gold);box-shadow:0 12px 32px #17233b22}
+.author-section h2{text-align:center;color:var(--navy);font-size:clamp(23px,3vw,32px);margin:0 0 22px}
+.author-inner{display:grid;grid-template-columns:minmax(190px,300px) 1fr;gap:30px;align-items:center}
+.author-cover{display:block;width:100%;max-height:410px;object-fit:contain;border:5px solid var(--gold);box-shadow:0 8px 20px #17233b2b;background:#e9ddc5}
+.author-copy h3{color:#9a7938;font-size:25px;margin:0 0 12px}
+.author-copy p{font-size:17px;line-height:2.1;text-align:justify;margin:0 0 12px}
+.author-note{font-size:12px!important;color:var(--muted)}
+footer{text-align:center;background:var(--navy);color:#e5d4ad;padding:20px;font-size:12px;border-top:4px solid var(--gold)}
+@media(max-width:650px){.masthead{padding:20px 10px}.toolbar{gap:5px;padding:7px}.toolbar button,.linkbtn{font-size:12px;padding:7px 9px}main{padding:18px 8px 35px}.mag-page{padding:8px;box-shadow:0 6px 18px #17233b20}.page-top{font-size:10px}.author-section{margin:10px 8px 30px;padding:18px 14px}.author-inner{grid-template-columns:1fr;gap:18px}.author-cover{max-width:250px;margin:auto;max-height:330px}.author-copy p{text-align:right;font-size:15px}}
 </style>
 </head>
 <body>
-<header>
-<div class="brand">FAKHREDDINE HAMMADI · DIGITAL BOOK</div>
+<header class="masthead">
+<div class="kicker">FAKHREDDINE HAMMADI · REVUE LITTÉRAIRE</div>
 <h1 id="title">مدرسة العشق الأبدي الروحي</h1>
-<div class="subtitle" id="subtitle">فلسفة العشق والغرام والهيام</div>
-<div class="lang-switch">
-<button class="active" data-lang="ar">العربية</button>
-<button data-lang="es">Español</button>
-<button data-lang="fr">Français</button>
-</div>
+<div class="tagline" id="subtitle">فلسفة العشق والغرام والهيام</div>
+<div class="edition">إصدار رقمي خاص · صفحات الكتاب كاملة</div>
 </header>
-<nav class="toolbar">
-<a class="download" href="./assets/book.pdf" download id="download">تحميل PDF</a>
-<a class="download" href="./assets/book.pdf" target="_blank" rel="noopener" id="open">فتح PDF في نافذة مستقلة</a>
-<a class="download" href="https://raw.githubusercontent.com/fakhrerddine/fakhreddine-book/main/assets/%D9%85%D8%AF%D8%B1%D8%B3%D8%A9%20%D8%A7%D9%84%D8%B9%D8%B4%D9%82%20%D8%A7%D9%84%D8%A3%D8%A8%D8%AF%D9%8A%20%D8%A7%D9%84%D8%B1%D9%88%D8%AD%D9%8A%20-%20Copie_compressed.docx" target="_blank" rel="noopener" id="word">تحميل Word الأصلي</a>
+<nav class="toolbar" aria-label="أدوات المجلة">
+<a class="linkbtn" href="./assets/book.pdf" download id="download">تحميل PDF</a>
+<a class="linkbtn" href="./assets/book.pdf" target="_blank" rel="noopener" id="open">فتح PDF</a>
+<a class="linkbtn" href="https://raw.githubusercontent.com/fakhrerddine/fakhreddine-book/main/assets/%D9%85%D8%AF%D8%B1%D8%B3%D8%A9%20%D8%A7%D9%84%D8%B9%D8%B4%D9%82%20%D8%A7%D9%84%D8%A3%D8%A8%D8%AF%D9%8A%20%D8%A7%D9%84%D8%B1%D9%88%D8%AD%D9%8A%20-%20Copie_compressed.docx" target="_blank" rel="noopener" id="word">تحميل Word الأصلي</a>
+<button id="prev" type="button">◀ السابقة</button>
+<label for="pageNumber" style="color:#f2d58d;font-size:12px">رقم الصفحة</label>
+<input id="pageNumber" type="number" min="1" value="1">
+<button id="goPage" type="button">انتقال</button>
+<span id="pageStatus">جارٍ التحميل…</span>
+<button id="next" type="button">التالية ▶</button>
+<button id="zoomOut" type="button" aria-label="تصغير">−</button>
+<span id="zoomStatus" style="color:#f2d58d;min-width:45px;text-align:center">100%</span>
+<button id="zoomIn" type="button" aria-label="تكبير">+</button>
+<button id="zoomReset" type="button">إعادة الحجم</button>
 </nav>
 <main>
-<p class="notice" id="notice">النسخة الأصلية من PDF معروضة مباشرة دون قصّ أو تمديد للغلاف والصور. استعمل أدوات القارئ للتكبير والتنقل.</p>
-<div class="flip-controls zoom-controls" aria-label="التحكم في تكبير الصفحات"><button id="zoomOut" type="button" aria-label="تصغير الصفحة">−</button><span id="zoomLevel">100%</span><button id="zoomIn" type="button" aria-label="تكبير الصفحة">+</button><button id="zoomReset" type="button">الحجم الأصلي</button></div>
-<div class="flip-controls">
-<button id="backPage" type="button">◀ الصفحة السابقة</button>
-<span id="pageCount">جارٍ تحضير صفحات الكتاب…</span>
-<button id="forwardPage" type="button">الصفحة التالية ▶</button>
-</div>
-<section class="viewer" aria-label="كتاب رقمي بتقليب الصفحات">
-<div id="book"></div>
-</section>
-<p class="notice" id="readerNotice">الصفحات مأخوذة من ملف PDF الأصلي كما هي، دون تعديل النص أو الصور. استعمل الأسهم لتقليب الصفحات.</p>
+<p class="intro" id="intro">مرحباً بكم في النسخة الرقمية من «مدرسة العشق الأبدي الروحي». صُممت هذه المساحة لتُقرأ كمجلة أدبية: صفحات كبيرة، ورق بلون دافئ، وإطار أزرق وذهبي. جميع الصفحات مأخوذة من ملف PDF الأصلي دون قصّ أو تمديد.</p>
+<div class="section-label">بداية العدد · صفحات المجلة</div>
+<section class="pages" id="pages" aria-label="صفحات المجلة"></section>
 </main>
-
-<section class="author-section" id="about-author" aria-labelledby="author-heading">
-  <h2 id="author-heading">نبذة عن المؤلف</h2>
-  <div class="author-inner">
-    <img class="author-cover" id="authorCover" src="./assets/book-cover.webp" alt="الغلاف الأصلي لكتاب مدرسة العشق الأبدي الروحي">
-    <div class="author-copy">
-      <h3>فخرالدين حمادي</h3>
-      <p>فخرالدين حمادي كاتب مهتم بفلسفة العشق والغرام والهيام، وبالتعبير عن التجارب الإنسانية من خلال الكتابة والتأمل. يرى في الكتابة وسيلة لفهم المشاعر وتحويلها إلى أفكار ودروس حول الوفاء والصدق والصبر واحترام حرية الآخر.</p>
-      <p>من خلال مؤلفه «مدرسة العشق الأبدي الروحي»، يقدم للقارئ رحلة أدبية وفكرية تمزج بين الوجدان والتأمل، وتتناول معنى الحب بعيداً عن التملك وانتظار المقابل.</p>
-      <p class="author-note">صورة الغلاف الأصلية للكتاب معروضة هنا كما هي، دون تعديل.</p>
-    </div>
-  </div>
+<section class="author-section" id="about-author">
+<h2>نبذة عن المؤلف</h2>
+<div class="author-inner">
+<img class="author-cover" id="authorCover" src="./assets/book-cover.webp" alt="الغلاف الأصلي لكتاب مدرسة العشق الأبدي الروحي">
+<div class="author-copy">
+<h3>فخرالدين حمادي</h3>
+<p>فخرالدين حمادي كاتب مهتم بفلسفة العشق والغرام والهيام، وبالتعبير عن التجارب الإنسانية من خلال الكتابة والتأمل. يرى في الكتابة وسيلة لفهم المشاعر وتحويلها إلى أفكار ودروس حول الوفاء والصدق والصبر واحترام حرية الآخر.</p>
+<p>من خلال مؤلفه «مدرسة العشق الأبدي الروحي»، يقدم للقارئ رحلة أدبية وفكرية تمزج بين الوجدان والتأمل، وتتناول معنى الحب بعيداً عن التملك وانتظار المقابل.</p>
+<p class="author-note">صورة الغلاف الأصلية للكتاب معروضة هنا كما هي، دون تعديل.</p>
+</div>
+</div>
 </section>
-<script>
-(async()=>{try{const r=await fetch("./assets/pages/manifest.json");if(!r.ok)throw new Error("manifest");const pages=await r.json();if(!Array.isArray(pages)||!pages.length)throw new Error("pages");const cover=document.getElementById("authorCover");cover.src="./assets/pages/"+pages[0];cover.onerror=()=>{cover.style.display="none";};}catch(e){const cover=document.getElementById("authorCover");if(cover)cover.style.display="none";console.error("تعذر تحميل صورة الغلاف:",e);}})();
-</script>
-
-
-<footer>© Fakhreddine Hammadi</footer>
-<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
+<footer>© Fakhreddine Hammadi · مدرسة العشق الأبدي الروحي</footer>
 <script>
 (async()=>{
- const host=document.getElementById("book");
- const count=document.getElementById("pageCount");
- const prev=document.getElementById("backPage");
- const next=document.getElementById("forwardPage");
+ const pagesHost=document.getElementById("pages"),status=document.getElementById("pageStatus");
+ let files=[],current=1,zoom=1;
+ const pageNumber=document.getElementById("pageNumber");
+ const updateStatus=()=>{status.textContent=current+" / "+files.length;pageNumber.max=files.length;pageNumber.value=current;document.getElementById("prev").disabled=current<=1;document.getElementById("next").disabled=current>=files.length;};
+ const go=(n)=>{current=Math.max(1,Math.min(files.length,Number(n)||1));updateStatus();document.getElementById("page-"+current)?.scrollIntoView({behavior:"smooth",block:"start"});};
+ document.getElementById("prev").onclick=()=>go(current-1);
+ document.getElementById("next").onclick=()=>go(current+1);
+ document.getElementById("goPage").onclick=()=>go(pageNumber.value);
+ pageNumber.addEventListener("keydown",e=>{if(e.key==="Enter")go(pageNumber.value);});
+ const applyZoom=()=>{document.querySelectorAll(".mag-page img").forEach(img=>{img.style.width=(100*zoom)+"%";img.style.marginInline="auto";});document.getElementById("zoomStatus").textContent=Math.round(zoom*100)+"%";};
+ document.getElementById("zoomIn").onclick=()=>{zoom=Math.min(1.5,+(zoom+.1).toFixed(2));applyZoom();};
+ document.getElementById("zoomOut").onclick=()=>{zoom=Math.max(.7,+(zoom-.1).toFixed(2));applyZoom();};
+ document.getElementById("zoomReset").onclick=()=>{zoom=1;applyZoom();};
  try{
-  if(!window.St?.PageFlip) throw new Error("تعذر تحميل قارئ تقليب الصفحات");
-  const response=await fetch("./assets/pages/manifest.json");
-  if(!response.ok) throw new Error("تعذر تحميل قائمة صفحات الكتاب");
-  const files=await response.json();
-  if(!Array.isArray(files)||!files.length) throw new Error("صفحات الكتاب غير موجودة");
-  const pages=files.map((file,i)=>{
-   const page=document.createElement("div");
-   page.className="page";
-   if(i===0||i===files.length-1) page.classList.add("hard");
-   const img=document.createElement("img");
-   img.src="./assets/pages/"+file;
-   img.alt="صفحة "+(i+1);
-   img.loading=i<4?"eager":"lazy";
-   img.decoding="async";
-   img.draggable=false;
-   page.appendChild(img);
-   return page;
+  const r=await fetch("./assets/pages/manifest.json");
+  if(!r.ok)throw new Error("تعذر تحميل قائمة الصفحات");
+  files=await r.json();
+  if(!Array.isArray(files)||!files.length)throw new Error("لا توجد صفحات");
+  const fragment=document.createDocumentFragment();
+  files.forEach((file,i)=>{
+   const n=i+1,article=document.createElement("article");article.className="mag-page";article.id="page-"+n;
+   const top=document.createElement("div");top.className="page-top";
+   const left=document.createElement("span");left.textContent="مدرسة العشق الأبدي الروحي";
+   const right=document.createElement("span");right.textContent="صفحة "+n;
+   top.append(left,right);
+   const img=document.createElement("img");img.src="./assets/pages/"+file;img.alt="صفحة "+n+" من الكتاب";img.loading=i<2?"eager":"lazy";img.decoding="async";
+   const bottom=document.createElement("div");bottom.className="page-bottom";bottom.textContent="FAKHREDDINE HAMMADI";
+   article.append(top,img,bottom);fragment.appendChild(article);
   });
-  host.replaceChildren(...pages);
-  const flip=new St.PageFlip(host,{
-   width:1300,height:1835,size:"stretch",
-   minWidth:420,maxWidth:2400,minHeight:592,maxHeight:3388,
-   autoSize:true,showCover:true,usePortrait:true,
-   drawShadow:true,maxShadowOpacity:.32,flippingTime:800,
-   swipeDistance:24,clickEventForward:true,useMouseEvents:true,
-   mobileScrollSupport:false
-  });
-  flip.loadFromHTML(host.querySelectorAll(".page"));
-  let zoom=1;
-  const applyZoom=()=>{
-   host.querySelectorAll(".page img,.page canvas").forEach(el=>{
-    el.style.transform="scale("+zoom+")";
-    el.style.transformOrigin="center center";
-   });
-   document.getElementById("zoomLevel").textContent=Math.round(zoom*100)+"%";
-   document.getElementById("zoomOut").disabled=zoom<=1;
-   document.getElementById("zoomIn").disabled=zoom>=2;
-  };
-  document.getElementById("zoomIn").onclick=()=>{zoom=Math.min(2,+(zoom+0.1).toFixed(2));applyZoom();};
-  document.getElementById("zoomOut").onclick=()=>{zoom=Math.max(1,+(zoom-0.1).toFixed(2));applyZoom();};
-  document.getElementById("zoomReset").onclick=()=>{zoom=1;applyZoom();};
-  applyZoom();
-  const update=()=>{
-   const n=flip.getCurrentPageIndex()+1;
-   count.textContent=n+" / "+files.length;
-   prev.disabled=n<=1;next.disabled=n>=files.length;
-  };
-  flip.on("flip",update);
-  prev.onclick=()=>flip.flipPrev();
-  next.onclick=()=>flip.flipNext();
-  update();
- }catch(err){
-  count.textContent="تعذر فتح الكتاب";
-  const link=document.createElement("a");
-  link.className="download";link.href="./assets/book.pdf";
-  link.target="_blank";link.textContent="فتح PDF الأصلي";
-  host.replaceChildren(link);
-  console.error(err);
- }
+  pagesHost.replaceChildren(fragment);
+  const cover=document.getElementById("authorCover");cover.src="./assets/pages/"+files[0];cover.onerror=()=>cover.style.display="none";
+  updateStatus();
+  if("IntersectionObserver" in window){
+   const observer=new IntersectionObserver(entries=>{for(const entry of entries){if(entry.isIntersecting){const n=Number(entry.target.id.replace("page-",""));if(n){current=n;updateStatus();}}}},{rootMargin:"-35% 0px -55% 0px"});
+   document.querySelectorAll(".mag-page").forEach(p=>observer.observe(p));
+  }
+ }catch(e){status.textContent="تعذر تحميل الصفحات";pagesHost.textContent="تعذر عرض صفحات المجلة. يمكنك فتح ملف PDF الأصلي من الزر الموجود أعلى الصفحة.";console.error(e);}
 })();
-</script>
-
-
-<script>
 const translations={
-ar:{title:"مدرسة العشق الأبدي الروحي",subtitle:"فلسفة العشق والغرام والهيام",download:"تحميل PDF",open:"فتح PDF في نافذة مستقلة",word:"تحميل Word الأصلي",notice:"النسخة الأصلية من PDF معروضة مباشرة دون قصّ أو تمديد للغلاف والصور. استعمل أدوات القارئ للتكبير والتنقل."},
-es:{title:"La escuela del amor eterno espiritual",subtitle:"Filosofía del amor, la pasión y el anhelo",download:"Descargar PDF",open:"Abrir PDF en una ventana",word:"Descargar Word original",notice:"El PDF original se muestra directamente, sin recortar ni estirar la portada ni las imágenes. Usa los controles del lector para ampliar y navegar."},
-fr:{title:"L’École de l’amour éternel spirituel",subtitle:"Philosophie de l’amour, de la passion et du désir",download:"Télécharger PDF",open:"Ouvrir le PDF dans une fenêtre",word:"Télécharger le Word original",notice:"Le PDF original est affiché directement, sans recadrage ni déformation de la couverture ou des images. Utilisez les commandes du lecteur pour zoomer et naviguer."}
+ar:{title:"مدرسة العشق الأبدي الروحي",subtitle:"فلسفة العشق والغرام والهيام",download:"تحميل PDF",open:"فتح PDF",word:"تحميل Word الأصلي",intro:"مرحباً بكم في النسخة الرقمية من «مدرسة العشق الأبدي الروحي». صُممت هذه المساحة لتُقرأ كمجلة أدبية: صفحات كبيرة، ورق بلون دافئ، وإطار أزرق وذهبي. جميع الصفحات مأخوذة من ملف PDF الأصلي دون قصّ أو تمديد."},
+es:{title:"La escuela del amor eterno espiritual",subtitle:"Filosofía del amor, la pasión y el anhelo",download:"Descargar PDF",open:"Abrir PDF",word:"Descargar Word original",intro:"Bienvenido a la edición digital de «La escuela del amor eterno espiritual», presentada como una revista literaria con páginas amplias y cálidos detalles clásicos. Todas las páginas proceden del PDF original."},
+fr:{title:"L’École de l’amour éternel spirituel",subtitle:"Philosophie de l’amour, de la passion et du désir",download:"Télécharger PDF",open:"Ouvrir le PDF",word:"Télécharger le Word original",intro:"Bienvenue dans l’édition numérique de « L’École de l’amour éternel spirituel », présentée comme une revue littéraire aux grandes pages et aux détails classiques chaleureux. Toutes les pages proviennent du PDF original."}
 };
-document.querySelectorAll("[data-lang]").forEach(b=>b.addEventListener("click",()=>{
-const d=translations[b.dataset.lang];document.documentElement.lang=b.dataset.lang;document.documentElement.dir=b.dataset.lang==="ar"?"rtl":"ltr";
-for(const [id,key] of [["title","title"],["subtitle","subtitle"],["download","download"],["open","open"],["word","word"],["notice","notice"]])document.getElementById(id).textContent=d[key];
-document.querySelectorAll("[data-lang]").forEach(x=>x.classList.toggle("active",x===b));
-}));
+document.querySelectorAll("[data-lang]").forEach(()=>{});
 </script>
-<!-- Fresh Pages deployment: preserve current reader and zoom controls. -->
 </body>
 </html>
