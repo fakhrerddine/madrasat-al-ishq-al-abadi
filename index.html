@@ -9,18 +9,18 @@
 :root{--navy:#101d36;--gold:#d8b65e;--cream:#f4ead1}
 *{box-sizing:border-box}
 body{margin:0;background:radial-gradient(ellipse at top,#29466f,#101d36 70%);color:#f7f0e4;font-family:Tahoma,Arial,sans-serif}
-header{text-align:center;padding:8px 10px 7px;border-bottom:1px solid #d8b65e66}
+header{text-align:center;padding:4px 8px 3px;border-bottom:1px solid #d8b65e66}
 .brand{font-size:12px;letter-spacing:2px;color:#e8c979}
 h1{margin:4px 0;color:#f0cf76;font-size:clamp(22px,3vw,34px);text-shadow:0 2px 5px #0008}
 .subtitle{color:#e3d2a9}
 .lang-switch,.toolbar{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap}
 .lang-switch{margin-top:6px}
-.toolbar{padding:6px;background:#101d36ed;border-bottom:1px solid #d8b65e66}
+.toolbar{padding:4px;background:#101d36ed;border-bottom:1px solid #d8b65e66}
 button,.download{border:1px solid #d8b65e;background:#332b49;color:#fff4df;border-radius:9px;padding:9px 14px;font:inherit;text-decoration:none;cursor:pointer}
 button.active{background:#c6a85f;color:#17233b}
-main{max-width:none;width:100%;margin:0 auto;padding:2px}
+main{max-width:none;width:100vw;margin:0;padding:0 1px}
 .notice{text-align:center;color:#e9dcbf;margin:3px 0 5px;font-size:12px}
-.viewer{width:100%;height:calc(100vh - 205px);min-height:520px;border:2px solid #d8b65e;border-radius:8px;background:radial-gradient(ellipse,#536b87,#172b49);box-shadow:0 12px 35px #0008;padding:0;display:flex;align-items:stretch;justify-content:stretch;overflow:hidden}
+.viewer{width:100%;height:calc(100vh - 150px);min-height:600px;border:2px solid #d8b65e;border-radius:8px;background:radial-gradient(ellipse,#536b87,#172b49);box-shadow:0 12px 35px #0008;padding:0;display:flex;align-items:stretch;justify-content:stretch;overflow:hidden}
 #book{width:100%;height:100%;max-height:none;min-width:0;min-height:0;flex:1 1 auto;margin:0;display:flex;align-items:center;justify-content:center}
 .page{background:#f4ead1;overflow:hidden;display:flex;align-items:center;justify-content:center;box-shadow:0 5px 18px #0005}
 .page img,.page canvas{display:block;width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;background:#f4ead1}
@@ -28,8 +28,8 @@ main{max-width:none;width:100%;margin:0 auto;padding:2px}
 .zoom-controls{margin:4px auto}.zoom-controls button{min-width:42px;font-weight:bold;font-size:18px}.zoom-controls span{min-width:52px;text-align:center;color:#f0d99f;font-variant-numeric:tabular-nums}button:disabled{opacity:.4;cursor:not-allowed}
 #pageCount{color:#f0d99f;min-width:100px;text-align:center}
 #fallback{display:inline-block}
-footer{text-align:center;color:#d8cba9;font-size:12px;padding:16px}
-@media(max-width:650px){header{padding:6px 8px}.viewer{height:calc(100vh - 205px);min-height:460px;padding:0}#book{height:100%;width:100%}main{padding:2px}.toolbar{gap:5px;padding:5px}button,.download{padding:7px 9px;font-size:13px}}
+footer{text-align:center;color:#d8cba9;font-size:12px;padding:4px}
+@media(max-width:650px){header{padding:3px 6px}.viewer{height:calc(100vh - 135px);min-height:520px;padding:0}#book{height:100%;width:100%}main{padding:2px}.toolbar{gap:5px;padding:5px}button,.download{padding:7px 9px;font-size:13px}}
 </style>
 </head>
 <body>
@@ -90,8 +90,8 @@ footer{text-align:center;color:#d8cba9;font-size:12px;padding:16px}
   });
   host.replaceChildren(...pages);
   const flip=new St.PageFlip(host,{
-   width:1100,height:1550,size:"stretch",
-   minWidth:360,maxWidth:1900,minHeight:507,maxHeight:2675,
+   width:1300,height:1835,size:"stretch",
+   minWidth:420,maxWidth:2400,minHeight:592,maxHeight:3388,
    autoSize:true,showCover:true,usePortrait:true,
    drawShadow:true,maxShadowOpacity:.32,flippingTime:800,
    swipeDistance:24,clickEventForward:true,useMouseEvents:true,
