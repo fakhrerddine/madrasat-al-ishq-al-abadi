@@ -38,7 +38,7 @@ jobs:
           pdfinfo site/assets/book.pdf | grep -E '^(Pages|Page size|File size):'
           pdftoppm -jpeg -scale-to 1800 -jpegopt quality=88,optimize=y site/assets/book.pdf site/assets/pages/page
           for image in site/assets/pages/page-*.jpg; do
-            cwebp -quiet -q 86 -m 6 "$image" -o "\${image%.jpg}.webp"
+            cwebp -quiet -q 86 -m 6 "$image" -o "${image%.jpg}.webp"
             rm "$image"
           done
           python - <<'PY'
