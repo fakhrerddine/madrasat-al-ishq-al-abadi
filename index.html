@@ -72,7 +72,7 @@ footer{text-align:center;background:var(--navy);color:#e5d4ad;padding:20px;font-
 <section class="author-section" id="about-author">
 <h2>نبذة عن المؤلف</h2>
 <div class="author-inner">
-<img class="author-cover" id="authorCover" src="./assets/book-cover.webp" alt="الغلاف الأصلي لكتاب مدرسة العشق الأبدي الروحي">
+<img class="author-cover" id="authorCover" src="./assets/pages/page-1.webp" alt="الغلاف الأصلي لكتاب مدرسة العشق الأبدي الروحي">
 <div class="author-copy">
 <h3>فخرالدين حمادي</h3>
 <p>فخرالدين حمادي كاتب مهتم بفلسفة العشق والغرام والهيام، وبالتعبير عن التجارب الإنسانية من خلال الكتابة والتأمل. يرى في الكتابة وسيلة لفهم المشاعر وتحويلها إلى أفكار ودروس حول الوفاء والصدق والصبر واحترام حرية الآخر.</p>
@@ -115,5 +115,17 @@ footer{text-align:center;background:var(--navy);color:#e5d4ad;padding:20px;font-
   });
   pagesHost.replaceChildren(fragment);
   const cover=document.getElementById("authorCover");cover.src="./assets/pages/"+files[0];cover.onerror=()=>cover.style.display="none";
+  if(pagesHost.firstElementChild)pagesHost.firstElementChild.classList.add("active");
+  cover.src="./assets/pages/"+files[0];
+  cover.alt="الغلاف الأصلي للكتاب";
+  cover.onerror=()=>{cover.style.display="block";cover.src="./assets/pages/page-1.webp";};
   updateStatus();
->
+ }catch(error){
+  status.textContent="تعذر تحميل الصفحات";
+  pagesHost.innerHTML='<div style="padding:35px;text-align:center;color:#8b2635;background:#fff8e9;border:1px solid #c5a45a;border-radius:10px"><h2>تعذر عرض صفحات المجلة</h2><p>يمكنك فتح نسخة PDF الأصلية من الزر الموجود أعلى الصفحة.</p><p style="font-size:12px">يرجى تحديث الصفحة بعد اكتمال النشر.</p></div>';
+  console.error(error);
+ }
+})(); 
+</script>
+</body>
+</html>
