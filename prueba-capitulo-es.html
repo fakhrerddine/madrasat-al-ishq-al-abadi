@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#142744">
+<title>Capítulo primero · La escuela del amor eterno espiritual</title>
+<style>
+:root{--navy:#142744;--blue:#203e66;--gold:#c5a45a;--paper:#f3ead8;--ink:#26364d}
+*{box-sizing:border-box}
+body{margin:0;background:#e7dece;color:var(--ink);font-family:Georgia,"Times New Roman",serif}
+header{background:linear-gradient(130deg,#10213b,#25466e 70%,#142744);color:#f8eedb;text-align:center;padding:24px 14px 20px;border-bottom:5px solid var(--gold)}
+.kicker{font:12px Arial,sans-serif;letter-spacing:3px;color:#e2c982}
+h1{font-size:clamp(24px,4vw,40px);line-height:1.35;margin:10px 0;color:#f2d58d;text-shadow:0 3px 12px #0006}
+.subtitle{font:15px Arial,sans-serif;color:#f4e8d1}
+.actions{position:sticky;top:0;z-index:5;display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;padding:10px;background:#142744f5;border-bottom:1px solid var(--gold)}
+button,a{border:1px solid var(--gold);background:#263f62;color:#fff4df;border-radius:7px;padding:9px 14px;font:14px Arial,sans-serif;text-decoration:none;cursor:pointer}
+button:disabled{opacity:.45;cursor:not-allowed}
+.status{color:#f2d58d;font:13px Arial,sans-serif;min-width:85px;text-align:center}
+main{max-width:1100px;margin:24px auto;padding:0 14px 36px}
+.note{text-align:center;font:14px/1.8 Arial,sans-serif;color:#625846;margin:0 auto 18px}
+.book{display:grid;grid-template-columns:1fr 1fr;direction:ltr;gap:0;perspective:1600px;filter:drop-shadow(0 16px 22px #17233b30)}
+.page{position:relative;min-height:610px;padding:clamp(24px,4vw,54px);background:linear-gradient(100deg,#e6dbc5 0%,#fffaf0 8%,#f5ecd9 100%);border:1px solid #c5a45a;box-shadow:inset 0 0 22px #7e69401c;display:flex;flex-direction:column;justify-content:center;animation:turn .35s ease-out}
+.page+ .page{background:linear-gradient(100deg,#f5ecd9 0%,#fffaf0 90%,#e6dbc5 100%)}
+.page:before{content:"";position:absolute;top:0;bottom:0;left:0;width:10px;background:linear-gradient(90deg,#78674744,transparent)}
+.page h2{font: bold clamp(20px,2.5vw,27px)/1.5 Georgia,serif;text-align:center;color:#9a7938;margin:0 0 25px}
+.page p{font-size:clamp(17px,1.7vw,20px);line-height:2;text-align:justify;margin:0 0 18px}
+.page-number{position:absolute;bottom:16px;left:0;right:0;text-align:center;color:#9a7938;font:12px Arial,sans-serif}
+@keyframes turn{from{opacity:.55;transform:rotateY(-4deg)}to{opacity:1;transform:rotateY(0)}}
+[hidden]{display:none!important}
+footer{text-align:center;background:var(--navy);color:#e5d4ad;padding:18px;font:12px Arial,sans-serif;border-top:4px solid var(--gold)}
+@media(max-width:700px){main{margin:14px auto}.book{grid-template-columns:1fr}.page{min-height:440px;padding:30px 24px}.page+ .page{border-top:0}.page p{text-align:left}}
+</style>
+</head>
+<body>
+<header>
+<div class="kicker">FAKHREDDINE HAMMADI · EDICIÓN LITERARIA</div>
+<h1>La escuela del amor eterno espiritual</h1>
+<div class="subtitle">Filosofía del amor, la pasión y el anhelo</div>
+</header>
+<nav class="actions" aria-label="Controles de lectura">
+<a href="./index.html">Volver al libro original</a>
+<button id="prev" type="button" disabled>◀ Página anterior</button>
+<span class="status" id="status">1–2 de 2</span>
+<button id="next" type="button">Página siguiente ▶</button>
+</nav>
+<main>
+<p class="note">Versión de prueba en español · Capítulo primero. Esta vista es independiente y no modifica el libro original en árabe.</p>
+<section class="book" aria-label="Páginas del capítulo">
+<article class="page" id="page1">
+<h2>Capítulo primero<br>Desde mi infancia hasta llegar a Lamiya</h2>
+<p>Desde mi infancia, he tenido experiencias relacionadas con el amor, y en cada etapa de mi vida mi manera de entender el amor profundo ha ido cambiando y evolucionando.</p>
+<p>Mis sentimientos ya no tienen el mismo significado que tenían al principio. Con el paso del tiempo, aprendí de las experiencias que viví y empecé a comprender el amor de otra manera, hasta llegar a una etapa en la que sentí que había entrado en un mundo diferente de emociones.</p>
+<p>Con Lamiya, sentí que había llegado a una etapa distinta de mi vida afectiva. No puedo decir que mi experiencia con ella se parezca a todas las experiencias anteriores; para mí, adquirió un lugar especial y un significado diferente.</p>
+<div class="page-number">1</div>
+</article>
+<article class="page" id="page2">
+<p>No considero que el amor profundo sea simplemente admirar un rostro o una apariencia, ni tampoco unas palabras bonitas que se intercambian entre dos personas. Para mí, puede convertirse en una experiencia profunda que la persona vive en su corazón, en su mente y en su interior, y que la acompaña en sus recuerdos, sus sueños y su manera de mirar hacia el futuro.</p>
+<p>Así comenzó a tomar forma mi propia filosofía, hasta que empecé a buscar las palabras y las imágenes capaces de expresar lo que siento.</p>
+<p>Con el tiempo, me encontré construyendo todo un mundo alrededor de este significado, un mundo al que llamé «El planeta del amor eterno de Fakhreddine».</p>
+<div class="page-number">2</div>
+</article>
+</section>
+</main>
+<footer>© Fakhreddine Hammadi · La escuela del amor eterno espiritual</footer>
+<script>
+const pages=[document.getElementById('page1'),document.getElementById('page2')];
+let current=0;
+const prev=document.getElementById('prev'),next=document.getElementById('next'),status=document.getElementById('status');
+function show(){pages.forEach((p,i)=>p.hidden=i!==current);prev.disabled=current===0;next.disabled=current===pages.length-1;status.textContent=(current+1)+' de '+pages.length;}
+prev.addEventListener('click',()=>{if(current>0){current--;show();}});
+next.addEventListener('click',()=>{if(current<pages.length-1){current++;show();}});
+show();
+</script>
+</body>
+</html>
