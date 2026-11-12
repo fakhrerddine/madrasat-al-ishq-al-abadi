@@ -31,7 +31,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p site/assets/pages
-          SOURCE_PDF="site/مدرسة العشق الأبدي الروحي - Copie_compressed.pdf"
+          SOURCE_PDF="site/book.pdf"
           test -s "$SOURCE_PDF"
           cp "$SOURCE_PDF" site/assets/book.pdf
           echo "Latest PDF copied without modification:"
